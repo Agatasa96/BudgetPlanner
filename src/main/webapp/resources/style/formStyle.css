@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+body {
+	background: rgba(255, 125, 0, 0.25);
+}
+
+.container {
+	position: absolute;
+	margin-left: 610px;
+	width: auto;
+	height: auto;
+	top: calc(50% - 200px);
+}
+
+form {
+	position: absolute;
+	text-align: center;
+	background: #fff;
+	width: 600px;
+	height: 600px;
+	border-radius: 5px;
+	padding: 30px 20px 0 20px;
+	box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+	box-sizing: border-box;
+}
+
+p {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 100;
+	text-transform: uppercase;
+	font-size: 20px;
+	color: #87613d;
+	margin-bottom: 40px;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Dosis';
+	font-size: 60px;
+	color: #87613d;
+	margin-bottom: 30px;
+	margin-top: 60px;
+	text-shadow: 7px 7px rgba(255, 125, 0, 0.35);
+}
+
+h3 {
+	font-family: 'Dosis';
+	font-size: 40px;
+	text-transform: uppercase;
+	color: #87613d;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+input, button {
+	outline: none !important;
+}
+
+button.form-btn {
+	position: absolute;
+	width: 100%;
+	height: 60px;
+	bottom: 0;
+	border: 0;
+	font-family: 'Dosis';
+	font-size: 24px;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+button.form-btn.sx {
+	left: 0;
+	border-radius: 0 0 0 5px;
+	background-color: rgba(255, 125, 0, 0.65);
+	color: #fff;
+	transition: all 0.3s linear;
+}
+
+button.form-btn.sx:hover {
+	background-color: rgba(255, 125, 0, 0.95);
+	color: #fff;
+}
+
+input {
+	border: none;
+	border-bottom: 1px solid #ffc185;
+	width: 65%;
+	font-family: 'Roboto';
+	color: #ff7d00;
+	text-align: center;
+	font-size: 25px;
+	font-weight: 100;
+	margin-bottom: 30px;
+}
+
+/* Wyglad placehoderow */
+::-webkit-input-placeholder {
+	color: #ffc185;
+	font-family: 'Roboto';
+	font-weight: 100;
+}
+
+:-moz-placeholder {
+	color: #ffc185;
+	font-family: 'Roboto';
+	font-weight: 100;
+}
+
+::-moz-placeholder {
+	color: #ffc185;
+	font-family: 'Roboto';
+	font-weight: 100;
+}
+
+:-ms-input-placeholder {
+	color: #ffc185;
+	font-family: 'Roboto';
+	font-weight: 100;
+}
