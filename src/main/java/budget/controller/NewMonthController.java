@@ -36,7 +36,8 @@ public class NewMonthController {
 			newMonthDto.setUserDto(userDto);
 			newMonthService.save(newMonthDto);
 
-			model.addAttribute("newMonthSum", newMonthService.addNewMonth(userDto.getId()));
+			NewMonthDto monthDto = newMonthService.monthlySaveUp(userDto.getId());
+			model.addAttribute("newMonthSum", monthDto);
 			return "main/balancePage";
 		}
 

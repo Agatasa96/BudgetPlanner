@@ -40,7 +40,7 @@ public class UserService {
 			return null;
 		} else {
 			if ((userDto.getPassword()).equals(user.getPassword())) {
-				return userDto;
+				return toDto(user);
 			} else {
 				JOptionPane.showMessageDialog(null, "Wrong email or password");
 				return null;
@@ -54,7 +54,7 @@ public class UserService {
 		dto.setId(user.getId());
 		dto.setEmail(user.getEmail());
 		dto.setPassword(user.getPassword());
-		dto.setNickname(user.getEmail());
+		dto.setNickname(user.getNickname());
 		return dto;
 	}
 

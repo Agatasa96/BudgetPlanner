@@ -61,8 +61,12 @@ public class UserController {
 		if (Objects.nonNull(userDto2)) {
 			model.addAttribute("userName", userDto2.getNickname());
 			if (LocalDate.now().getDayOfMonth() == 1) {
+				userDto = userDto2;
+				model.addAttribute("userDto", userDto);
 				return "form/newMonthForm";
 			} else {
+				userDto = userDto2;
+				model.addAttribute("userDto", userDto);
 				return "main/mainPage";
 			}
 

@@ -25,13 +25,16 @@ public class NewMonthService {
 	}
 
 	public NewMonthDto save(NewMonthDto newMonthDto) {
-		newMonthRepository.save(toDomain(newMonthDto));
-		JOptionPane.showMessageDialog(null, "Added to budget");
-
+		NewMonth newMonth = newMonthRepository.save(toDomain(newMonthDto));
+		if(Objects.nonNull(newMonth)) {
+			JOptionPane.showMessageDialog(null, "Added to budget");
+			return toDto(newMonth);
+		}
+		JOptionPane.showMessageDialog(null, "Cannot add to budget");
 		return newMonthDto;
 	}
 
-	public NewMonthDto addNewMonth(Long id) {
+	public NewMonthDto monthlySaveUp(Long id) {
 		return toDto(newMonthRepository.findFirstByUserIdOrderByDateDesc(id));
 
 	}

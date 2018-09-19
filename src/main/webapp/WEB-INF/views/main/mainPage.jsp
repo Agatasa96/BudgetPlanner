@@ -21,7 +21,7 @@
 
 
 	<div>
-		<h1>Hello ${userName}!</h1>
+		<h1>Hello ${userDto.nickname}!</h1>
 	</div>
 
 
