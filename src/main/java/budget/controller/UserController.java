@@ -43,7 +43,8 @@ public class UserController {
 		if (bindingResult.hasErrors()) {
 			return "home/homePage";
 		} else {
-			userService.signUp(userDto);
+			UserDto savedDto = userService.signUp(userDto);
+			userDto = savedDto;
 			model.addAttribute("userDto", userDto);
 			return "form/newMonthForm";
 		}

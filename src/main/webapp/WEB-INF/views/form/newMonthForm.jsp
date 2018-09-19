@@ -31,9 +31,7 @@
 				</br>
 				<form:errors path="toSave" cssStyle="color:red"></form:errors>
 				</br>
-				    <form:select path="userDto.id">
-                <form:option value="${userDto.id}" label="${userDto.id}" />
-            </form:select>
+				
 					<button class="form-btn sx log-in" type="submit" id="log">Done</button>
 
 			</form:form>

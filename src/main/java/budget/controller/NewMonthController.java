@@ -34,8 +34,10 @@ public class NewMonthController {
 			return "form/newMonthForm";
 		}else {
 			
+			newMonthDto.setUserDto(userDto);
 			newMonthService.save(newMonthDto);
-			model.addAttribute("newMonthSum", newMonthService.addNewMonth(newMonthDto.getId()));
+			
+			model.addAttribute("newMonthSum", newMonthService.addNewMonth(userDto.getId()));
 			return "main/balancePage";
 		}
 		

@@ -16,11 +16,12 @@ import budget.repository.UserRepository;
 public class NewMonthService {
 
 	private final NewMonthRepository newMonthRepository;
-	
+	private final UserRepository userRepository;
 
-	public NewMonthService(NewMonthRepository newMonthRepository) {
+	public NewMonthService(NewMonthRepository newMonthRepository, UserRepository userRepository) {
 		this.newMonthRepository = newMonthRepository;
-	
+		this.userRepository = userRepository;
+
 	}
 
 	public NewMonthDto save(NewMonthDto newMonthDto) {
@@ -41,8 +42,8 @@ public class NewMonthService {
 		newMonth.setPutIn(newMonthDto.getPutIn());
 		newMonth.setToSave(newMonthDto.getToSave());
 		newMonth.setDate(newMonthDto.getDate());
-		
-
+		User user = userRepository.findOne(newMonthDto.getUserDto().getId());
+		newMonth.setUser(user);
 		return newMonth;
 	}
 
@@ -52,7 +53,7 @@ public class NewMonthService {
 		newMonthDto.setPutIn(newMonth.getPutIn());
 		newMonthDto.setToSave(newMonth.getToSave());
 		newMonthDto.setDate(newMonth.getDate());
-		
+
 		return newMonthDto;
 	}
 

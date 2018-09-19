@@ -22,8 +22,13 @@ public class UserService {
 	}
 
 	public UserDto signUp(UserDto dto) {
-		userRepository.save(toDomain(dto));
-		JOptionPane.showMessageDialog(null, "Done!");
+		User user = userRepository.save(toDomain(dto));
+		if (Objects.nonNull(user.getId())) {
+			JOptionPane.showMessageDialog(null, "Done!");
+			return toDto(user);
+
+		}
+		JOptionPane.showMessageDialog(null, "Cannot sign up!");
 		return dto;
 
 	}
@@ -44,7 +49,7 @@ public class UserService {
 
 	}
 
-	public UserDto toDto(User user) {
+	private UserDto toDto(User user) {
 		UserDto dto = new UserDto();
 		dto.setId(user.getId());
 		dto.setEmail(user.getEmail());
@@ -53,7 +58,7 @@ public class UserService {
 		return dto;
 	}
 
-	public User toDomain(UserDto userDto) {
+	private User toDomain(UserDto userDto) {
 		User user = new User();
 		user.setId(userDto.getId());
 		user.setPassword(userDto.getPassword());
