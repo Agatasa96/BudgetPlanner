@@ -31,8 +31,8 @@
 				</br>
 				<form:errors path="toSave" cssStyle="color:red"></form:errors>
 				</br>
-				
-					<button class="form-btn sx log-in" type="submit" id="log">Done</button>
+
+				<button class="form-btn sx log-in" type="submit" id="log">Done</button>
 
 			</form:form>
 

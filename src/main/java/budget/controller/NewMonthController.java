@@ -21,25 +21,24 @@ import budget.service.NewMonthService;
 public class NewMonthController {
 
 	private final NewMonthService newMonthService;
-	
-	
+
 	public NewMonthController(NewMonthService newMonthService) {
 		this.newMonthService = newMonthService;
 	}
 
-
 	@PostMapping("/update")
-	public String update(@Valid @ModelAttribute NewMonthDto newMonthDto, BindingResult bindingResult, Model model, @SessionAttribute("userDto") UserDto userDto) {
-		if(bindingResult.hasErrors()) {
+	public String update(@Valid @ModelAttribute NewMonthDto newMonthDto, BindingResult bindingResult, Model model,
+			@SessionAttribute("userDto") UserDto userDto) {
+		if (bindingResult.hasErrors()) {
 			return "form/newMonthForm";
-		}else {
-			
+		} else {
+
 			newMonthDto.setUserDto(userDto);
 			newMonthService.save(newMonthDto);
-			
+
 			model.addAttribute("newMonthSum", newMonthService.addNewMonth(userDto.getId()));
 			return "main/balancePage";
 		}
-		
+
 	}
 }

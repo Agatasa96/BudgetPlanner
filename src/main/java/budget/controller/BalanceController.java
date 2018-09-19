@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BalanceController {
 
 	@RequestMapping
-	public String balancePage(Model model ) {
+	public String balancePage(Model model) {
 		model.addAttribute("month", LocalDate.now().getMonth());
 		return "main/balancePage";
 	}
-	
+
 }

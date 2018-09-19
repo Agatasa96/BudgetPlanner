@@ -76,7 +76,5 @@ public class UserController {
 	public NewMonthDto getnewMothDto(NewMonthDto newMonthDto) {
 		return new NewMonthDto();
 	}
-	
-
 
 }
