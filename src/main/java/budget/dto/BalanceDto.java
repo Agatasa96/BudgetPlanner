@@ -21,6 +21,7 @@ public class BalanceDto {
 	private Double totalBalance;
 	private Double saveBalance;
 	private Double afterShoppingBalance;
+	private Double putIn;
 	private Double saveUp;
 	private Date date;
 	private UserDto userDto;

@@ -11,7 +11,6 @@ import budget.domain.Balance;
 import budget.domain.User;
 import budget.dto.BalanceDto;
 
-
 import budget.repository.BalanceRepository;
 
 import budget.repository.UserRepository;
@@ -43,6 +42,7 @@ public class BalanceService {
 		balance.setDate(balanceDto.getDate());
 		balance.setAfterShoppingBalance(balanceDto.getAfterShoppingBalance());
 		balance.setSaveBalance(balanceDto.getSaveBalance());
+		balance.setPutIn(balanceDto.getPutIn());
 		balance.setSaveUp(balanceDto.getSaveUp());
 		balance.setTotalBalance(balanceDto.getTotalBalance());
 		User user = userRepository.findOne(balanceDto.getUserDto().getId());
@@ -58,6 +58,7 @@ public class BalanceService {
 		balanceDto.setDate(balance.getDate());
 		balanceDto.setAfterShoppingBalance(balance.getAfterShoppingBalance());
 		balanceDto.setSaveBalance(balance.getSaveBalance());
+		balanceDto.setPutIn(balance.getPutIn());
 		balanceDto.setSaveUp(balance.getSaveUp());
 		balanceDto.setTotalBalance(balance.getTotalBalance());
 

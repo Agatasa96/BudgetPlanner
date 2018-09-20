@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,9 @@ public class Balance {
 	private Double totalBalance;
 	private Double saveBalance;
 	private Double afterShoppingBalance;
+	@NumberFormat
+	private Double putIn;
+	@NumberFormat
 	private Double saveUp;
 	private Date date;
 	
