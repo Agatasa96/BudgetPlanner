@@ -27,6 +27,7 @@ public class BalanceService {
 	}
 
 	public BalanceDto save(BalanceDto balanceDto) {
+		
 		Balance balance = balanceRepository.save(toDomain(balanceDto));
 		if (Objects.nonNull(balance)) {
 			JOptionPane.showMessageDialog(null, "Added to budget");
@@ -34,6 +35,18 @@ public class BalanceService {
 		}
 		JOptionPane.showMessageDialog(null, "Cannot add to budget");
 		return balanceDto;
+	}
+	
+	private Double countTotalBalance(BalanceDto balanceDto) {
+		Balance balance = balanceRepository.findFirstByUserIdOrderByDateDesc(balanceDto.getUserDto().getId());
+		Double totalBalance = balance.getTotalBalance();
+		if(Objects.isNull(totalBalance)) {
+			totalBalance =balanceDto.getPutIn();
+		}else {
+			totalBalance += balanceDto.getPutIn();
+		}
+		
+		return totalBalance;
 	}
 
 	private Balance toDomain(BalanceDto balanceDto) {

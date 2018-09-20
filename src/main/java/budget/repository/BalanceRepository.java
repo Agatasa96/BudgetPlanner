@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import budget.domain.Balance;
 
 @Repository
-public interface BalanceRepository extends JpaRepository<Balance, Long>{
-
+public interface BalanceRepository extends JpaRepository<Balance, Long> {
+	Balance findFirstByUserIdOrderByDateDesc(Long id);
 }
