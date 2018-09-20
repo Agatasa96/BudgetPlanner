@@ -26,7 +26,7 @@ public class User {
 	
 	@Email
 	@NotNull
-	@EmailValidator
+	
 	private String email;
 	@Size(min = 5)
 	@NotNull

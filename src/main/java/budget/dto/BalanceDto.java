@@ -1,5 +1,6 @@
 package budget.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
@@ -23,6 +24,6 @@ public class BalanceDto {
 	private Double afterShoppingBalance;
 	private Double putIn;
 	private Double saveUp;
-	private Date date;
+	private LocalDate date;
 	private UserDto userDto;
 }

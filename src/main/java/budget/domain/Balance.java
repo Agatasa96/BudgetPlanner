@@ -1,5 +1,6 @@
 package budget.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class Balance {
 	private Double putIn;
 	@NumberFormat
 	private Double saveUp;
-	private Date date;
+	private LocalDate date;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")

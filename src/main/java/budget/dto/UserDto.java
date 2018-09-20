@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class UserDto {
 
 	private Long id;
-	
+	@EmailValidator
 	private String email;
 	
 	private String password;
