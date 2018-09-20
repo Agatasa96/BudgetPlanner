@@ -38,10 +38,10 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Cell 1</td>
-					<td>Cell 2</td>
-					<td>Cell 3</td>
-					<td>${newMonthSum.toSave}</td>
+					<td>${savedBalance.totalBalance }</td>
+					<td>${savedBalance.saveBalance }</td>
+					<td>${savedBalance.afterShoppingBalance }</td>
+					<td>${savedBalance.saveUp }</td>
 
 				</tr>
 			</tbody>

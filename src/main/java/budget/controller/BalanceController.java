@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import budget.domain.Balance;
 import budget.dto.BalanceDto;
 
 import budget.dto.UserDto;
@@ -29,6 +30,11 @@ public class BalanceController {
 		this.balanceService = balanceService;
 	}
 
+	@RequestMapping
+	public String balance() {
+		return "main/balancePage";
+	}
+
 	@PostMapping("/newMonth")
 	public String update(@Valid @ModelAttribute BalanceDto balanceDto, BindingResult bindingResult, Model model,
 			@SessionAttribute("userDto") UserDto userDto) {
@@ -37,8 +43,8 @@ public class BalanceController {
 		} else {
 
 			balanceDto.setUserDto(userDto);
-			balanceService.save(balanceDto);
-
+			BalanceDto savedBalanceDto = balanceService.save(balanceDto);
+			model.addAttribute("savedBalance", savedBalanceDto);
 			return "main/balancePage";
 		}
 
