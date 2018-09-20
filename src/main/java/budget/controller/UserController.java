@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import budget.domain.User;
 import budget.dto.UserDto;
-import budget.dto.NewMonthDto;
+import budget.dto.BalanceDto;
+
 import budget.service.UserService;
 
 @Controller
@@ -76,9 +77,9 @@ public class UserController {
 
 	}
 
-	@ModelAttribute("newMonthDto")
-	public NewMonthDto getnewMothDto(NewMonthDto newMonthDto) {
-		return new NewMonthDto();
+	@ModelAttribute("balanceDto")
+	public BalanceDto getNewBalanceDto(BalanceDto balanceDto) {
+		return new BalanceDto();
 	}
 
 }

@@ -23,4 +23,5 @@ public class BalanceDto {
 	private Double afterShoppingBalance;
 	private Double saveUp;
 	private Date date;
+	private UserDto userDto;
 }

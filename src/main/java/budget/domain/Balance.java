@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,4 +27,8 @@ public class Balance {
 	private Double afterShoppingBalance;
 	private Double saveUp;
 	private Date date;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 }

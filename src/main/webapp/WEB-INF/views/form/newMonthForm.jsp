@@ -19,17 +19,17 @@
 
 		<h3>It's time to update your budget</h3>
 		<div class="container">
-			<form:form modelAttribute="newMonthDto" method="post"
-				action="/BudgetPlanner/newMonth/update">
+			<form:form modelAttribute="balanceDto" method="post"
+				action="/BudgetPlanner/balance/newMonth">
 				<p>Insert sum to add to your balance</p>
-				<form:input path="putIn" placeholder="Insert sum " />
+				<form:input path="totalBalance" placeholder="Insert sum " />
 				</br>
-				<form:errors path="putIn" cssStyle="color:red"></form:errors>
+				<form:errors path="totalBalance" cssStyle="color:red"></form:errors>
 				</br>
 				<p>Insert sum which you want to save up</p>
-				<form:input path="toSave" placeholder="Insert sum " />
+				<form:input path="saveUp" placeholder="Insert sum " />
 				</br>
-				<form:errors path="toSave" cssStyle="color:red"></form:errors>
+				<form:errors path="saveUp" cssStyle="color:red"></form:errors>
 				</br>
 
 				<button class="form-btn sx log-in" type="submit" id="log">Done</button>

@@ -1,35 +1,46 @@
 package budget.controller;
 
-import java.time.LocalDate;
-import java.util.Date;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import budget.dto.NewMonthDto;
+import budget.dto.BalanceDto;
+
 import budget.dto.UserDto;
-import budget.service.NewMonthService;
+import budget.service.BalanceService;
 
 @Controller
 @RequestMapping("/balance")
 @SessionAttributes("userDto")
 public class BalanceController {
 
-	private final NewMonthService newMonthService;
+	private final BalanceService balanceService;
 
-	public BalanceController(NewMonthService newMonthService) {
-		this.newMonthService = newMonthService;
-	}
-	
-	@RequestMapping
-	public String balancePage(@ModelAttribute("userDto") UserDto userDto,Model model) {
-		model.addAttribute("month", LocalDate.now().getMonth());
-		NewMonthDto monthDto = newMonthService.monthlySaveUp(userDto.getId());
-		model.addAttribute("newMonthSum", monthDto);
-		return "main/balancePage";
+	public BalanceController(BalanceService balanceService) {
+
+		this.balanceService = balanceService;
 	}
 
+	@PostMapping("/newMonth")
+	public String update(@Valid @ModelAttribute BalanceDto balanceDto, BindingResult bindingResult, Model model,
+			@SessionAttribute("userDto") UserDto userDto) {
+		if (bindingResult.hasErrors()) {
+			return "form/newMonthForm";
+		} else {
+
+			balanceDto.setUserDto(userDto);
+			balanceService.save(balanceDto);
+
+			return "main/balancePage";
+		}
+
+	}
 }
