@@ -10,7 +10,7 @@ import budget.dto.UserDto;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes("userDto")
+@SessionAttributes({"userDto","savedBalance"})
 
 public class HomePageController {
 

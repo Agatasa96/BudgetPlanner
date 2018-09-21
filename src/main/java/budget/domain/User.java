@@ -24,9 +24,7 @@ public class User {
 	@GeneratedValue
 	private Long id;
 	
-	@Email
-	@NotNull
-	
+	@Email	
 	private String email;
 	@Size(min = 5)
 	@NotNull

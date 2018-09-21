@@ -52,7 +52,7 @@
 			<div class="lay">
 				<h3>Pay in/out cash</h3>
 				<p>
-					<a href="#">CLICK</a>
+					<a href="/BudgetPlanner/balance/putInOut">CLICK</a>
 				</p>
 			</div>
 		</div>

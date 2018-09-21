@@ -17,9 +17,13 @@ public class UserDto {
 
 	private Long id;
 	@EmailValidator
+	@NotNull
 	private String email;
-	
+	@Size(min = 5)
+	@NotNull
+	@NotBlank
 	private String password;
-	
+	@Size(min = 5, max = 15)
+	@NotNull
 	private String nickname;
 }
