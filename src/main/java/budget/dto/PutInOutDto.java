@@ -28,5 +28,5 @@ public class PutInOutDto {
 	private Double putOut;
 	
 	@ManyToOne
-	private User user;
+	private UserDto userDto;
 }

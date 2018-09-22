@@ -19,8 +19,8 @@
 
 		<h3>Update your budget</h3>
 		<div class="container">
-			<form:form modelAttribute="balanceDto" method="post"
-				action="/BudgetPlanner/balance/putInOut">
+			<form:form modelAttribute="putInOut" method="post"
+				action="/BudgetPlanner/putInOut/form">
 				
 				<form:input path="putIn" placeholder="Insert sum to put in" />
 				</br>

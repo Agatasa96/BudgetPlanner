@@ -28,7 +28,7 @@ public class BalanceService {
 	}
 
 	public BalanceDto lastBalance(BalanceDto balanceDto) {
-		Balance balance = balanceRepository.findFirstByUserIdOrderByDateDesc(balanceDto.getUserDto().getId());
+		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
 		return toDto(balance);
 	}
 
@@ -45,7 +45,7 @@ public class BalanceService {
 	}
 
 	private Double countSaveUpBalance(BalanceDto balanceDto) {
-		Balance balance = balanceRepository.findFirstByUserIdOrderByDateDesc(balanceDto.getUserDto().getId());
+		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
 		Double saveUpBalance = 0.0;
 		if (Objects.isNull(balance)) {
 			saveUpBalance = balanceDto.getPutIn() - balanceDto.getSaveUp();
@@ -56,7 +56,7 @@ public class BalanceService {
 	}
 
 	private Double countTotalBalance(BalanceDto balanceDto) {
-		Balance balance = balanceRepository.findFirstByUserIdOrderByDateDesc(balanceDto.getUserDto().getId());
+		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
 		Double totalBalance = 0.0;
 
 		if (Objects.isNull(balance)) {
