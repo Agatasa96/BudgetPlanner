@@ -92,17 +92,39 @@ public class UserController {
 
 	@GetMapping("/editNickname")
 	public String editNickname(@ModelAttribute("userDto") UserDto userDto, Model model) {
-		model.addAttribute("editNickname", userDto);
-		return "/form/editNicknameForm";
+		model.addAttribute("editUserDto", userDto);
+		return "/form/editUserForm";
 	}
 
 	@PostMapping("/editNickname")
-	public String editNickname(@ModelAttribute("editNickname") UserDto editNickname,
+	public String editNickname(@ModelAttribute("editUserDto") UserDto editUserDto,
 			@SessionAttribute("userDto") UserDto userDto, Model model) {
-		UserDto userDto2 = userService.editNickname(editNickname, userDto);
+		UserDto userDto2 = userService.editNickname(editUserDto, userDto);
 		
 		if (Objects.isNull(userDto2)) {
-			return "/form/editNicknameForm";
+			return "/form/editUserForm";
+		} else {
+			//UserDto userDto2 = userService.editNickname(editNickname, userDto);
+			userDto = userDto2;
+			model.addAttribute("userDto", userDto);
+			return "/main/userDataPage";
+		}
+
+	}
+	
+	@GetMapping("/editPassword")
+	public String editPassword(@ModelAttribute("userDto") UserDto userDto, Model model) {
+		model.addAttribute("editUserDto", userDto);
+		return "/form/editUserForm";
+	}
+	
+	@PostMapping("/editPassword")
+	public String editPassword(@ModelAttribute("editUserDto") UserDto editUserDto,
+			@SessionAttribute("userDto") UserDto userDto, Model model) {
+		UserDto userDto2 = userService.editPassword(editUserDto, userDto);
+		
+		if (Objects.isNull(userDto2)) {
+			return "/form/editUserForm";
 		} else {
 			//UserDto userDto2 = userService.editNickname(editNickname, userDto);
 			userDto = userDto2;

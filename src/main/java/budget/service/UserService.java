@@ -82,6 +82,28 @@ public class UserService {
 		}
 		
 	}
+	
+
+	public UserDto editPassword(UserDto editUserDto, UserDto userDto) {
+		User foundUser = userRepository.findOne(userDto.getId());
+		if(Objects.nonNull(foundUser)) {
+			if(editUserDto.getPassword().trim().length() >=5) {
+				foundUser.setPassword(editUserDto.getPassword());
+				userRepository.save(foundUser);
+				return toDto(foundUser);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Password length must be beetween 5 and 15!");
+				return null;
+			}
+			
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "Cannot edit password");
+			return null;
+		}
+		
+	}
 
 
 	private UserDto toDto(User user) {
@@ -101,6 +123,7 @@ public class UserService {
 		user.setNickname(userDto.getNickname());
 		return user;
 	}
+
 
 
 
