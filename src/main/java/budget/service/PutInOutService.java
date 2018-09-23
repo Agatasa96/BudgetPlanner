@@ -31,6 +31,7 @@ public class PutInOutService {
 	}
 
 	public PutInOutDto save(PutInOutDto putInOutDto) {
+		
 		PutInOut putInOut = putInOutRepository.save(toDomain(putInOutDto));
 		if (Objects.nonNull(putInOut)) {
 
@@ -74,6 +75,7 @@ public class PutInOutService {
 		putInOut.setId(putInOutDto.getId());
 		putInOut.setPutIn(putInOutDto.getPutIn());
 		putInOut.setPutOut(putInOutDto.getPutOut());
+		putInOut.setDate(LocalDate.now());
 		User user = userRepository.findOne(putInOutDto.getUserDto().getId());
 		putInOut.setUser(user);
 		return putInOut;
@@ -83,7 +85,8 @@ public class PutInOutService {
 		PutInOutDto putInOutDto = new PutInOutDto();
 		putInOutDto.setId(putInOut.getId());
 		putInOutDto.setPutIn(putInOut.getPutIn());
-		putInOutDto.setPutOut(putInOut.getPutOut());
+		putInOutDto.setDate(LocalDate.now());
+		putInOutDto.setDate(putInOut.getDate());
 
 		return putInOutDto;
 	}

@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
-p {
+p, a {
 	color: #fff;
 	margin: 0;
+	text-decoration: none;
 }
 
 .cont {

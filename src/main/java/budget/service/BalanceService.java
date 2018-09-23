@@ -11,7 +11,7 @@ import budget.domain.Balance;
 
 import budget.domain.User;
 import budget.dto.BalanceDto;
-
+import budget.dto.UserDto;
 import budget.repository.BalanceRepository;
 
 import budget.repository.UserRepository;
@@ -27,8 +27,8 @@ public class BalanceService {
 		this.userRepository = userRepository;
 	}
 
-	public BalanceDto lastBalance(BalanceDto balanceDto) {
-		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
+	public BalanceDto lastBalance(UserDto userDto) {
+		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(userDto.getId());
 		return toDto(balance);
 	}
 

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.swing.JOptionPane;
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,18 +21,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import budget.domain.User;
 import budget.dto.UserDto;
 import budget.dto.BalanceDto;
-
+import budget.service.BalanceService;
 import budget.service.UserService;
 
 @Controller
 @RequestMapping("/user")
-@SessionAttributes("userDto")
+@SessionAttributes({ "savedBalance", "userDto" })
 public class UserController {
 
 	private final UserService userService;
+	private final BalanceService balanceService;
 
-	public UserController(UserService userService) {
+	public UserController(UserService userService, BalanceService balanceService) {
 		this.userService = userService;
+		this.balanceService = balanceService;
 	}
 
 	@GetMapping("/signUp")
@@ -60,7 +63,6 @@ public class UserController {
 	public String logIn(@ModelAttribute("userDto") UserDto userDto, Model model) {
 		UserDto userDto2 = userService.logIn(userDto);
 		if (Objects.nonNull(userDto2)) {
-			model.addAttribute("userName", userDto2.getNickname());
 			if (LocalDate.now().getDayOfMonth() == 1) {
 				userDto = userDto2;
 				model.addAttribute("userDto", userDto);
@@ -68,11 +70,44 @@ public class UserController {
 			} else {
 				userDto = userDto2;
 				model.addAttribute("userDto", userDto);
+				BalanceDto balanceDto = balanceService.lastBalance(userDto);
+				model.addAttribute("savedBalance", balanceDto);
 				return "main/mainPage";
 			}
 
 		} else {
 			return "home/homePage";
+		}
+
+	}
+
+	@GetMapping("/getUser")
+	public String getUser(@ModelAttribute("userDto") UserDto userDto) {
+		UserDto userDto2 = userService.getUserData(userDto);
+		if (Objects.nonNull(userDto2)) {
+			return "main/userDataPage";
+		}
+		return "main/mainPage";
+	}
+
+	@GetMapping("/editNickname")
+	public String editNickname(@ModelAttribute("userDto") UserDto userDto, Model model) {
+		model.addAttribute("editNickname", userDto);
+		return "/form/editNicknameForm";
+	}
+
+	@PostMapping("/editNickname")
+	public String editNickname(@ModelAttribute("editNickname") UserDto editNickname,
+			@SessionAttribute("userDto") UserDto userDto, Model model) {
+		UserDto userDto2 = userService.editNickname(editNickname, userDto);
+		
+		if (Objects.isNull(userDto2)) {
+			return "/form/editNicknameForm";
+		} else {
+			//UserDto userDto2 = userService.editNickname(editNickname, userDto);
+			userDto = userDto2;
+			model.addAttribute("userDto", userDto);
+			return "/main/userDataPage";
 		}
 
 	}

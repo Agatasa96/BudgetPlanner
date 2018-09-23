@@ -8,7 +8,9 @@ import javax.swing.JOptionPane;
 import org.jboss.logging.Message;
 import org.springframework.stereotype.Service;
 
+import budget.domain.Balance;
 import budget.domain.User;
+import budget.dto.BalanceDto;
 import budget.dto.UserDto;
 import budget.repository.UserRepository;
 
@@ -48,6 +50,39 @@ public class UserService {
 		}
 
 	}
+	
+	public UserDto getUserData(UserDto userDto) {
+		User user = userRepository.findOne(userDto.getId());
+		if(Objects.isNull(user)) {
+			JOptionPane.showMessageDialog(null, "Cannot load user");
+			return null;
+		}
+		else {
+			return toDto(user);
+		}
+		
+	}
+	public UserDto editNickname(UserDto editNickname, UserDto userDto) {
+		User foundUser = userRepository.findOne(userDto.getId());
+		if(Objects.nonNull(foundUser)) {
+			if(editNickname.getNickname().length() >=5 && editNickname.getNickname().length()<=15) {
+				foundUser.setNickname(editNickname.getNickname());
+				userRepository.save(foundUser);
+				return toDto(foundUser);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Nickname length must be beetween 5 and 15!");
+				return null;
+			}
+			
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "Cannot edit nickname");
+			return null;
+		}
+		
+	}
+
 
 	private UserDto toDto(User user) {
 		UserDto dto = new UserDto();
@@ -67,4 +102,7 @@ public class UserService {
 		return user;
 	}
 
+
+
+	
 }

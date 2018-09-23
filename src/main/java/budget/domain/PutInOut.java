@@ -1,5 +1,7 @@
 package budget.domain;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,6 +28,8 @@ public class PutInOut {
 	private Double putIn;
 	@NumberFormat
 	private Double putOut;
+	
+	private LocalDate date;
 	
 	@ManyToOne
 	private User user;

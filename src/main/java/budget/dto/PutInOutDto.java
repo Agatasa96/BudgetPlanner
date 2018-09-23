@@ -1,5 +1,7 @@
 package budget.dto;
 
+import java.time.LocalDate;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -26,6 +28,8 @@ public class PutInOutDto {
 	private Double putIn;
 	@NumberFormat
 	private Double putOut;
+	
+	private LocalDate date;
 	
 	@ManyToOne
 	private UserDto userDto;

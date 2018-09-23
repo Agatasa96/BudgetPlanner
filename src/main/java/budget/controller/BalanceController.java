@@ -33,7 +33,8 @@ public class BalanceController {
 	}
 
 	@RequestMapping
-	public String balance() {
+	public String balance(@SessionAttribute("userDto") UserDto userDto, Model model) {
+		model.addAttribute("userDto", userDto);
 		return "main/balancePage";
 	}
 
