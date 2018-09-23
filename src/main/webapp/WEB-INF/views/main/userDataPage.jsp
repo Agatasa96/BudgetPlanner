@@ -51,6 +51,11 @@
 			<p>
 				<a href="/BudgetPlanner/user/editNickname">Edit user data</a>
 			</p>
+			</div>
+			<div class="button_main">
+			<p>
+				<a href="/BudgetPlanner/user/deleteUser">Delete my account</a>
+			</p>
 		</div>
 
 	</div>

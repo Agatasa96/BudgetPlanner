@@ -100,35 +100,52 @@ public class UserController {
 	public String editNickname(@ModelAttribute("editUserDto") UserDto editUserDto,
 			@SessionAttribute("userDto") UserDto userDto, Model model) {
 		UserDto userDto2 = userService.editNickname(editUserDto, userDto);
-		
+
 		if (Objects.isNull(userDto2)) {
 			return "/form/editUserForm";
 		} else {
-			//UserDto userDto2 = userService.editNickname(editNickname, userDto);
+			// UserDto userDto2 = userService.editNickname(editNickname, userDto);
 			userDto = userDto2;
 			model.addAttribute("userDto", userDto);
 			return "/main/userDataPage";
 		}
 
 	}
-	
+
 	@GetMapping("/editPassword")
 	public String editPassword(@ModelAttribute("userDto") UserDto userDto, Model model) {
 		model.addAttribute("editUserDto", userDto);
 		return "/form/editUserForm";
 	}
-	
+
 	@PostMapping("/editPassword")
 	public String editPassword(@ModelAttribute("editUserDto") UserDto editUserDto,
 			@SessionAttribute("userDto") UserDto userDto, Model model) {
 		UserDto userDto2 = userService.editPassword(editUserDto, userDto);
-		
+
 		if (Objects.isNull(userDto2)) {
 			return "/form/editUserForm";
 		} else {
-			//UserDto userDto2 = userService.editNickname(editNickname, userDto);
+			// UserDto userDto2 = userService.editNickname(editNickname, userDto);
 			userDto = userDto2;
 			model.addAttribute("userDto", userDto);
+			return "/main/userDataPage";
+		}
+
+	}
+
+	@GetMapping("/deleteUser")
+	public String deleteUser(@ModelAttribute("userDto") UserDto userDto, Model model) {
+		model.addAttribute("deleteUserDto", userDto);
+		return "/main/deleteUser";
+	}
+
+	@GetMapping("/deleteYes")
+	public String deleteUserYes(@ModelAttribute("userDto") UserDto userDto) {
+		String deleted = userService.delete(userDto);
+		if (deleted.equals("y")) {
+			return "redirect:/";
+		} else {
 			return "/main/userDataPage";
 		}
 

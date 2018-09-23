@@ -29,6 +29,7 @@ p, a {
 	overflow: hidden;
 	transition: .3s;
 	color: #fff;
+	text-decoration: none;
 }
 
 .button_main:after {

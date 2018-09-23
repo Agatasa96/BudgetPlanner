@@ -50,61 +50,69 @@ public class UserService {
 		}
 
 	}
-	
+
 	public UserDto getUserData(UserDto userDto) {
 		User user = userRepository.findOne(userDto.getId());
-		if(Objects.isNull(user)) {
+		if (Objects.isNull(user)) {
 			JOptionPane.showMessageDialog(null, "Cannot load user");
 			return null;
-		}
-		else {
+		} else {
 			return toDto(user);
 		}
-		
+
 	}
+
 	public UserDto editNickname(UserDto editNickname, UserDto userDto) {
 		User foundUser = userRepository.findOne(userDto.getId());
-		if(Objects.nonNull(foundUser)) {
-			if(editNickname.getNickname().length() >=5 && editNickname.getNickname().length()<=15) {
+		if (Objects.nonNull(foundUser)) {
+			if (editNickname.getNickname().length() >= 5 && editNickname.getNickname().length() <= 15) {
 				foundUser.setNickname(editNickname.getNickname());
 				userRepository.save(foundUser);
 				return toDto(foundUser);
-			}
-			else {
+			} else {
 				JOptionPane.showMessageDialog(null, "Nickname length must be beetween 5 and 15!");
 				return null;
 			}
-			
-		}
-		else{
+
+		} else {
 			JOptionPane.showMessageDialog(null, "Cannot edit nickname");
 			return null;
 		}
-		
+
 	}
-	
 
 	public UserDto editPassword(UserDto editUserDto, UserDto userDto) {
 		User foundUser = userRepository.findOne(userDto.getId());
-		if(Objects.nonNull(foundUser)) {
-			if(editUserDto.getPassword().trim().length() >=5) {
+		if (Objects.nonNull(foundUser)) {
+			if (editUserDto.getPassword().trim().length() >= 5) {
 				foundUser.setPassword(editUserDto.getPassword());
 				userRepository.save(foundUser);
 				return toDto(foundUser);
-			}
-			else {
+			} else {
 				JOptionPane.showMessageDialog(null, "Password length must be beetween 5 and 15!");
 				return null;
 			}
-			
-		}
-		else{
+
+		} else {
 			JOptionPane.showMessageDialog(null, "Cannot edit password");
 			return null;
 		}
-		
+
 	}
 
+	public String delete(UserDto userDto) {
+		User foundUser = userRepository.findOne(userDto.getId());
+		if (Objects.nonNull(foundUser)) {
+		
+			userRepository.delete(foundUser);
+			JOptionPane.showMessageDialog(null, "User deleted");
+			return "y";
+
+		} else {
+			JOptionPane.showMessageDialog(null, "Cannot delete user");
+return "n";
+		}
+	}
 
 	private UserDto toDto(User user) {
 		UserDto dto = new UserDto();
@@ -124,8 +132,4 @@ public class UserService {
 		return user;
 	}
 
-
-
-
-	
 }
