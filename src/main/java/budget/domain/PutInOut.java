@@ -33,7 +33,7 @@ public class PutInOut {
 	
 	private LocalDate date;
 	
-	@ManyToOne(cascade=CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 }

@@ -1,5 +1,8 @@
 package budget.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -34,5 +37,10 @@ public class User {
 	@Size(min=5, max=15)
 	@NotNull
 	private String nickname;
+
+	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
+	private List<Balance> balance;
 	
+	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
+	private List <PutInOut> putsInOut;
 }
