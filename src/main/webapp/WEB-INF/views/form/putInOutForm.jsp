@@ -10,6 +10,11 @@
 	href="/BudgetPlanner/resources/style/formStyle.css" type="text/css">
 
 <script src="/BudgetPlanner/resources/js/form.js"></script>
+<link rel="stylesheet"
+	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
+<script src="/BudgetPlanner/resources/js/menu.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <title>Put in/out cash</title>
 </head>
@@ -39,5 +44,21 @@
 		</div>
 
 	</div>
+	
+	<!-- Menu boczne -->
+	
+	<div class="open">
+		<span class="cls"></span> <span>
+			<ul class="sub-menu ">
+				<li><a href="/BudgetPlanner/main"> Home</a></li>
+				<li><a href="" title="about"> Calendar</a></li>
+				<li><a href="/BudgetPlanner/balance" >Balance</a></li>
+				<li><a href="#about" title="about"> Save-up </a></li>
+				<li><a href="#about" title="about"> Shopping list</a></li>
+				<li><a href="/BudgetPlanner/">Log out</a></li>
+			</ul>
+		</span> <span class="cls"></span>
+	</div>
+
 </body>
 </html>
