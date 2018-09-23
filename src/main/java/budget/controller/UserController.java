@@ -39,6 +39,7 @@ public class UserController {
 
 	@GetMapping("/signUp")
 	public String signUp(Model model) {
+		model.addAttribute("userDto", new UserDto());
 		return "home/homePage";
 	}
 
@@ -56,6 +57,7 @@ public class UserController {
 
 	@GetMapping("/logIn")
 	public String logIn(Model model) {
+		model.addAttribute("userDto", new UserDto());
 		return "home/homePage";
 	}
 

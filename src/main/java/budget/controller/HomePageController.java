@@ -26,8 +26,5 @@ public class HomePageController {
 		return "main/mainPage";
 	}
 
-	@ModelAttribute("userDto")
-	public UserDto getUserDto(UserDto userDto) {
-		return new UserDto();
-	}
+
 }
