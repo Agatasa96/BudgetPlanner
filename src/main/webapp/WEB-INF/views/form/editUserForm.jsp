@@ -9,6 +9,10 @@
 <link rel="stylesheet"
 	href="/BudgetPlanner/resources/style/homePageStyle.css" type="text/css">
 <script src="/BudgetPlanner/resources/js/form.js"></script>
+<link rel="stylesheet"
+	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
+<script src="/BudgetPlanner/resources/js/menu.js"></script>
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -17,7 +21,7 @@
 </head>
 <body>
 	<div>
-		<h1>Welcome in your BUDGET PLANNER application!</h1>
+		<h1>Edit user data:</h1>
 
 	</div>
 	<div class="left">
@@ -25,6 +29,7 @@
 			alt="error" />
 	</div>
 
+<!-- Formularz -->
 	<div class="container">
 		<form:form class="signUp" modelAttribute="editUserDto" method="post"
 			action="/BudgetPlanner/user/editNickname">
@@ -52,6 +57,18 @@
 			<button class="form-btn dx" type="submit">Edit</button>
 		</form:form>
 	</div>
+	
+	<!-- Menu boczne -->
+	<div class="open">
+		<span class="cls"></span> <span>
+			<ul class="sub-menu ">
+			<li><a href="/BudgetPlanner/user/getUser" >My account</a></li>
+				<li><a href="/BudgetPlanner/main"> Home</a></li>
+				<li><a href="/BudgetPlanner/" >Log out</a></li>
+			</ul>
+		</span> <span class="cls"></span>
+	</div>
+	
 
 </body>
 </html>
