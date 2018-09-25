@@ -1,6 +1,7 @@
 package budget.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -68,7 +69,7 @@ public class PutInOutService {
 		}
 
 		Balance balance2 = new Balance();
-		balance2.setDate(LocalDate.now());
+		balance2.setDate(LocalDateTime.now());
 		balance2.setTotalBalance(totalBalance);
 		balance2.setSaveUp(balance.getSaveUp());
 		Double saveUpBalance = totalBalance - balance.getSaveUp();
@@ -85,7 +86,7 @@ public class PutInOutService {
 		putInOut.setId(putInOutDto.getId());
 		putInOut.setPutIn(putInOutDto.getPutIn());
 		putInOut.setPutOut(putInOutDto.getPutOut());
-		putInOut.setDate(LocalDate.now());
+		putInOut.setDate(LocalDateTime.now());
 		User user = userRepository.findOne(putInOutDto.getUserDto().getId());
 		putInOut.setUser(user);
 		return putInOut;
@@ -95,8 +96,8 @@ public class PutInOutService {
 		PutInOutDto putInOutDto = new PutInOutDto();
 		putInOutDto.setId(putInOut.getId());
 		putInOutDto.setPutIn(putInOut.getPutIn());
-		putInOutDto.setDate(LocalDate.now());
-		putInOutDto.setDate(putInOut.getDate());
+		putInOutDto.setDate(LocalDateTime.now());
+		
 		putInOutDto.setPutOut(putInOut.getPutOut());
 
 		return putInOutDto;

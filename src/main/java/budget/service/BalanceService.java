@@ -1,6 +1,7 @@
 package budget.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -73,7 +74,7 @@ public class BalanceService {
 	private Balance toDomain(BalanceDto balanceDto) {
 		Balance balance = new Balance();
 		balance.setId(balanceDto.getId());
-		balance.setDate(LocalDate.now());
+		balance.setDate(LocalDateTime.now());
 		balance.setAfterShoppingBalance(balanceDto.getAfterShoppingBalance());
 		balance.setSaveBalance(balanceDto.getSaveBalance());
 		balance.setPutInMonthly(balanceDto.getPutInMonthly());
@@ -89,7 +90,7 @@ public class BalanceService {
 		BalanceDto balanceDto = new BalanceDto();
 
 		balanceDto.setId(balance.getId());
-		balanceDto.setDate(LocalDate.now());
+		balanceDto.setDate(LocalDateTime.now());
 		balanceDto.setAfterShoppingBalance(balance.getAfterShoppingBalance());
 		balanceDto.setSaveBalance(balance.getSaveBalance());
 		balanceDto.setPutInMonthly(balance.getPutInMonthly());

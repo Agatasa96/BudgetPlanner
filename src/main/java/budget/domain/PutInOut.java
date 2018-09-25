@@ -1,6 +1,7 @@
 package budget.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class PutInOut {
 	@NumberFormat
 	private Double putOut;
 	
-	private LocalDate date;
+	private LocalDateTime date;
 	
 	private Boolean sure;
 	

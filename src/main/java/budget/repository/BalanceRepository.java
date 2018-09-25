@@ -14,6 +14,6 @@ public interface BalanceRepository extends JpaRepository<Balance, Long> {
 	@Query(value="SELECT Balance.user_id,Balance.totalBalance, Balance.saveBalance, Balance.afterShoppingBalance, Balance.putInMonthly, PutInOut.putOut, PutInOut.putIn, Balance.saveUp, Balance.date\n" + 
 			"FROM Balance \n" + 
 			"left join PutInOut on Balance.putInOut_id =  PutInOut.id \n" + 
-			"having Balance.user_id= ?1", nativeQuery=true)
+			"having Balance.user_id= ?1 order by date desc", nativeQuery=true)
 	List<Object[]> getBalanceHistory(Long id);
 }
