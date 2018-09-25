@@ -35,6 +35,7 @@ public class BalanceService {
 	public BalanceDto save(BalanceDto balanceDto) {
 		balanceDto.setTotalBalance(countTotalBalance(balanceDto));
 		balanceDto.setSaveBalance(countSaveUpBalance(balanceDto));
+
 		Balance balance = balanceRepository.save(toDomain(balanceDto));
 		if (Objects.nonNull(balance)) {
 			JOptionPane.showMessageDialog(null, "Added to budget");
@@ -78,7 +79,7 @@ public class BalanceService {
 		balance.setSaveUp(balanceDto.getSaveUp());
 		balance.setTotalBalance(balanceDto.getTotalBalance());
 		User user = userRepository.findOne(balanceDto.getUserDto().getId());
-
+		balance.setPutInOut(null);
 		balance.setUser(user);
 		return balance;
 	}
@@ -93,7 +94,7 @@ public class BalanceService {
 		balanceDto.setPutIn(balance.getPutIn());
 		balanceDto.setSaveUp(balance.getSaveUp());
 		balanceDto.setTotalBalance(balance.getTotalBalance());
-
+		balanceDto.setPutInOut(null);
 		return balanceDto;
 	}
 

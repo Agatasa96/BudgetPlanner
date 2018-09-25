@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.NumberFormat;
 
@@ -38,4 +39,9 @@ public class Balance {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+
+	@OneToOne
+	@JoinColumn(name="putInOut_id")
+	private PutInOut putInOut;
 }

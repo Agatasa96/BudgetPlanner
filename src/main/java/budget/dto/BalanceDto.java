@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 import org.springframework.format.annotation.NumberFormat;
 
+import budget.domain.PutInOut;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,4 +29,5 @@ public class BalanceDto {
 	private Double saveUp;
 	private LocalDate date;
 	private UserDto userDto;
+	private PutInOut putInOut;
 }

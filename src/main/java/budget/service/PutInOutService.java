@@ -31,7 +31,13 @@ public class PutInOutService {
 	}
 
 	public PutInOutDto save(PutInOutDto putInOutDto) {
-		
+		if (putInOutDto.getPutIn() == null) {
+			putInOutDto.setPutIn(0.0);
+		}
+		if (putInOutDto.getPutOut() == null) {
+			putInOutDto.setPutOut(0.0);
+		}
+		putInOutDto.setSure(false);
 		PutInOut putInOut = putInOutRepository.save(toDomain(putInOutDto));
 		if (Objects.nonNull(putInOut)) {
 
@@ -45,9 +51,14 @@ public class PutInOutService {
 
 	}
 
-	public Balance countTotalBalance(PutInOutDto putInOutDto) {
+	public Balance countTotalBalance( Long id) {
 
-		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(putInOutDto.getUserDto().getId());
+		PutInOut putInOut = putInOutRepository.findFirstByUserIdOrderByIdDesc(id);
+		PutInOutDto putInOutDto = toDto(putInOut);
+	
+		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(id);
+	
+		
 		Double totalBalance;
 
 		if (Objects.isNull(balance)) {
@@ -59,13 +70,14 @@ public class PutInOutService {
 
 		Balance balance2 = new Balance();
 		balance2.setDate(LocalDate.now()); // czy powinna, to usawic czy joinowac
-		balance2.setPutIn(putInOutDto.getPutIn());
+
 		balance2.setTotalBalance(totalBalance);
-		balance2.setSaveUp(balance.getSaveUp());
+
 		Double saveUpBalance = totalBalance - balance.getSaveUp();
 		balance2.setSaveBalance(saveUpBalance);
 		User user = userRepository.findOne(balance.getUser().getId());
 		balance2.setUser(user);
+		balance2.setPutInOut(putInOut);
 		Balance savedBalance = balanceRepository.save(balance2);
 		return savedBalance;
 	}
@@ -87,6 +99,7 @@ public class PutInOutService {
 		putInOutDto.setPutIn(putInOut.getPutIn());
 		putInOutDto.setDate(LocalDate.now());
 		putInOutDto.setDate(putInOut.getDate());
+		putInOutDto.setPutOut(putInOut.getPutOut());
 
 		return putInOutDto;
 	}

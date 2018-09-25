@@ -33,6 +33,8 @@ public class PutInOut {
 	
 	private LocalDate date;
 	
+	private Boolean sure;
+	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

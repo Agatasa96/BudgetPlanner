@@ -21,7 +21,7 @@ import budget.service.PutInOutService;
 
 @Controller
 @RequestMapping("putInOut")
-@SessionAttributes({"userDto","savedBalance"})
+@SessionAttributes({"userDto","savedBalance", "putInOutSaved"})
 public class PutInOutController {
 
 	private final PutInOutService putInOutService;
@@ -46,13 +46,22 @@ public class PutInOutController {
 		else {
 			putInOutDto.setUserDto(userDto);
 			putInOutService.save(putInOutDto);
-			Balance savedBalance = putInOutService.countTotalBalance(putInOutDto);
-			model.addAttribute("savedBalance", savedBalance);
-			return "main/balancePage";
+			
+			
+			/*Balance savedBalance = putInOutService.countTotalBalance(putInOutDto);
+			model.addAttribute("savedBalance", savedBalance);*/
+			return "alert/addToBalance";
 		}
 		
 	}
 	
+	@GetMapping("/addToBudget")
+	public String addToBudget(@SessionAttribute("userDto") UserDto userDto, Model model) {
+		
+		Balance savedBalance = putInOutService.countTotalBalance(userDto.getId());
+		model.addAttribute("savedBalance", savedBalance);
+		return "main/balancePage";
+	}
 	@ModelAttribute("putInOut")
 	public PutInOutDto getNewPutnOutDto(PutInOutDto putInOutDto) {
 		return new PutInOutDto();

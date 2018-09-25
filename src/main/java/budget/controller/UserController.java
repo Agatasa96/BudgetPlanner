@@ -139,7 +139,7 @@ public class UserController {
 	@GetMapping("/deleteUser")
 	public String deleteUser(@ModelAttribute("userDto") UserDto userDto, Model model) {
 		model.addAttribute("deleteUserDto", userDto);
-		return "/main/deleteUser";
+		return "/alert/deleteUser";
 	}
 
 	@GetMapping("/deleteYes")
