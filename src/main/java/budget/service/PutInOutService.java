@@ -51,28 +51,26 @@ public class PutInOutService {
 
 	}
 
-	public Balance countTotalBalance( Long id) {
+	public Balance countTotalBalance(Long id) {
 
 		PutInOut putInOut = putInOutRepository.findFirstByUserIdOrderByIdDesc(id);
 		PutInOutDto putInOutDto = toDto(putInOut);
-	
+
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(id);
-	
-		
+
 		Double totalBalance;
 
 		if (Objects.isNull(balance)) {
 			totalBalance = 0.0;
 		} else {
 			totalBalance = balance.getTotalBalance() + putInOutDto.getPutIn() - putInOutDto.getPutOut();
-			// totalBalance = totalBalance - putInOutDto.getPutOut();
+
 		}
 
 		Balance balance2 = new Balance();
-		balance2.setDate(LocalDate.now()); // czy powinna, to usawic czy joinowac
-
+		balance2.setDate(LocalDate.now());
 		balance2.setTotalBalance(totalBalance);
-
+		balance2.setSaveUp(balance.getSaveUp());
 		Double saveUpBalance = totalBalance - balance.getSaveUp();
 		balance2.setSaveBalance(saveUpBalance);
 		User user = userRepository.findOne(balance.getUser().getId());
