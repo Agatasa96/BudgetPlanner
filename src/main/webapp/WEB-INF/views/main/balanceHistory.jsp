@@ -10,11 +10,21 @@
 	type="text/css">
 <link rel="stylesheet"
 	href="/BudgetPlanner/resources/style/tableStyle.css" type="text/css">
+	<link rel="stylesheet"
+	href="/BudgetPlanner/resources/style/buttonStyle.css" type="text/css">
+<link rel="stylesheet"
+	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
+<script src="/BudgetPlanner/resources/js/menu.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
 
 <title>Balance history</title>
 </head>
 <body>
 	<h1>Balance history</h1>
+	<h2>Date: </h2>
 	<!-- Table -->
 
 	<div class="container">
@@ -31,7 +41,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${balanceHistory }" var="b">
+				<c:forEach items="${balanceHistory }" var="b" begin = "${start }" end = "${start+4 }">
 					<tr>
 						<td>${b[1]}</td>
 						<td>${b[2]}</td>
@@ -54,5 +64,30 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<!-- Buttons -->
+
+	<div class="cont">
+		<div class="button_main">
+			<p><a href="/BudgetPlanner/balance/historyNext">Next >></a></p>
+		</div>
+		<div class="button_main">
+			<p> <a href="/BudgetPlanner/balance/historyPrev"> << Prev</a></p>
+		</div>
+		
+	</div>
+	
+	<!-- Menu boczne -->
+
+	<div class="open">
+		<span class="cls"></span> <span>
+			<ul class="sub-menu ">
+				<li><a href="/BudgetPlanner/main"> Home</a></li>
+				<li><a href="/BudgetPlanner/balance">Balance</a></li>
+			</ul>
+		</span> <span class="cls"></span>
+	</div>
+	
+	
 </body>
 </html>

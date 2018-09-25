@@ -23,7 +23,7 @@ import budget.service.BalanceService;
 
 @Controller
 @RequestMapping("/balance")
-@SessionAttributes({ "userDto", "savedBalance" })
+@SessionAttributes({ "userDto", "savedBalance", "start" })
 public class BalanceController {
 
 	private final BalanceService balanceService;
@@ -59,7 +59,41 @@ public class BalanceController {
 	public String getBalanceHistory(@SessionAttribute("userDto") UserDto userDto, Model model) {
 		List<Object[]> balances = balanceService.getHistory(userDto.getId());
 		model.addAttribute("balanceHistory", balances);
-
+		Integer start = 0;
+		model.addAttribute("start", start);
+		return "main/balanceHistory";
+	}
+	
+	@GetMapping("/historyNext")
+	public String getBalanceHistoryNext(@SessionAttribute("userDto") UserDto userDto, Model model, @SessionAttribute("start") Integer start) {
+		List<Object[]> balances = balanceService.getHistory(userDto.getId());
+		model.addAttribute("balanceHistory", balances);
+		start +=5;
+		
+		if(start>=balances.size()) {
+			model.addAttribute("start", start-5);
+		}
+		else{
+			
+			model.addAttribute("start", start);	
+		}
+	
+		return "main/balanceHistory";
+	}
+	
+	@GetMapping("/historyPrev")
+	public String getBalanceHistoryPrev(@SessionAttribute("userDto") UserDto userDto, Model model, @SessionAttribute("start") Integer start) {
+		List<Object[]> balances = balanceService.getHistory(userDto.getId());
+		model.addAttribute("balanceHistory", balances);
+		start -=5;
+		if(start>=0) {
+			
+			model.addAttribute("start", start);
+				
+		}
+		else {
+			model.addAttribute("start", 0);
+		}
 		return "main/balanceHistory";
 	}
 }
