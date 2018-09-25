@@ -24,10 +24,10 @@ public class BalanceDto {
 	private Double saveBalance;
 	private Double afterShoppingBalance;
 	@NumberFormat
-	private Double putIn;
+	private Double putInMonthly;
 	@NumberFormat
 	private Double saveUp;
 	private LocalDate date;
 	private UserDto userDto;
-	private PutInOut putInOut;
+	private PutInOutDto putInOutDto;
 }

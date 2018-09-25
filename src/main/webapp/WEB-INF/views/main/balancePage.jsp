@@ -52,7 +52,7 @@
 
 	<div class="cont">
 		<div class="button_main">
-			<p>Balance history</p>
+			<p><a href="/BudgetPlanner/balance/history">Balance history</a></p>
 		</div>
 		<div class="button_main">
 			<p>Save-up history</p>

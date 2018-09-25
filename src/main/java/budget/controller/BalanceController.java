@@ -1,5 +1,6 @@
 package budget.controller;
 
+import java.util.List;
 import java.util.Scanner;
 
 import javax.validation.Valid;
@@ -54,4 +55,11 @@ public class BalanceController {
 
 	}
 
+	@GetMapping("/history")
+	public String getBalanceHistory(@SessionAttribute("userDto") UserDto userDto, Model model) {
+		List<Object[]> balances = balanceService.getHistory(userDto.getId());
+		model.addAttribute("balanceHistory", balances);
+
+		return "main/balanceHistory";
+	}
 }

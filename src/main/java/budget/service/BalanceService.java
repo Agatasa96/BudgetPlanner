@@ -1,6 +1,7 @@
 package budget.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -49,7 +50,7 @@ public class BalanceService {
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
 		Double saveUpBalance = 0.0;
 		if (Objects.isNull(balance)) {
-			saveUpBalance = balanceDto.getPutIn() - balanceDto.getSaveUp();
+			saveUpBalance = balanceDto.getPutInMonthly() - balanceDto.getSaveUp();
 		} else {
 			saveUpBalance = balance.getTotalBalance() - balanceDto.getSaveUp();
 		}
@@ -61,9 +62,9 @@ public class BalanceService {
 		Double totalBalance = 0.0;
 
 		if (Objects.isNull(balance)) {
-			totalBalance = balanceDto.getPutIn();
+			totalBalance = balanceDto.getPutInMonthly();
 		} else {
-			totalBalance = balance.getTotalBalance() + balanceDto.getPutIn();
+			totalBalance = balance.getTotalBalance() + balanceDto.getPutInMonthly();
 		}
 
 		return totalBalance;
@@ -75,7 +76,7 @@ public class BalanceService {
 		balance.setDate(LocalDate.now());
 		balance.setAfterShoppingBalance(balanceDto.getAfterShoppingBalance());
 		balance.setSaveBalance(balanceDto.getSaveBalance());
-		balance.setPutIn(balanceDto.getPutIn());
+		balance.setPutInMonthly(balanceDto.getPutInMonthly());
 		balance.setSaveUp(balanceDto.getSaveUp());
 		balance.setTotalBalance(balanceDto.getTotalBalance());
 		User user = userRepository.findOne(balanceDto.getUserDto().getId());
@@ -91,11 +92,16 @@ public class BalanceService {
 		balanceDto.setDate(LocalDate.now());
 		balanceDto.setAfterShoppingBalance(balance.getAfterShoppingBalance());
 		balanceDto.setSaveBalance(balance.getSaveBalance());
-		balanceDto.setPutIn(balance.getPutIn());
+		balanceDto.setPutInMonthly(balance.getPutInMonthly());
 		balanceDto.setSaveUp(balance.getSaveUp());
 		balanceDto.setTotalBalance(balance.getTotalBalance());
-		balanceDto.setPutInOut(null);
+		balanceDto.setPutInOutDto(null);
 		return balanceDto;
+	}
+
+	public List<Object[]> getHistory(Long id) {
+		return balanceRepository.getBalanceHistory(id);
+		
 	}
 
 }
