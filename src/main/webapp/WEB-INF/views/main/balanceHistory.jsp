@@ -27,6 +27,11 @@
 <body>
 	<h1>Balance history</h1>
 
+	<form:form modelAttribute="date" method="post"
+		action="/BudgetPlanner/balance/historyByDate">
+		<input type="datetime-local" name= "date" placeholder="yyyy-mm-dd">
+		<button class="form-btn dx" type="submit">Ok</button>
+	</form:form>
 	<!-- Table -->
 
 	<div class="container">

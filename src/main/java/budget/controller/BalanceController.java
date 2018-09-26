@@ -1,5 +1,7 @@
 package budget.controller;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,35 +65,48 @@ public class BalanceController {
 		model.addAttribute("start", start);
 		return "main/balanceHistory";
 	}
-	
-	@GetMapping("/historyNext")
-	public String getBalanceHistoryNext(@SessionAttribute("userDto") UserDto userDto, Model model, @SessionAttribute("start") Integer start) {
-		List<Object[]> balances = balanceService.getHistory(userDto.getId());
+
+	//nie odswieza
+	@PostMapping("/historyByDate")
+	public String getBalanceHistoryByDate(@SessionAttribute("userDto") UserDto userDto, Model model,
+			@ModelAttribute("date") String date) {
+		SimpleDateFormat sdf = new SimpleDateFormat(date);
+		List<Object[]> balances = balanceService.getHistoryByDate(userDto.getId(), sdf);
 		model.addAttribute("balanceHistory", balances);
-		start +=5;
-		
-		if(start>=balances.size()) {
-			model.addAttribute("start", start-5);
-		}
-		else{
-			
-			model.addAttribute("start", start);	
-		}
-	
+		Integer start = 0;
+		model.addAttribute("start", start);
+		 
 		return "main/balanceHistory";
 	}
-	
-	@GetMapping("/historyPrev")
-	public String getBalanceHistoryPrev(@SessionAttribute("userDto") UserDto userDto, Model model, @SessionAttribute("start") Integer start) {
+
+	@GetMapping("/historyNext")
+	public String getBalanceHistoryNext(@SessionAttribute("userDto") UserDto userDto, Model model,
+			@SessionAttribute("start") Integer start) {
 		List<Object[]> balances = balanceService.getHistory(userDto.getId());
 		model.addAttribute("balanceHistory", balances);
-		start -=5;
-		if(start>=0) {
-			
+		start += 5;
+
+		if (start >= balances.size()) {
+			model.addAttribute("start", start - 5);
+		} else {
+
 			model.addAttribute("start", start);
-				
 		}
-		else {
+
+		return "main/balanceHistory";
+	}
+
+	@GetMapping("/historyPrev")
+	public String getBalanceHistoryPrev(@SessionAttribute("userDto") UserDto userDto, Model model,
+			@SessionAttribute("start") Integer start) {
+		List<Object[]> balances = balanceService.getHistory(userDto.getId());
+		model.addAttribute("balanceHistory", balances);
+		start -= 5;
+		if (start >= 0) {
+
+			model.addAttribute("start", start);
+
+		} else {
 			model.addAttribute("start", 0);
 		}
 		return "main/balanceHistory";

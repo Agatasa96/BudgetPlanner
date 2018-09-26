@@ -1,5 +1,6 @@
 package budget.service;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -102,6 +103,11 @@ public class BalanceService {
 
 	public List<Object[]> getHistory(Long id) {
 		return balanceRepository.getBalanceHistory(id);
+		
+	}
+	
+	public List<Object[]> getHistoryByDate(Long id, SimpleDateFormat date) {
+		return balanceRepository.getBalanceHistoryByDate(id, date);
 		
 	}
 
