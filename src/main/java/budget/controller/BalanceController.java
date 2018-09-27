@@ -70,9 +70,7 @@ public class BalanceController {
 	public String getBalanceHistoryByDate(@SessionAttribute("userDto") UserDto userDto, Model model,
 			@ModelAttribute("date") String date) {
 
-		LocalDate sdf = LocalDate.parse(date);
-
-		List<Object[]> balances = balanceService.getHistoryByDate(userDto.getId(), sdf);
+		List<Object[]> balances = balanceService.getHistoryByDate(userDto.getId(), date);
 		model.addAttribute("balanceHistory", balances);
 		Integer start = 0;
 		model.addAttribute("start", start);

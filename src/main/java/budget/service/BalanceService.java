@@ -103,12 +103,18 @@ public class BalanceService {
 
 	public List<Object[]> getHistory(Long id) {
 		return balanceRepository.getBalanceHistory(id);
-		
+
 	}
-	
-	public List<Object[]> getHistoryByDate(Long id, LocalDate date) {
-		return balanceRepository.getBalanceHistoryByDate(id, date);
-		
+
+	public List<Object[]> getHistoryByDate(Long id, String date) {
+		try {
+			LocalDate sdf = LocalDate.parse(date);
+			return balanceRepository.getBalanceHistoryByDate(id, sdf);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Add correct date");
+			return null;
+		}
+
 	}
 
 }

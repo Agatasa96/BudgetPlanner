@@ -2,7 +2,8 @@
 
 .singleInput {
 	font-family: 'Roboto';
-	margin-bottom: 100px; height : 40px;
+	margin-bottom: 100px;
+	height: 40px;
 	margin-right: 20px;
 	color: #ff7d00;
 	width: 86%;
@@ -76,7 +77,6 @@ button:after {
 	right: 0;
 	left: auto;
 }
-
 
 button:hover {
 	cursor: pointer;

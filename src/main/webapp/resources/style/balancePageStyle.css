@@ -21,7 +21,7 @@ h2 {
 	font-family: 'Roboto';
 	font-size: 40px;
 	color: #87613d;
-	margin-bottom: calc(20%-200px);
+	margin-bottom: 100px;
 	margin-top: 30px;
 	text-shadow: 7px 7px rgba(255, 125, 0, 0.35);
 }
