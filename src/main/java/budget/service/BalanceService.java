@@ -106,7 +106,7 @@ public class BalanceService {
 		
 	}
 	
-	public List<Object[]> getHistoryByDate(Long id, SimpleDateFormat date) {
+	public List<Object[]> getHistoryByDate(Long id, LocalDate date) {
 		return balanceRepository.getBalanceHistoryByDate(id, date);
 		
 	}

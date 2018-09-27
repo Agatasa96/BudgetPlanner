@@ -17,6 +17,8 @@
 <link rel="stylesheet"
 	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
 <script src="/BudgetPlanner/resources/js/menu.js"></script>
+<link rel="stylesheet"
+	href="/BudgetPlanner/resources/style/singleInputStyle.css" type="text/css">
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -26,12 +28,15 @@
 </head>
 <body>
 	<h1>Balance history</h1>
-
-	<form:form modelAttribute="date" method="post"
-		action="/BudgetPlanner/balance/historyByDate">
-		<input type="datetime-local" name= "date" placeholder="yyyy-mm-dd">
-		<button class="form-btn dx" type="submit">Ok</button>
-	</form:form>
+	<div class="singleInput">
+	<h3>Search by date</h3>
+		<form:form modelAttribute="date" method="post"
+			action="/BudgetPlanner/balance/historyByDate">
+			<input type="datetime-local" name="date" placeholder="yyyy-mm-dd">
+		
+			<button class="form-btn dx" type="submit">Ok</button>
+		</form:form>
+	</div>
 	<!-- Table -->
 
 	<div class="container">

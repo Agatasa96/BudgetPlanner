@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+.singleInput {
+	font-family: 'Roboto';
+	margin-bottom: 100px; height : 40px;
+	margin-right: 20px;
+	color: #ff7d00;
+	width: 86%;
+	text-align: left;
+	margin-left: 25%;
+	height: 40px;
+}
+
+input {
+	border: none;
+	border-bottom: 1px solid #ffc185;
+	width: 45%;
+	font-family: 'Roboto';
+	color: #ff7d00;
+	text-align: center;
+	font-size: 25px;
+	font-weight: 100;
+	margin-bottom: 30px;
+	height: 40px;
+	margin-right: 20px;
+}
+
+/* Wyglad placehoderow */
+::-webkit-input-placeholder {
+	color: #ffc185;
+	font-family: 'Roboto';
+	font-weight: 100;
+}
+
+:-moz-placeholder {
+	color: #ffc185;
+	font-family: 'Roboto';
+	font-weight: 100;
+}
+
+::-moz-placeholder {
+	color: #ffc185;
+	font-family: 'Roboto';
+	font-weight: 100;
+}
+
+:-ms-input-placeholder {
+	color: #ffc185;
+	font-family: 'Roboto';
+	font-weight: 100;
+}
+
+button.form-btn {
+	position: absolute;
+	width: 10%;
+	height: 40px;
+	border: 0;
+	font-family: 'Dosis';
+	font-size: 24px;
+	text-transform: uppercase;
+	cursor: pointer;
+	background: rgba(255, 125, 0, 0.35);
+	border: 2px solid rgba(255, 125, 0, 0.65);
+	color: #fff;
+}
+
+button:after {
+	position: absolute;
+	transition: .3s;
+	content: '';
+	width: 0;
+	left: 50%;
+	bottom: 0;
+	height: 3px;
+	background: #fff;
+	right: 0;
+	left: auto;
+}
+
+
+button:hover {
+	cursor: pointer;
+}
+
+button:hover:after {
+	width: 100%;
+	left: 0;
+}

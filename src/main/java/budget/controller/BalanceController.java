@@ -66,16 +66,17 @@ public class BalanceController {
 		return "main/balanceHistory";
 	}
 
-	//nie odswieza
 	@PostMapping("/historyByDate")
 	public String getBalanceHistoryByDate(@SessionAttribute("userDto") UserDto userDto, Model model,
 			@ModelAttribute("date") String date) {
-		SimpleDateFormat sdf = new SimpleDateFormat(date);
+
+		LocalDate sdf = LocalDate.parse(date);
+
 		List<Object[]> balances = balanceService.getHistoryByDate(userDto.getId(), sdf);
 		model.addAttribute("balanceHistory", balances);
 		Integer start = 0;
 		model.addAttribute("start", start);
-		 
+
 		return "main/balanceHistory";
 	}
 
@@ -111,4 +112,5 @@ public class BalanceController {
 		}
 		return "main/balanceHistory";
 	}
+
 }
