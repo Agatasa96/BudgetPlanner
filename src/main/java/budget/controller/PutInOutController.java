@@ -39,7 +39,7 @@ public class PutInOutController {
 	}
 
 	@PostMapping("/form")
-	public String putInOut(@Valid @ModelAttribute("putInOut") PutInOutDto putInOutDto, BindingResult bindingResult,
+	public String putIn(@Valid @ModelAttribute("putInOut") PutInOutDto putInOutDto, BindingResult bindingResult,
 			@SessionAttribute("userDto") UserDto userDto, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "form/putInOutForm";
