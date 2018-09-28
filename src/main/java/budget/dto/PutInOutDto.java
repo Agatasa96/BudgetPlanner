@@ -31,7 +31,7 @@ public class PutInOutDto {
 	private Double putOut;
 	
 	private LocalDateTime date;
-	private Boolean sure;
+
 	@ManyToOne
 	private UserDto userDto;
 }

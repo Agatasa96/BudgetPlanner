@@ -26,17 +26,15 @@ public class PutInOut {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	@NumberFormat
 	private Double putIn;
 	@NumberFormat
 	private Double putOut;
-	
+
 	private LocalDateTime date;
-	
-	private Boolean sure;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 }

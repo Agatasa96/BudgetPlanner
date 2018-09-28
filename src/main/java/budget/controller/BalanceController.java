@@ -3,6 +3,7 @@ package budget.controller;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 import javax.validation.Valid;
@@ -50,9 +51,14 @@ public class BalanceController {
 
 			balanceDto.setUserDto(userDto);
 			BalanceDto savedBalanceDto = balanceService.save(balanceDto);
-			model.addAttribute("savedBalance", savedBalanceDto);
+			if(Objects.nonNull(savedBalanceDto)) {
+				model.addAttribute("savedBalance", savedBalanceDto);
+				return "main/balancePage";
+			}else {
+				return "form/newMonthForm";			}
+		
 
-			return "main/balancePage";
+			
 		}
 
 	}

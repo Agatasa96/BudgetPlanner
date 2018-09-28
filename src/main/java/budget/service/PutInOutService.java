@@ -38,17 +38,28 @@ public class PutInOutService {
 		if (putInOutDto.getPutOut() == null) {
 			putInOutDto.setPutOut(0.0);
 		}
-		putInOutDto.setSure(false);
-		PutInOut putInOut = putInOutRepository.save(toDomain(putInOutDto));
-		if (Objects.nonNull(putInOut)) {
+		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(putInOutDto.getUserDto().getId());
 
-			JOptionPane.showMessageDialog(null, "Added to budget");
-			return toDto(putInOut);
-
+		if (balance.getSaveBalance() - putInOutDto.getPutOut() < 0) {
+			if (balance.getTotalBalance() - putInOutDto.getPutOut() < 0) {
+				JOptionPane.showMessageDialog(null, "Not enough funds");
+				return null;
+			} else {
+				JOptionPane.showMessageDialog(null, "Not enough funds. You can use saved money.");
+				return null;
+			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Cannot add");
-			return putInOutDto;
+			PutInOut putInOut = putInOutRepository.save(toDomain(putInOutDto));
+			if (Objects.nonNull(putInOut)) {
+
+				JOptionPane.showMessageDialog(null, "Added to budget");
+				return toDto(putInOut);
+
+			}
 		}
+
+		JOptionPane.showMessageDialog(null, "Cannot add");
+		return putInOutDto;
 
 	}
 
@@ -97,7 +108,7 @@ public class PutInOutService {
 		putInOutDto.setId(putInOut.getId());
 		putInOutDto.setPutIn(putInOut.getPutIn());
 		putInOutDto.setDate(LocalDateTime.now());
-		
+
 		putInOutDto.setPutOut(putInOut.getPutOut());
 
 		return putInOutDto;

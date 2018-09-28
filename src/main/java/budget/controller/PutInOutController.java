@@ -1,5 +1,7 @@
 package budget.controller;
 
+import java.util.Objects;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -45,10 +47,11 @@ public class PutInOutController {
 			return "form/putInOutForm";
 		} else {
 			putInOutDto.setUserDto(userDto);
-			putInOutService.save(putInOutDto);
-
-			Balance savedBalance = putInOutService.countTotalBalance(userDto.getId());
-			model.addAttribute("savedBalance", savedBalance);
+			PutInOutDto putInOutDto2 = putInOutService.save(putInOutDto);
+			if (Objects.nonNull(putInOutDto2)) {
+				Balance savedBalance = putInOutService.countTotalBalance(userDto.getId());
+				model.addAttribute("savedBalance", savedBalance);
+			}
 
 			return "main/balancePage";
 		}

@@ -36,16 +36,22 @@ public class BalanceService {
 	}
 
 	public BalanceDto save(BalanceDto balanceDto) {
-		balanceDto.setTotalBalance(countTotalBalance(balanceDto));
-		balanceDto.setSaveBalance(countSaveUpBalance(balanceDto));
 
-		Balance balance = balanceRepository.save(toDomain(balanceDto));
-		if (Objects.nonNull(balance)) {
-			JOptionPane.showMessageDialog(null, "Added to budget");
-			return toDto(balance);
+		if (balanceDto.getPutInMonthly() > balanceDto.getSaveUp()) {
+			balanceDto.setTotalBalance(countTotalBalance(balanceDto));
+			balanceDto.setSaveBalance(countSaveUpBalance(balanceDto));
+			Balance balance = balanceRepository.save(toDomain(balanceDto));
+			if (Objects.nonNull(balance)) {
+				JOptionPane.showMessageDialog(null, "Added to budget");
+				return toDto(balance);
+			}
+			JOptionPane.showMessageDialog(null, "Cannot add to budget");
+			return balanceDto;
+
+		} else {
+			JOptionPane.showMessageDialog(null, "Pay in must be greater than save up");
+			return null;
 		}
-		JOptionPane.showMessageDialog(null, "Cannot add to budget");
-		return balanceDto;
 	}
 
 	private Double countSaveUpBalance(BalanceDto balanceDto) {
@@ -70,6 +76,22 @@ public class BalanceService {
 		}
 
 		return totalBalance;
+	}
+
+	public List<Object[]> getHistory(Long id) {
+		return balanceRepository.getBalanceHistory(id);
+
+	}
+
+	public List<Object[]> getHistoryByDate(Long id, String date) {
+		try {
+			LocalDate sdf = LocalDate.parse(date);
+			return balanceRepository.getBalanceHistoryByDate(id, sdf);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Add correct date");
+			return null;
+		}
+
 	}
 
 	private Balance toDomain(BalanceDto balanceDto) {
@@ -99,22 +121,6 @@ public class BalanceService {
 		balanceDto.setTotalBalance(balance.getTotalBalance());
 		balanceDto.setPutInOutDto(null);
 		return balanceDto;
-	}
-
-	public List<Object[]> getHistory(Long id) {
-		return balanceRepository.getBalanceHistory(id);
-
-	}
-
-	public List<Object[]> getHistoryByDate(Long id, String date) {
-		try {
-			LocalDate sdf = LocalDate.parse(date);
-			return balanceRepository.getBalanceHistoryByDate(id, sdf);
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Add correct date");
-			return null;
-		}
-
 	}
 
 }
