@@ -18,7 +18,8 @@
 	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
 <script src="/BudgetPlanner/resources/js/menu.js"></script>
 <link rel="stylesheet"
-	href="/BudgetPlanner/resources/style/singleInputStyle.css" type="text/css">
+	href="/BudgetPlanner/resources/style/singleInputStyle.css"
+	type="text/css">
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -29,11 +30,11 @@
 <body>
 	<h1>Balance history</h1>
 	<div class="singleInput">
-	<h3>Search by date</h3>
+		<h3>Search by date</h3>
 		<form:form modelAttribute="date" method="post"
 			action="/BudgetPlanner/balance/historyByDate">
 			<input type="datetime-local" name="date" placeholder="yyyy-mm-dd">
-		
+
 			<button class="form-btn dx" type="submit">Ok</button>
 		</form:form>
 	</div>
@@ -44,7 +45,7 @@
 			<thead>
 				<tr>
 					<th>Total balance</th>
-					<th>Save up balance</th>
+					<th>Balance after save</th>
 					<th>After shopping balance</th>
 					<th>Pay in</th>
 					<th>Pay out</th>

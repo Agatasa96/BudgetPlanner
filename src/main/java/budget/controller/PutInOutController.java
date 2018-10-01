@@ -47,10 +47,13 @@ public class PutInOutController {
 			return "form/putInOutForm";
 		} else {
 			putInOutDto.setUserDto(userDto);
-			PutInOutDto putInOutDto2 = putInOutService.save(putInOutDto);
-			if (Objects.nonNull(putInOutDto2)) {
+			String putInOutDto2 = putInOutService.save(putInOutDto);
+			if (putInOutDto2.equals("added")) {
 				Balance savedBalance = putInOutService.countTotalBalance(userDto.getId());
 				model.addAttribute("savedBalance", savedBalance);
+			}
+			else if(putInOutDto2.equals("useSaved")) {
+				return "alert/useSavedPage";
 			}
 
 			return "main/balancePage";

@@ -65,14 +65,15 @@ public class UserController {
 	public String logIn(@ModelAttribute("userDto") UserDto userDto, Model model) {
 		UserDto userDto2 = userService.logIn(userDto);
 		if (Objects.nonNull(userDto2)) {
-			if (LocalDate.now().getDayOfMonth() == 1) {
+			BalanceDto balanceDto = balanceService.lastBalance(userDto2);
+			if (LocalDate.now().getDayOfMonth() == 1 && balanceDto.getDate().getDayOfMonth() !=1) {
 				userDto = userDto2;
 				model.addAttribute("userDto", userDto);
 				return "form/newMonthForm";
 			} else {
 				userDto = userDto2;
 				model.addAttribute("userDto", userDto);
-				BalanceDto balanceDto = balanceService.lastBalance(userDto);
+				//BalanceDto balanceDto = balanceService.lastBalance(userDto);
 				model.addAttribute("savedBalance", balanceDto);
 				return "main/mainPage";
 			}

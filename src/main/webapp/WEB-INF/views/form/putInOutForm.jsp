@@ -16,11 +16,11 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>Put in/out cash</title>
+<title>Pay in/out cash</title>
 </head>
 <body>
 	<div>
-		<h1>Put in/out cash</h1>
+		<h1>Pay in/out cash</h1>
 
 		<h3>Update your budget</h3>
 		

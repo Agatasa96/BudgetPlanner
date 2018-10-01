@@ -50,15 +50,14 @@ public class BalanceController {
 		} else {
 
 			balanceDto.setUserDto(userDto);
-			BalanceDto savedBalanceDto = balanceService.save(balanceDto);
-			if(Objects.nonNull(savedBalanceDto)) {
+			BalanceDto savedBalanceDto = balanceService.addToBalance(balanceDto);
+			if (Objects.nonNull(savedBalanceDto)) {
 				model.addAttribute("savedBalance", savedBalanceDto);
 				return "main/balancePage";
-			}else {
-				return "form/newMonthForm";			}
-		
+			} else {
+				return "form/newMonthForm";
+			}
 
-			
 		}
 
 	}

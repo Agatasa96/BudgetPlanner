@@ -35,32 +35,50 @@ public class BalanceService {
 		return toDto(balance);
 	}
 
-	public BalanceDto save(BalanceDto balanceDto) {
+	public BalanceDto addToBalance(BalanceDto balanceDto) {
+		if (balanceDto.getPutInMonthly() >= balanceDto.getSaveUp()) {
+			Balance balanceExsist = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
+			Double saveUp = 0.0;
+			if (Objects.isNull(balanceExsist)) {
+				balanceDto.setTotalBalance(countTotalBalance(balanceDto));
+				balanceDto.setSaveBalance(countSaveUpBalance(balanceDto, saveUp));
+				return save(balanceDto);
+			} else {
+				balanceDto.setTotalBalance(countTotalBalance(balanceDto));
 
-		if (balanceDto.getPutInMonthly() > balanceDto.getSaveUp()) {
-			balanceDto.setTotalBalance(countTotalBalance(balanceDto));
-			balanceDto.setSaveBalance(countSaveUpBalance(balanceDto));
-			Balance balance = balanceRepository.save(toDomain(balanceDto));
-			if (Objects.nonNull(balance)) {
-				JOptionPane.showMessageDialog(null, "Added to budget");
-				return toDto(balance);
+				saveUp = balanceExsist.getSaveUp() + balanceDto.getSaveUp();
+				balanceDto.setSaveUp(saveUp);
+				balanceDto.setSaveBalance(countSaveUpBalance(balanceDto, saveUp));
+				return save(balanceDto);
+
 			}
-			JOptionPane.showMessageDialog(null, "Cannot add to budget");
-			return balanceDto;
-
 		} else {
 			JOptionPane.showMessageDialog(null, "Pay in must be greater than save up");
 			return null;
 		}
+
 	}
 
-	private Double countSaveUpBalance(BalanceDto balanceDto) {
+	private BalanceDto save(BalanceDto balanceDto) {
+
+		Balance balance = balanceRepository.save(toDomain(balanceDto));
+
+		if (Objects.nonNull(balance)) {
+			JOptionPane.showMessageDialog(null, "Added to budget");
+			return toDto(balance);
+		}
+		JOptionPane.showMessageDialog(null, "Cannot add to budget");
+		return balanceDto;
+
+	}
+
+	private Double countSaveUpBalance(BalanceDto balanceDto, Double saveUp) {
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
 		Double saveUpBalance = 0.0;
 		if (Objects.isNull(balance)) {
 			saveUpBalance = balanceDto.getPutInMonthly() - balanceDto.getSaveUp();
 		} else {
-			saveUpBalance = balance.getTotalBalance() - balanceDto.getSaveUp();
+			saveUpBalance = balance.getTotalBalance() - saveUp;
 		}
 		return saveUpBalance;
 	}

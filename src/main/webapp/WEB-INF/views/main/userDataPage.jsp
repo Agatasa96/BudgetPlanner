@@ -51,26 +51,26 @@
 			<p>
 				<a href="/BudgetPlanner/user/editNickname">Edit user data</a>
 			</p>
-			</div>
-			<div class="button_main">
+		</div>
+		<div class="button_main">
 			<p>
 				<a href="/BudgetPlanner/user/deleteUser">Delete my account</a>
 			</p>
 		</div>
 
 	</div>
-	
+
 	<!-- Menu boczne -->
 	<div class="open">
 		<span class="cls"></span> <span>
 			<ul class="sub-menu ">
-			
+
 				<li><a href="/BudgetPlanner/main"> Home</a></li>
-				<li><a href="/BudgetPlanner/" >Log out</a></li>
+				<li><a href="/BudgetPlanner/">Log out</a></li>
 			</ul>
 		</span> <span class="cls"></span>
 	</div>
-	
-	
+
+
 </body>
 </html>
