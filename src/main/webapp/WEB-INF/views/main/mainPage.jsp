@@ -32,7 +32,7 @@
 			<div class="lay">
 				<h3>Calendar</h3>
 				<p>
-					<a href="#">CLICK</a>
+					<a href="/BudgetPlanner/calendar">CLICK</a>
 				</p>
 			</div>
 		</div>
