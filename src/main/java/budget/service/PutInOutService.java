@@ -46,7 +46,7 @@ public class PutInOutService {
 				return null;
 			} else {
 				JOptionPane.showMessageDialog(null, "Not enough funds. You can use saved money.");
-				PutInOut putInOut = putInOutRepository.save(toDomain(putInOutDto));
+				// PutInOut putInOut = putInOutRepository.save(toDomain(putInOutDto));
 				return "useSaved";
 			}
 		} else {
@@ -64,7 +64,38 @@ public class PutInOutService {
 
 	}
 
-	public Balance countTotalBalance(Long id) {
+	public BalanceDto useSaved(PutInOutDto putInOutDto, Long id) {
+
+		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(id);
+		Double subtractBalance = putInOutDto.getPutOut() - balance.getSaveBalance();
+		Double saveUp = balance.getSaveUp() - subtractBalance;
+		Double totalBalance = balance.getTotalBalance() - putInOutDto.getPutOut();
+		Double saveBalance = totalBalance - saveUp;
+
+		Balance balance2 = new Balance();
+		balance2.setDate(LocalDateTime.now());
+		balance2.setSaveBalance(saveBalance);
+		balance2.setSaveUp(saveUp);
+		balance2.setTotalBalance(totalBalance);
+		User user = userRepository.findById(id);
+		balance2.setUser(user);
+		PutInOut putInOut = putInOutRepository.save(toDomain(putInOutDto));
+		if (Objects.nonNull(putInOut)) {
+			balance2.setPutInOut(putInOut);
+		}
+
+		Balance savedBalance = balanceRepository.save(balance2);
+		if (Objects.nonNull(savedBalance)) {
+			JOptionPane.showMessageDialog(null, "Paid out");
+			return toDto(savedBalance);
+		} else {
+			JOptionPane.showMessageDialog(null, "Cannot pay out");
+			return null;
+		}
+
+	}
+
+	public BalanceDto countTotalBalance(Long id) {
 
 		PutInOut putInOut = putInOutRepository.findFirstByUserIdOrderByIdDesc(id);
 		PutInOutDto putInOutDto = toDto(putInOut);
@@ -90,18 +121,9 @@ public class PutInOutService {
 		balance2.setUser(user);
 		balance2.setPutInOut(putInOut);
 		Balance savedBalance = balanceRepository.save(balance2);
-		return savedBalance;
+		return toDto(savedBalance);
 	}
 
-/*	public Balance useSaved(Long id) {
-		
-
-		PutInOut putInOut = putInOutRepository.findFirstByUserIdOrderByIdDesc(id);
-		PutInOutDto putInOutDto = toDto(putInOut);
-
-		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(id);
-		
-	}*/
 	private PutInOut toDomain(PutInOutDto putInOutDto) {
 		PutInOut putInOut = new PutInOut();
 		putInOut.setId(putInOutDto.getId());
@@ -124,5 +146,18 @@ public class PutInOutService {
 		return putInOutDto;
 	}
 
+	private BalanceDto toDto(Balance balance) {
+		BalanceDto balanceDto = new BalanceDto();
+
+		balanceDto.setId(balance.getId());
+		balanceDto.setDate(LocalDateTime.now());
+		balanceDto.setAfterShoppingBalance(balance.getAfterShoppingBalance());
+		balanceDto.setSaveBalance(balance.getSaveBalance());
+		balanceDto.setPutInMonthly(balance.getPutInMonthly());
+		balanceDto.setSaveUp(balance.getSaveUp());
+		balanceDto.setTotalBalance(balance.getTotalBalance());
+		balanceDto.setPutInOutDto(null);
+		return balanceDto;
+	}
 
 }
