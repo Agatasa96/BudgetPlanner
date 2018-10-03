@@ -1,44 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-	// global variables
+	// globalne
 	var monthEl = $(".c-main");
 	var dataCel = $(".c-cal__cel");
 	var dateObj = new Date();
 	var month = dateObj.getUTCMonth() + 1;
-	var day = dateObj.getUTCDate();
+	var day = dateObj.getDate();
 	var year = dateObj.getUTCFullYear();
 	var monthText = [ "January", "February", "March", "April", "May", "June",
 			"July", "August", "September", "October", "November", "December" ];
 	var indexMonth = month;
 	var todayBtn = $(".c-today__btn");
 	
-	today = year + "-" + month + "-" + day;
-
+	 today = year + "-" + month + "-" + day;
 	
-
-	// ------ functions control -------
-
-	// button of the current day
-	todayBtn.on("click", function() {
-		if (month < indexMonth) {
-			var step = indexMonth % month;
-			movePrev(step, true);
-		} else if (month > indexMonth) {
-			var step = month - indexMonth;
-			moveNext(step, true);
-		}
-	});
-
-	// higlight the cel of current day
-	dataCel.each(function() {
-		if ($(this).data("day") === today) {
-			$(this).addClass("isToday");
-			fillEventSidebar($(this));
-		}
-	});
-
-	
-	// fill sidebar event info
+	// wyswietlanie daty mouseover
 	function fillEventSidebar(self) {
 
 	}
@@ -57,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	});
 
-	// function for move the months
+	// przesuwanie mies
 	function moveNext(fakeClick, indexNext) {
 		for (var i = 0; i < fakeClick; i++) {
 			$(".c-main").css({
@@ -89,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	}
 
-	// months paginator
+	// ustawianie daty w oknie bocznym
 	function buttonsPaginator(buttonId, mainClass, monthClass, next, prev) {
 		switch (true) {
 		case next:
@@ -126,10 +102,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	buttonsPaginator("#next", monthEl, ".c-paginator__month", false, true);
 	buttonsPaginator("#prev", monthEl, ".c-paginator__month", true, false);
 
-	// launch function to set the current month
+	// ustawianie odpowiednich mies przy przewijaniu
 	moveNext(indexMonth - 1, false);
 
-	// fill the sidebar with current day
+	//wyswietlanie daty w oknie bocznym
 	$(".c-aside__num").text(day);
 	$(".c-aside__month").text(monthText[month - 1]);
 

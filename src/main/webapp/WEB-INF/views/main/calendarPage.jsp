@@ -110,7 +110,7 @@
 		<div class="wrapper">
 			<div class="c-monthyear">
 				<div class="c-month">
-					<span id="prev" class="prev fa fa-angle-left" aria-hidden="true"></span>
+				<p id="b">	<span id="prev" class="prev fa fa-angle-left button_main" aria-hidden="true">PREV</span></p>
 					<div id="c-paginator">
 						<span class="c-paginator__month">JANUARY</span> <span
 							class="c-paginator__month">FEBRUARY</span> <span
@@ -125,14 +125,14 @@
 							class="c-paginator__month">NOVEMBER</span> <span
 							class="c-paginator__month">DECEMBER</span>
 					</div>
-					<span id="next" class="next fa fa-angle-right" aria-hidden="true"></span>
+					<span id="next" class="next fa fa-angle-right button_main" aria-hidden="true">NEXT</span>
 				</div>
 				<span class="c-paginator__year">2018</span>
-			</div>
+			<!-- </div>
 			<div class="c-sort">
 				<a class="o-btn c-today__btn" href="javascript:;">TODAY</a>
 			</div>
-		</div>
+		</div> -->
 	</header>
 
 	<div class="c-calendar">
@@ -178,25 +178,6 @@
 		</div>
 	</div>
 
-	<!-- 	<div class="c-event__creator c-calendar__style js-event__creator">
-			<a href="javascript:;" class="o-btn js-event__close">CLOSE <span
-				class="fa fa-close"></span></a>
-			<form id="addEvent">
-				<input placeholder="Event name" type="text" name="name"> <input
-					type="date" name="date">
-				<textarea placeholder="Notes" name="notes" cols="30" rows="10"></textarea>
-				<select name="tags">
-					<option value="event">event</option>
-					<option value="important">important</option>
-					<option value="todo">to do</option>
-					<option value="notes">notes</option>
-				</select>
-			</form>
-			<br> <a href="javascript:;" class="o-btn js-event__save">ADD
-				<span class="fa fa-save"></span>
-			</a>
-		</div>
-	</div>
- -->
+	
 </body>
 </html>
