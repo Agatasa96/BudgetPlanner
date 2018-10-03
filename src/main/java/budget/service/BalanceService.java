@@ -111,6 +111,23 @@ public class BalanceService {
 		}
 
 	}
+	
+	public List<Object[]> getHistoryByDay(Long id, String month, String day) {
+		try {
+			
+		String dateStr = LocalDate.now().getYear()+"-" +month+"-"+day;
+		LocalDate date= 	LocalDate.parse(dateStr);
+		String start = date.minusDays(1)+"";
+		String end = date.plusDays(1)+"";
+
+			return balanceRepository.getBalanceHistoryByDay(id, start, end);
+		} catch (Exception e) {
+			
+			JOptionPane.showMessageDialog(null, "Add correct date");
+			return null;
+		}
+
+	}
 
 	private Balance toDomain(BalanceDto balanceDto) {
 		Balance balance = new Balance();

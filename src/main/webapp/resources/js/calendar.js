@@ -11,29 +11,10 @@ document.addEventListener("DOMContentLoaded", function() {
 			"July", "August", "September", "October", "November", "December" ];
 	var indexMonth = month;
 	var todayBtn = $(".c-today__btn");
-	var addBtn = $(".js-event__add");
-	var saveBtn = $(".js-event__save");
-	var closeBtn = $(".js-event__close");
-	var winCreator = $(".js-event__creator");
-	var inputDate = $(this).data();
+	
 	today = year + "-" + month + "-" + day;
 
-	// ------ set default events -------
-	function defaultEvents(dataDay, dataName, dataNotes, classTag) {
-		var date = $('*[data-day=' + dataDay + ']');
-		date.attr("data-name", dataName);
-		date.attr("data-notes", dataNotes);
-		date.addClass("event");
-		date.addClass("event--" + classTag);
-	}
-
-	defaultEvents(today, 'YEAH!', 'Today is your day', 'important');
-	defaultEvents('2017-12-25', 'MERRY CHRISTMAS', 'A lot of gift!!!!',
-			'festivity');
-	defaultEvents('2017-05-04', "LUCA'S BIRTHDAY", 'Another gifts...?',
-			'birthday');
-	defaultEvents('2017-03-03', "MY LADY'S BIRTHDAY",
-			'A lot of money to spent!!!!', 'birthday');
+	
 
 	// ------ functions control -------
 
@@ -56,94 +37,18 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	});
 
-	// window event creator
-	addBtn.on("click", function() {
-		winCreator.addClass("isVisible");
-		$("body").addClass("overlay");
-		dataCel.each(function() {
-			if ($(this).hasClass("isSelected")) {
-				today = $(this).data("day");
-				document.querySelector('input[type="date"]').value = today;
-			} else {
-				document.querySelector('input[type="date"]').value = today;
-			}
-		});
-	});
-	closeBtn.on("click", function() {
-		winCreator.removeClass("isVisible");
-		$("body").removeClass("overlay");
-	});
-	saveBtn.on("click", function() {
-		var inputName = $("input[name=name]").val();
-		var inputDate = $("input[name=date]").val();
-		var inputNotes = $("textarea[name=notes]").val();
-		var inputTag = $("select[name=tags]").find(":selected").text();
-
-		dataCel.each(function() {
-			if ($(this).data("day") === inputDate) {
-				if (inputName != null) {
-					$(this).attr("data-name", inputName);
-				}
-				if (inputNotes != null) {
-					$(this).attr("data-notes", inputNotes);
-				}
-				$(this).addClass("event");
-				if (inputTag != null) {
-					$(this).addClass("event--" + inputTag);
-				}
-				fillEventSidebar($(this));
-			}
-		});
-
-		winCreator.removeClass("isVisible");
-		$("body").removeClass("overlay");
-		$("#addEvent")[0].reset();
-	});
-
+	
 	// fill sidebar event info
 	function fillEventSidebar(self) {
-		$(".c-aside__event").remove();
-		var thisName = self.attr("data-name");
-		var thisNotes = self.attr("data-notes");
-		var thisImportant = self.hasClass("event--important");
-		var thisBirthday = self.hasClass("event--birthday");
-		var thisFestivity = self.hasClass("event--festivity");
-		var thisEvent = self.hasClass("event");
 
-		switch (true) {
-		case thisImportant:
-			$(".c-aside__eventList").append(
-					"<p class='c-aside__event c-aside__event--important'>"
-							+ thisName + " <span> • " + thisNotes
-							+ "</span></p>");
-			break;
-		case thisBirthday:
-			$(".c-aside__eventList").append(
-					"<p class='c-aside__event c-aside__event--birthday'>"
-							+ thisName + " <span> • " + thisNotes
-							+ "</span></p>");
-			break;
-		case thisFestivity:
-			$(".c-aside__eventList").append(
-					"<p class='c-aside__event c-aside__event--festivity'>"
-							+ thisName + " <span> • " + thisNotes
-							+ "</span></p>");
-			break;
-		case thisEvent:
-			$(".c-aside__eventList").append(
-					"<p class='c-aside__event'>" + thisName + " <span> • "
-							+ thisNotes + "</span></p>");
-			break;
-		}
 	}
 	;
-	dataCel.on("click", function() {
+	dataCel.on("mouseover", function() {
 		var thisEl = $(this);
 		var thisDay = $(this).attr("data-day").slice(8);
 		var thisMonth = $(this).attr("data-day").slice(5, 7);
-
 		fillEventSidebar($(this));
-
+		 console.log(this);
 		$(".c-aside__num").text(thisDay);
 		$(".c-aside__month").text(monthText[thisMonth - 1]);
 

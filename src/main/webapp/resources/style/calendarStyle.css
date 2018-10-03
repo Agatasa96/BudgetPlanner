@@ -81,6 +81,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.link{
+	text-align: center;
+	text-decoration: line-through; 
+	border-color: #ffffff;
+}
 /* UTILITY ===========================================================*/
 .u-border-box {
   box-sizing: border-box;

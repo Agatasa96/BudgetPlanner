@@ -7,6 +7,9 @@
 <link rel="stylesheet"
 	href="/BudgetPlanner/resources/style/calendarStyle.css" type="text/css">
 <script src="/BudgetPlanner/resources/js/calendar.js"></script>
+<link rel="stylesheet"
+	href="/BudgetPlanner/resources/style/buttonStyle.css" type="text/css">
+
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -50,13 +53,19 @@
 
 			//wypelnienie pierwszego tyg
 			for (var i = start_day; i < 8; i++) {
+
 				document
 						.write("<div data-day='2018-" +
           indexMonth +
           "-0" +
           day +
-          "'class='c-cal__cel'><p>"
-								+ day + "</p></div>");
+          "'class='c-cal__cel'><p><a href=\"\/BudgetPlanner/calendar/"
+								+ indexMonth
+								+ "/0"
+								+ day
+								+ "\"<\/>"
+								+ day
+								+ "</a></p></div>");
 				day++;
 			}
 			document.write("</div>");
@@ -71,7 +80,9 @@
               indexMonth +
               "-0" +
               day +
-              "'class='c-cal__cel'><p>"
+              "'class='c-cal__cel'><p><a href=\"\/BudgetPlanner/calendar/"
+										+ indexMonth + "/" + day + "\"<\/>"
+
 										+ day + "</p></div>");
 						day++;
 					} else {
@@ -80,7 +91,9 @@
               indexMonth +
               "-" +
               day +
-              "' class='c-cal__cel'><p>"
+              "' class='c-cal__cel'><p><a href=\"\/BudgetPlanner/calendar/"
+										+ indexMonth + "/" + day + "\"<\/>"
+
 										+ day + "</p></div>");
 						day++;
 					}
@@ -121,42 +134,51 @@
 			</div>
 		</div>
 	</header>
-	<div class="wrapper">
-		<div class="c-calendar">
-			<div class="c-calendar__style c-aside">
-				<a class="c-add o-btn js-event__add" href="javascript:;">add
-					notes <span class="fa fa-plus"></span>
-				</a>
-				<div class="c-aside__day">
-					<span class="c-aside__num"></span> <span class="c-aside__month"></span>
-				</div>
-				<div class="c-aside__eventList"></div>
-			</div>
-			<div class="c-cal__container c-calendar__style">
-				<script>
-					// obecny rok
-					year = 2018;
 
-					// 1 dzien 1 tyg nowego roku
-					today = new Date("January 1, " + year);
-					start_day = today.getDay() + 1;
-					fill_table("January", 31, "01");
-					fill_table("February", 28, "02");
-					fill_table("March", 31, "03");
-					fill_table("April", 30, "04");
-					fill_table("May", 31, "05");
-					fill_table("June", 30, "06");
-					fill_table("July", 31, "07");
-					fill_table("August", 31, "08");
-					fill_table("September", 30, "09");
-					fill_table("October", 31, "10");
-					fill_table("November", 30, "11");
-					fill_table("December", 31, "12");
-				</script>
+	<div class="c-calendar">
+		<div class="c-calendar__style c-aside">
+
+			<div class="c-aside__day">
+				<span class="c-aside__num"></span> <span class="c-aside__month"></span>
 			</div>
+			<div class="c-aside__eventList"></div>
+
+			<div>
+				<div class="button_main">
+					<p>Click on day to go to balance history</p>
+				</div>
+
+
+			</div>
+
 		</div>
 
-		<div class="c-event__creator c-calendar__style js-event__creator">
+
+		<div class="c-cal__container c-calendar__style">
+			<script>
+				// obecny rok
+				year = 2018;
+
+				// 1 dzien 1 tyg nowego roku
+				today = new Date("January 1, " + year);
+				start_day = today.getDay() + 1;
+				fill_table("January", 31, "01");
+				fill_table("February", 28, "02");
+				fill_table("March", 31, "03");
+				fill_table("April", 30, "04");
+				fill_table("May", 31, "05");
+				fill_table("June", 30, "06");
+				fill_table("July", 31, "07");
+				fill_table("August", 31, "08");
+				fill_table("September", 30, "09");
+				fill_table("October", 31, "10");
+				fill_table("November", 30, "11");
+				fill_table("December", 31, "12");
+			</script>
+		</div>
+	</div>
+
+	<!-- 	<div class="c-event__creator c-calendar__style js-event__creator">
 			<a href="javascript:;" class="o-btn js-event__close">CLOSE <span
 				class="fa fa-close"></span></a>
 			<form id="addEvent">
@@ -175,6 +197,6 @@
 			</a>
 		</div>
 	</div>
-
+ -->
 </body>
 </html>
