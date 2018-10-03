@@ -15,7 +15,7 @@ import budget.service.BalanceService;
 
 @Controller
 @RequestMapping("/calendar")
-@SessionAttributes({ "userDto", "savedBalance", "start" })
+@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory" })
 
 public class CalendarController {
 
@@ -32,10 +32,13 @@ public class CalendarController {
 	}
 
 	@GetMapping("/{month}/{day}")
-	public String historyByDay(@PathVariable String month,@PathVariable String day, @SessionAttribute("userDto") UserDto userDto, Model model) {
-		
+	public String historyByDay(@PathVariable String month, @PathVariable String day,
+			@SessionAttribute("userDto") UserDto userDto, Model model) {
+
 		List<Object[]> balances = balanceService.getHistoryByDay(userDto.getId(), month, day);
 		model.addAttribute("balanceHistory", balances);
+		Integer start = 0;
+		model.addAttribute("start", start);
 		return "main/balanceHistory";
 	}
 }

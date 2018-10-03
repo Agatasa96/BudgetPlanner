@@ -111,18 +111,19 @@ public class BalanceService {
 		}
 
 	}
-	
+
 	public List<Object[]> getHistoryByDay(Long id, String month, String day) {
 		try {
-			
-		String dateStr = LocalDate.now().getYear()+"-" +month+"-"+day;
-		LocalDate date= 	LocalDate.parse(dateStr);
-		String start = date.minusDays(1)+"";
-		String end = date.plusDays(1)+"";
+
+			String startStr = LocalDate.now().getYear() + "-" + month + "-" + day + "T00:00:00";
+			String endStr = LocalDate.now().getYear() + "-" + month + "-" + day + "T23:59:59";
+			LocalDateTime start = LocalDateTime.parse(startStr);
+			LocalDateTime end = LocalDateTime.parse(endStr);
 
 			return balanceRepository.getBalanceHistoryByDay(id, start, end);
+
 		} catch (Exception e) {
-			
+
 			JOptionPane.showMessageDialog(null, "Add correct date");
 			return null;
 		}

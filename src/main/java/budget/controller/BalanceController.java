@@ -26,7 +26,7 @@ import budget.service.BalanceService;
 
 @Controller
 @RequestMapping("/balance")
-@SessionAttributes({ "userDto", "savedBalance", "start" })
+@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory" })
 public class BalanceController {
 
 	private final BalanceService balanceService;
@@ -85,8 +85,7 @@ public class BalanceController {
 
 	@GetMapping("/historyNext")
 	public String getBalanceHistoryNext(@SessionAttribute("userDto") UserDto userDto, Model model,
-			@SessionAttribute("start") Integer start) {
-		List<Object[]> balances = balanceService.getHistory(userDto.getId());
+			@SessionAttribute("start") Integer start, @SessionAttribute("balanceHistory") List<Object[]> balances) {
 		model.addAttribute("balanceHistory", balances);
 		start += 5;
 
@@ -102,8 +101,7 @@ public class BalanceController {
 
 	@GetMapping("/historyPrev")
 	public String getBalanceHistoryPrev(@SessionAttribute("userDto") UserDto userDto, Model model,
-			@SessionAttribute("start") Integer start) {
-		List<Object[]> balances = balanceService.getHistory(userDto.getId());
+			@SessionAttribute("start") Integer start, @SessionAttribute("balanceHistory") List<Object[]> balances) {
 		model.addAttribute("balanceHistory", balances);
 		start -= 5;
 		if (start >= 0) {
