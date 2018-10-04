@@ -41,7 +41,7 @@
 					<td>${savedBalance.totalBalance }</td>
 					<td>${savedBalance.saveBalance }</td>
 					<td>${savedBalance.afterShoppingBalance }</td>
-					<td>${savedBalance.saveUp }</td>
+					<td>${savedBalance.totalSaved }</td>
 
 				</tr>
 			</tbody>

@@ -42,12 +42,14 @@ public class BalanceService {
 			if (Objects.isNull(balanceExsist)) {
 				balanceDto.setTotalBalance(countTotalBalance(balanceDto));
 				balanceDto.setSaveBalance(countSaveUpBalance(balanceDto, saveUp));
+				balanceDto.setTotalSaved(balanceDto.getSaveUp());
 				return save(balanceDto);
 			} else {
 				balanceDto.setTotalBalance(countTotalBalance(balanceDto));
+				Double totalSaved = countSaved(balanceDto);
+				balanceDto.setTotalSaved(totalSaved);
+				saveUp = totalSaved + balanceDto.getSaveUp();
 
-				saveUp = balanceExsist.getSaveUp() + balanceDto.getSaveUp();
-				balanceDto.setSaveUp(saveUp);
 				balanceDto.setSaveBalance(countSaveUpBalance(balanceDto, saveUp));
 				return save(balanceDto);
 
@@ -57,6 +59,16 @@ public class BalanceService {
 			return null;
 		}
 
+	}
+
+	private Double countSaved(BalanceDto balanceDto) {
+		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
+		if (Objects.isNull(balance)) {
+			Double total = balance.getTotalSaved() + balanceDto.getSaveUp();
+			return total;
+		} else {
+			return null;
+		}
 	}
 
 	private BalanceDto save(BalanceDto balanceDto) {
@@ -141,7 +153,9 @@ public class BalanceService {
 		balance.setTotalBalance(balanceDto.getTotalBalance());
 		User user = userRepository.findOne(balanceDto.getUserDto().getId());
 		balance.setPutInOut(null);
+		balance.setToSaveUp(null);
 		balance.setUser(user);
+		balance.setTotalSaved(balanceDto.getTotalSaved());
 		return balance;
 	}
 
@@ -156,6 +170,8 @@ public class BalanceService {
 		balanceDto.setSaveUp(balance.getSaveUp());
 		balanceDto.setTotalBalance(balance.getTotalBalance());
 		balanceDto.setPutInOutDto(null);
+		balanceDto.setSaveUpDto(null);
+		balanceDto.setTotalSaved(balance.getTotalSaved());
 		return balanceDto;
 	}
 

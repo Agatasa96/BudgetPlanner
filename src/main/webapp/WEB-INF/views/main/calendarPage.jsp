@@ -110,7 +110,8 @@
 		<div class="wrapper">
 			<div class="c-monthyear">
 				<div class="c-month">
-				<p id="b">	<span id="prev" class="prev fa fa-angle-left button_main" aria-hidden="true">PREV</span></p>
+					<span id="prev" class="prev fa fa-angle-left button_main"
+						aria-hidden="true">PREV</span>
 					<div id="c-paginator">
 						<span class="c-paginator__month">JANUARY</span> <span
 							class="c-paginator__month">FEBRUARY</span> <span
@@ -125,14 +126,14 @@
 							class="c-paginator__month">NOVEMBER</span> <span
 							class="c-paginator__month">DECEMBER</span>
 					</div>
-					<span id="next" class="next fa fa-angle-right button_main" aria-hidden="true">NEXT</span>
+					<span id="next" class="next fa fa-angle-right button_main"
+						aria-hidden="true">NEXT</span>
 				</div>
 				<span class="c-paginator__year">2018</span>
-			<!-- </div>
-			<div class="c-sort">
-				<a class="o-btn c-today__btn" href="javascript:;">TODAY</a>
 			</div>
-		</div> -->
+
+		</div>
+
 	</header>
 
 	<div class="c-calendar">
@@ -178,6 +179,6 @@
 		</div>
 	</div>
 
-	
+
 </body>
 </html>

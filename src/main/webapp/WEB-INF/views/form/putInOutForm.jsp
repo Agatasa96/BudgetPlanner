@@ -19,7 +19,7 @@
 <title>Pay in/out cash</title>
 </head>
 <body>
-	<div>
+	
 		<h1>Pay in/out cash</h1>
 
 		<h3>Update your budget</h3>

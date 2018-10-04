@@ -26,7 +26,7 @@
 				</br>
 				<form:errors path="putInMonthly" cssStyle="color:red"></form:errors>
 				</br>
-				<p>Insert sum which you want to save up</p>
+				<p>Insert sum you want to save up</p>
 				<form:input path="saveUp" placeholder="Insert sum " />
 				</br>
 				<form:errors path="saveUp" cssStyle="color:red"></form:errors>

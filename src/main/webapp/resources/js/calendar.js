@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			"July", "August", "September", "October", "November", "December" ];
 	var indexMonth = month;
 	var todayBtn = $(".c-today__btn");
-	
-	 today = year + "-" + month + "-" + day;
-	
+
+	today = year + "-" + month + "-" + day;
+
 	// wyswietlanie daty mouseover
 	function fillEventSidebar(self) {
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		var thisDay = $(this).attr("data-day").slice(8);
 		var thisMonth = $(this).attr("data-day").slice(5, 7);
 		fillEventSidebar($(this));
-		 console.log(this);
+		console.log(this);
 		$(".c-aside__num").text(thisDay);
 		$(".c-aside__month").text(monthText[thisMonth - 1]);
 
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// ustawianie odpowiednich mies przy przewijaniu
 	moveNext(indexMonth - 1, false);
 
-	//wyswietlanie daty w oknie bocznym
+	// wyswietlanie daty w oknie bocznym
 	$(".c-aside__num").text(day);
 	$(".c-aside__month").text(monthText[month - 1]);
 

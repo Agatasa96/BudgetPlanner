@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.NumberFormat;
 
@@ -25,10 +26,14 @@ public class BalanceDto {
 	private Double saveBalance;
 	private Double afterShoppingBalance;
 	@NumberFormat
+	
 	private Double putInMonthly;
 	@NumberFormat
+	
 	private Double saveUp;
 	private LocalDateTime date;
 	private UserDto userDto;
 	private PutInOutDto putInOutDto;
+	private SaveUpDto saveUpDto;
+	private Double totalSaved;
 }

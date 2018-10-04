@@ -68,14 +68,15 @@ public class PutInOutService {
 
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(id);
 		Double subtractBalance = putInOutDto.getPutOut() - balance.getSaveBalance();
-		Double saveUp = balance.getSaveUp() - subtractBalance;
+		Double saveUp = balance.getTotalSaved() - subtractBalance;
 		Double totalBalance = balance.getTotalBalance() - putInOutDto.getPutOut();
 		Double saveBalance = totalBalance - saveUp;
 
 		Balance balance2 = new Balance();
 		balance2.setDate(LocalDateTime.now());
 		balance2.setSaveBalance(saveBalance);
-		balance2.setSaveUp(saveUp);
+		balance2.setSaveUp(null);
+		balance2.setTotalSaved(saveUp);
 		balance2.setTotalBalance(totalBalance);
 		User user = userRepository.findById(id);
 		balance2.setUser(user);
@@ -114,13 +115,15 @@ public class PutInOutService {
 		Balance balance2 = new Balance();
 		balance2.setDate(LocalDateTime.now());
 		balance2.setTotalBalance(totalBalance);
-		balance2.setSaveUp(balance.getSaveUp());
-		Double saveUpBalance = totalBalance - balance.getSaveUp();
+		balance2.setTotalSaved(balance.getTotalSaved());
+		balance2.setSaveUp(null);
+		Double saveUpBalance = totalBalance - balance.getTotalSaved();
 		balance2.setSaveBalance(saveUpBalance);
 		User user = userRepository.findOne(balance.getUser().getId());
 		balance2.setUser(user);
 		balance2.setPutInOut(putInOut);
 		Balance savedBalance = balanceRepository.save(balance2);
+		
 		return toDto(savedBalance);
 	}
 
@@ -157,6 +160,7 @@ public class PutInOutService {
 		balanceDto.setSaveUp(balance.getSaveUp());
 		balanceDto.setTotalBalance(balance.getTotalBalance());
 		balanceDto.setPutInOutDto(null);
+		balanceDto.setTotalSaved(balance.getTotalSaved());
 		return balanceDto;
 	}
 
