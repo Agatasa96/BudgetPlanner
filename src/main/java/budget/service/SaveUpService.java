@@ -31,7 +31,7 @@ public class SaveUpService {
 		this.userRepository = userRepository;
 	}
 
-	public SaveUpDto saveUp(SaveUpDto saveUpDto) {
+	public String saveUp(SaveUpDto saveUpDto) {
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(saveUpDto.getUserDto().getId());
 
 		if (saveUpDto.getToSaveUp() > balance.getSaveBalance()) {
@@ -41,18 +41,36 @@ public class SaveUpService {
 
 		else {
 			SaveUp saveUp = saveUpRepository.save(toDomain(saveUpDto));
+			System.out.println(saveUp.getUser().getId());
 			JOptionPane.showMessageDialog(null, "Saved");
-			return toDto(saveUp);
+			return "s";
 		}
 	}
-	
-	/*private BalanceDto countBalance(BalanceDto balanceDto, Long id) {
+
+	public BalanceDto countBalance(Long id) {
+
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(id);
-		if(Objects.nonNull(balance)) {
-			Double saveUp = balance.getSaveUp(); 
-			//Balance balance2 = new Balance();
+		if (Objects.nonNull(balance)) {
+			SaveUp saveUp = saveUpRepository.findFirstByUserIdOrderByIdDesc(id);
+			Double totalSaved = balance.getTotalSaved() + saveUp.getToSaveUp();
+			Double savedBalance = balance.getTotalBalance() - totalSaved;
+			Balance balance2 = new Balance();
+			balance2.setDate(LocalDateTime.now());
+			balance2.setTotalSaved(totalSaved);
+			balance2.setSaveBalance(savedBalance);
+			balance2.setPutInMonthly(null);
+			balance2.setPutInOut(null);
+			balance2.setSaveUp(null);
+			balance2.setToSaveUp(saveUp);
+			User user = userRepository.findOne(saveUp.getUser().getId());
+			balance2.setUser(user);
+			balance2.setTotalBalance(balance.getTotalBalance());
+			balance2.setAfterShoppingBalance(null);
+			return toDto(balance2);
+
 		}
-	}*/
+		return null;
+	}
 
 	private SaveUpDto toDto(SaveUp saveUp) {
 		SaveUpDto saveUpDto = new SaveUpDto();
@@ -70,5 +88,20 @@ public class SaveUpService {
 		User user = userRepository.findOne(saveUpDto.getUserDto().getId());
 		saveUp.setUser(user);
 		return saveUp;
+	}
+
+	private BalanceDto toDto(Balance balance) {
+		BalanceDto balanceDto = new BalanceDto();
+
+		balanceDto.setId(balance.getId());
+		balanceDto.setDate(balance.getDate());
+		balanceDto.setAfterShoppingBalance(balance.getAfterShoppingBalance());
+		balanceDto.setSaveBalance(balance.getSaveBalance());
+		balanceDto.setPutInMonthly(balance.getPutInMonthly());
+		balanceDto.setSaveUp(balance.getSaveUp());
+		balanceDto.setTotalBalance(balance.getTotalBalance());
+		balanceDto.setPutInOutDto(null);
+		balanceDto.setTotalSaved(balance.getTotalSaved());
+		return balanceDto;
 	}
 }

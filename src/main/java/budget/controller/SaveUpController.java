@@ -46,21 +46,30 @@ public class SaveUpController {
 
 	@PostMapping("/add")
 	public String addSaveUp(@Valid @ModelAttribute("saveUpDto") SaveUpDto saveUpDto, BindingResult bindingResult,
-			@SessionAttribute("userDto") UserDto userDto) {
+			@SessionAttribute("userDto") UserDto userDto, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			return "main/saveUpPage";
 		} else {
 			saveUpDto.setUserDto(userDto);
-			SaveUpDto saveUpDto2 = saveUpService.saveUp(saveUpDto);
+			String saveUpDto2 = saveUpService.saveUp(saveUpDto);
+			
 			if (Objects.nonNull(saveUpDto2)) {
-				return "main/balancePage";
+				BalanceDto balanceDto = saveUpService.countBalance(userDto.getId());
+				if(Objects.nonNull(balanceDto)) {
+					model.addAttribute("savedBalance", balanceDto);
+					return "main/balancePage";
+				}
+				else {
+					return  "main/saveUpPage";
+				}
+				
 			} else {
 				return "main/saveUpPage";
 
 			}
 		}
-
+		
 	}
 
 	@ModelAttribute("saveUpDto")
