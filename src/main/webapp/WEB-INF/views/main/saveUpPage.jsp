@@ -23,8 +23,7 @@
 </head>
 <body>
 	<h1>It's time to save up!</h1>
-	<h3>You save up ${savedBalance.totalSaved } so far</h3>
-	<h3>Total balance: ${savedBalance.totalBalance}</h3>
+	<h3>Total balance: ${savedBalance.totalBalance} Total save up: ${savedBalance.totalSaved }</h3>
 
 	<div class="container">
 		<form:form modelAttribute="saveUpDto" method="post"

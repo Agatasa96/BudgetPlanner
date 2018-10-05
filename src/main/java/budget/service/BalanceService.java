@@ -36,6 +36,12 @@ public class BalanceService {
 	}
 
 	public BalanceDto addToBalance(BalanceDto balanceDto) {
+		if(Objects.isNull(balanceDto.getSaveUp())) {
+			balanceDto.setSaveUp(0.0);
+		}
+		if(Objects.isNull(balanceDto.getPutInMonthly())) {
+			balanceDto.setPutInMonthly(0.0);
+		}
 		if (balanceDto.getPutInMonthly() >= balanceDto.getSaveUp()) {
 			Balance balanceExsist = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
 			Double saveUp = 0.0;
