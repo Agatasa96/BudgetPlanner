@@ -30,7 +30,7 @@
 
 	<h1>Save up history</h1>
 	<div class="singleInput">
-		<h3>Search by date</h3>
+		<h3>Search since (date)</h3>
 		<form:form modelAttribute="date" method="post"
 			action="/BudgetPlanner/saveUp/historyByDate">
 			<input type="datetime-local" name="date" placeholder="yyyy-mm-dd">
@@ -94,6 +94,7 @@
 		<span class="cls"></span> <span>
 			<ul class="sub-menu ">
 				<li><a href="/BudgetPlanner/main"> Home</a></li>
+				<li><a href="/BudgetPlanner/saveUp/add">Save up</a></li>
 				<li><a href="/BudgetPlanner/balance">Balance</a></li>
 			</ul>
 		</span> <span class="cls"></span>

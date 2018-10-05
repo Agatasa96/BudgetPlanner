@@ -30,7 +30,7 @@
 <body>
 	<h1>Balance history</h1>
 	<div class="singleInput">
-		<h3>Search by date</h3>
+		<h3>Search since (date)</h3>
 		<form:form modelAttribute="date" method="post"
 			action="/BudgetPlanner/balance/historyByDate">
 			<input type="datetime-local" name="date" placeholder="yyyy-mm-dd">

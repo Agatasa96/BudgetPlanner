@@ -81,7 +81,49 @@ public class SaveUpController {
 		model.addAttribute("start", start);
 		return "main/saveUpHistory";
 	}
+	
+	@PostMapping("/historyByDate")
+	public String getSaveUpHistoryByDate(@SessionAttribute("userDto") UserDto userDto, Model model,
+			@ModelAttribute("date") String date) {
 
+		List<Object[]> saveUpList = saveUpService.getHistoryByDate(userDto.getId(), date);
+		model.addAttribute("saveUpHistory", saveUpList);
+		Integer start = 0;
+		model.addAttribute("start", start);
+
+		return "main/saveUpHistory";
+	}
+
+	@GetMapping("/historyNext")
+	public String getSaveUpHistoryNext(@SessionAttribute("userDto") UserDto userDto, Model model,
+			@SessionAttribute("start") Integer start, @SessionAttribute("saveUpHistory") List<Object[]> saveUpList) {
+		model.addAttribute("saveUpHistory", saveUpList);
+		start += 5;
+
+		if (start >= saveUpList.size()) {
+			model.addAttribute("start", start - 5);
+		} else {
+
+			model.addAttribute("start", start);
+		}
+
+		return "main/saveUpHistory";
+	}
+
+	@GetMapping("/historyPrev")
+	public String getSaveUpHistoryPrev(@SessionAttribute("userDto") UserDto userDto, Model model,
+			@SessionAttribute("start") Integer start, @SessionAttribute("saveUpHistory") List<Object[]> saveUpList) {
+		model.addAttribute("saveUpHistory", saveUpList);
+		start -= 5;
+		if (start >= 0) {
+
+			model.addAttribute("start", start);
+
+		} else {
+			model.addAttribute("start", 0);
+		}
+		return "main/saveUpHistory";
+	}
 	@ModelAttribute("saveUpDto")
 	public SaveUpDto saveUpDto() {
 		return new SaveUpDto();

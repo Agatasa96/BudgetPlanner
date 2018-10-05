@@ -1,5 +1,6 @@
 package budget.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -76,6 +77,17 @@ public class SaveUpService {
 	
 	public List<Object[]> getHistory(Long id) {
 		return saveUpRepository.getSaveUpHistory(id);
+
+	}
+	
+	public List<Object[]> getHistoryByDate(Long id, String date) {
+		try {
+			LocalDate sdf = LocalDate.parse(date);
+			return saveUpRepository.getSaveUpHistoryByDate(id, sdf);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Add correct date");
+			return null;
+		}
 
 	}
 
