@@ -11,11 +11,19 @@
 
 <script src="/BudgetPlanner/resources/js/form.js"></script>
 
+<link rel="stylesheet"
+	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
+<script src="/BudgetPlanner/resources/js/menu.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 <title>Save up</title>
 </head>
 <body>
 	<h1>It's time to save up!</h1>
-	<h3>You save up ${savedBalance.saveUp } so far</h3>
+	<h3>You save up ${savedBalance.totalSaved } so far</h3>
 	<h3>Total balance: ${savedBalance.totalBalance}</h3>
 
 	<div class="container">
@@ -26,11 +34,25 @@
 			</br>
 			<form:errors path="toSaveUp" cssStyle="color:red"></form:errors>
 			</br>
-
 			<button class="form-btn sx log-in" type="submit" id="log">Done</button>
 
 		</form:form>
 
+	</div>
+	
+	<!-- Menu boczne -->
+
+	<div class="open">
+		<span class="cls"></span> <span>
+			<ul class="sub-menu ">
+				<li><a href="/BudgetPlanner/main"> Home</a></li>
+				<li><a href="/BudgetPlanner/calendar"> Calendar</a></li>
+				<li><a href="/BudgetPlanner/putInOut/form"> Pay in/out cash</a></li>
+				<li><a href="/BudgetPlanner/balance"> Balance </a></li>
+				<li><a href="#about" title="about"> Shopping list</a></li>
+				<li><a href="/BudgetPlanner/">Log out</a></li>
+			</ul>
+		</span> <span class="cls"></span>
 	</div>
 </body>
 </html>

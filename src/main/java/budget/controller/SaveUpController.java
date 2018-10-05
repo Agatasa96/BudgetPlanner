@@ -1,5 +1,6 @@
 package budget.controller;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.validation.Valid;
@@ -22,7 +23,7 @@ import budget.service.SaveUpService;
 
 @Controller
 @RequestMapping("/saveUp")
-@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory" })
+@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory", "saveUpHistory" })
 
 public class SaveUpController {
 
@@ -70,6 +71,15 @@ public class SaveUpController {
 			}
 		}
 		
+	}
+	
+	@GetMapping("/history")
+	public String getSaveUpHistory(@SessionAttribute("userDto") UserDto userDto, Model model) {
+		List<Object[]> saveUpList = saveUpService.getHistory(userDto.getId());
+		model.addAttribute("saveUpHistory", saveUpList);
+		Integer start = 0;
+		model.addAttribute("start", start);
+		return "main/saveUpHistory";
 	}
 
 	@ModelAttribute("saveUpDto")

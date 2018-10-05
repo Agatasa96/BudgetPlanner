@@ -1,6 +1,7 @@
 package budget.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -66,10 +67,16 @@ public class SaveUpService {
 			balance2.setUser(user);
 			balance2.setTotalBalance(balance.getTotalBalance());
 			balance2.setAfterShoppingBalance(null);
-			return toDto(balance2);
+			Balance saved= balanceRepository.save(balance2);
+			return toDto(saved);
 
 		}
 		return null;
+	}
+	
+	public List<Object[]> getHistory(Long id) {
+		return saveUpRepository.getSaveUpHistory(id);
+
 	}
 
 	private SaveUpDto toDto(SaveUp saveUp) {
