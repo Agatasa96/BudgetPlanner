@@ -47,7 +47,7 @@
 					<th>Total saved</th>
 					<th>Save up</th>
 					<th>Date</th>
-					<th></th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -68,7 +68,7 @@
 
 						<td>${s[1]}</td>
 
-						<td></td>
+						
 					</tr>
 
 				</c:forEach>

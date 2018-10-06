@@ -73,7 +73,6 @@ public class UserController {
 			} else {
 				userDto = userDto2;
 				model.addAttribute("userDto", userDto);
-				//BalanceDto balanceDto = balanceService.lastBalance(userDto);
 				model.addAttribute("savedBalance", balanceDto);
 				return "main/mainPage";
 			}

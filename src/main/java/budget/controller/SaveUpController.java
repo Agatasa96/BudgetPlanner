@@ -10,13 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import budget.domain.Balance;
 import budget.dto.BalanceDto;
 import budget.dto.SaveUpDto;
 import budget.dto.UserDto;
@@ -25,7 +22,7 @@ import budget.service.SaveUpService;
 
 @Controller
 @RequestMapping("/saveUp")
-@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory", "saveUpHistory", "balanceId" })
+@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory", "saveUpHistory" })
 
 public class SaveUpController {
 
@@ -125,21 +122,6 @@ public class SaveUpController {
 		return "main/saveUpHistory";
 	}
 	
-	@GetMapping("/editBalance/{balanceId}")
-	public String editBalance(@SessionAttribute("userDto") UserDto userDto, Model model, @PathVariable("balanceId") Long id) {
-		BalanceDto balanceDto = balanceService.balanceById(id);
-		model.addAttribute("editBalance", balanceDto);
-		model.addAttribute("balanceId", id);
-		return "form/editBalanceForm";
-	}
-	@PostMapping("/editBalance")
-	public String editBalance(@SessionAttribute("userDto") UserDto userDto, @ModelAttribute("editBalance") BalanceDto balanceDto, Model model, @SessionAttribute("balanceId") Long id) {
-		System.out.println(balanceDto.getId());
-		BalanceDto edited = balanceService.editBalance(balanceDto, id);
-	edited.setUserDto(userDto);
-		model.addAttribute("savedBalance", edited);
-		return "main/balancePage";
-	}
 	
 
 	@ModelAttribute("saveUpDto")

@@ -46,7 +46,6 @@ public class PutInOutService {
 				return null;
 			} else {
 				JOptionPane.showMessageDialog(null, "Not enough funds. You can use saved money.");
-				// PutInOut putInOut = putInOutRepository.save(toDomain(putInOutDto));
 				return "useSaved";
 			}
 		} else {
@@ -78,7 +77,7 @@ public class PutInOutService {
 		balance2.setSaveUp(null);
 		balance2.setTotalSaved(saveUp);
 		balance2.setTotalBalance(totalBalance);
-		User user = userRepository.findById(id);
+		User user = userRepository.findOne(id);
 		balance2.setUser(user);
 		PutInOut putInOut = putInOutRepository.save(toDomain(putInOutDto));
 		if (Objects.nonNull(putInOut)) {

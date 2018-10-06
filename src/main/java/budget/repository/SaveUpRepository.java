@@ -12,10 +12,6 @@ import budget.domain.SaveUp;
 public interface SaveUpRepository extends JpaRepository<SaveUp, Long> {
 	SaveUp findFirstByUserIdOrderByIdDesc(Long id);
 
-	
-
-	
-	
 	@Query(value = "SELECT Balance.user_id, Balance.date,  Balance.saveUp, SaveUp.toSaveUp, Balance.totalSaved, Balance.id\n"
 			+ "FROM Balance \n" + "left join SaveUp on Balance.toSaveUp_id = SaveUp.id\n"
 			+ "having user_id= ?1 and (saveUp is not null or toSaveUp is not null) order by date desc", nativeQuery = true)

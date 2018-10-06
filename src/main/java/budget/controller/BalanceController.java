@@ -1,10 +1,7 @@
 package budget.controller;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
 import javax.validation.Valid;
 
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import budget.domain.Balance;
 import budget.dto.BalanceDto;
 
 import budget.dto.UserDto;
@@ -114,5 +110,4 @@ public class BalanceController {
 		return "main/balanceHistory";
 	}
 
-	
 }
