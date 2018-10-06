@@ -1,5 +1,6 @@
 package budget.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ public class CalendarController {
 		this.balanceService = balanceService;
 	}
 
+
 	@RequestMapping
 	public String calendar() {
 		return "main/calendarPage";
@@ -36,6 +38,7 @@ public class CalendarController {
 			@SessionAttribute("userDto") UserDto userDto, Model model) {
 
 		List<Object[]> balances = balanceService.getHistoryByDay(userDto.getId(), month, day);
+		
 		model.addAttribute("balanceHistory", balances);
 		Integer start = 0;
 		model.addAttribute("start", start);

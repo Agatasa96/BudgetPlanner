@@ -107,7 +107,7 @@ public class UserController {
 		if (Objects.isNull(userDto2)) {
 			return "/form/editUserForm";
 		} else {
-			// UserDto userDto2 = userService.editNickname(editNickname, userDto);
+			
 			userDto = userDto2;
 			model.addAttribute("userDto", userDto);
 			return "/main/userDataPage";

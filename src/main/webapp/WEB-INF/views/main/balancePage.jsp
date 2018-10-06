@@ -63,12 +63,7 @@
 				<a href="/BudgetPlanner/saveUp/history">Save-up history</a>
 			</p>
 		</div>
-		<div class="button_main">
-			<p>Edit total save-up</p>
-		</div>
-		<div class="button_main">
-			<p>Add shopping list</p>
-		</div>
+		
 		<div class="button_main">
 			<p>Show shopping list</p>
 		</div>

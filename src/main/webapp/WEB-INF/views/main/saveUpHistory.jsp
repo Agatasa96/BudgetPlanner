@@ -47,11 +47,14 @@
 					<th>Total saved</th>
 					<th>Save up</th>
 					<th>Date</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
+
 				<c:forEach items="${saveUpHistory }" var="s" begin="${start }"
 					end="${start+4 }">
+
 					<tr>
 						<td>${s[4]}</td>
 						<td><c:choose>
@@ -65,9 +68,11 @@
 
 						<td>${s[1]}</td>
 
-
+						<td></td>
 					</tr>
+
 				</c:forEach>
+
 			</tbody>
 		</table>
 	</div>

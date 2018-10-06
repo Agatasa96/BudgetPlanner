@@ -33,6 +33,10 @@ public class SaveUpService {
 		this.userRepository = userRepository;
 	}
 
+	public SaveUpDto saveUpById(Long id) {
+		SaveUp saveUp = saveUpRepository.findOne(id);
+		return toDto(saveUp);
+	}
 	public String saveUp(SaveUpDto saveUpDto) {
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(saveUpDto.getUserDto().getId());
 
@@ -48,7 +52,7 @@ public class SaveUpService {
 			return "s";
 		}
 	}
-
+	
 	public BalanceDto countBalance(Long id) {
 
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(id);
@@ -69,7 +73,7 @@ public class SaveUpService {
 			balance2.setTotalBalance(balance.getTotalBalance());
 			balance2.setAfterShoppingBalance(null);
 			Balance saved= balanceRepository.save(balance2);
-			return toDto(saved);
+			return toBalanceDto(saved);
 
 		}
 		return null;
@@ -109,7 +113,7 @@ public class SaveUpService {
 		return saveUp;
 	}
 
-	private BalanceDto toDto(Balance balance) {
+	private BalanceDto toBalanceDto(Balance balance) {
 		BalanceDto balanceDto = new BalanceDto();
 
 		balanceDto.setId(balance.getId());
@@ -123,4 +127,22 @@ public class SaveUpService {
 		balanceDto.setTotalSaved(balance.getTotalSaved());
 		return balanceDto;
 	}
+	private Balance toBalanceDomain(BalanceDto balanceDto) {
+		Balance balance = new Balance();
+		balance.setId(balanceDto.getId());
+		balance.setDate(LocalDateTime.now());
+		balance.setAfterShoppingBalance(balanceDto.getAfterShoppingBalance());
+		balance.setSaveBalance(balanceDto.getSaveBalance());
+		balance.setPutInMonthly(balanceDto.getPutInMonthly());
+		balance.setSaveUp(balanceDto.getSaveUp());
+		balance.setTotalBalance(balanceDto.getTotalBalance());
+		User user = userRepository.findOne(balanceDto.getUserDto().getId());
+		balance.setPutInOut(null);
+		balance.setToSaveUp(null);
+		balance.setUser(user);
+		balance.setTotalSaved(balanceDto.getTotalSaved());
+		return balance;
+	}
+
+	
 }

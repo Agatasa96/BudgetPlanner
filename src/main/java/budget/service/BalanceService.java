@@ -35,11 +35,16 @@ public class BalanceService {
 		return toDto(balance);
 	}
 
+	public BalanceDto balanceById(Long id) {
+		Balance balance = balanceRepository.findOne(id);
+		return toDto(balance);
+	}
+
 	public BalanceDto addToBalance(BalanceDto balanceDto) {
-		if(Objects.isNull(balanceDto.getSaveUp())) {
+		if (Objects.isNull(balanceDto.getSaveUp())) {
 			balanceDto.setSaveUp(0.0);
 		}
-		if(Objects.isNull(balanceDto.getPutInMonthly())) {
+		if (Objects.isNull(balanceDto.getPutInMonthly())) {
 			balanceDto.setPutInMonthly(0.0);
 		}
 		if (balanceDto.getPutInMonthly() >= balanceDto.getSaveUp()) {
@@ -146,6 +151,31 @@ public class BalanceService {
 			return null;
 		}
 
+	}
+
+	public BalanceDto editBalance(BalanceDto balanceDto, Long id) {
+		Balance balance = balanceRepository.findOne(id);
+		if (Objects.isNull(balanceDto)) {
+			System.out.println("NULLLLLLLLLL");
+			return null;
+		} else {
+
+			// balance.setAfterShoppingBalance(balanceDto.getAfterShoppingBalance());
+			balance.setDate(LocalDateTime.now());
+			// balance.setId(balanceDto.getId());
+			// balance.setPutInMonthly(balance.getPutInMonthly());
+			// System.out.println(balance.getId()+ " "+ balanceDto.getSaveUp());
+			Double substract = balance.getSaveUp() - balanceDto.getSaveUp();
+			Double totalSaved = balance.getTotalSaved() - substract;
+			balance.setTotalSaved(totalSaved);
+
+			Double saveBalance = balance.getTotalBalance() - totalSaved;
+			balance.setSaveBalance(saveBalance);
+			balance.setSaveUp(balanceDto.getSaveUp());
+			// balance.setTotalBalance(balanceDto.getTotalBalance());
+Balance saved = balanceRepository.save(balance);
+			return toDto(saved);
+		}
 	}
 
 	private Balance toDomain(BalanceDto balanceDto) {

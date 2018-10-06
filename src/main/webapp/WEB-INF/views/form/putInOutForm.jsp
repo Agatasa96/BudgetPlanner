@@ -64,9 +64,9 @@
 			<span class="cls"></span> <span>
 				<ul class="sub-menu ">
 					<li><a href="/BudgetPlanner/main"> Home</a></li>
-					<li><a href="" title="about"> Calendar</a></li>
+					<li><a href="/BudgetPlanner/calendar"> Calendar</a></li>
 					<li><a href="/BudgetPlanner/balance">Balance</a></li>
-					<li><a href="#about" title="about"> Save-up </a></li>
+					<li><a href="/BudgetPlanner/saveUp/add"> Save-up </a></li>
 					<li><a href="#about" title="about"> Shopping list</a></li>
 					<li><a href="/BudgetPlanner/">Log out</a></li>
 				</ul>
