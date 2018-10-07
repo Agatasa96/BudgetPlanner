@@ -72,7 +72,7 @@
 			<div class="lay">
 				<h3>Shopping list</h3>
 				<p>
-					<a href="#">CLICK</a>
+					<a href="/BudgetPlanner/shoppingList">CLICK</a>
 				</p>
 			</div>
 		</div>

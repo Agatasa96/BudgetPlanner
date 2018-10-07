@@ -46,4 +46,7 @@ public class User {
 	
 	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
 	private List <SaveUp> saveList;
+	
+	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
+	private List <ShoppingList> ShoppingLists;
 }
