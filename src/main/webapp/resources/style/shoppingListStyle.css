@@ -1,0 +1,96 @@
+@charset "UTF-8";
+body {
+	background: #F5F5F5;
+	height: 100%;
+	margin: 0;
+	
+	font-weight: 100;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Dosis';
+	font-size: 80px;
+	color: #87613d;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	text-shadow: 7px 7px rgba(255, 125, 0, 0.35);
+}
+
+.list{
+	font-family: 'Roboto';
+	border: 10px;
+	background-color: rgba(255, 125, 0, 0.35);
+	box-shadow: 2px 2px rgba(255, 125, 0, 0.95);
+	float: left;
+	padding: 20px;
+	margin: 10px;
+	margin-top: 20hv;
+}
+
+.name{
+	color: #ffffff;
+	text-align: center;
+	text-decoration: none;
+	border-bottom: 10px;
+	border-bottom-color: #ffffff;
+}
+
+/* button */
+
+p, a {
+	color: #fff;
+	margin: 0;
+	text-decoration: none;
+}
+
+
+.cont {
+	position: absolute;
+	display: list-item;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-wrap: wrap;
+	width: 820px;
+	top: 17%;
+	margin-left: 512px;
+}
+
+.button_main {
+	
+	flex: 1 1 auto;
+	margin: 10px;
+	padding: 20px;
+	background: rgba(255, 125, 0, 0.35);
+	border: 2px solid rgba(255, 125, 0, 0.65);
+	text-align: center;
+	text-transform: uppercase;
+	position: relative;
+	overflow: hidden;
+	transition: .3s;
+	color: #fff;
+	text-decoration: none;
+}
+
+.button_main:after {
+	position: absolute;
+	transition: .3s;
+	content: '';
+	width: 0;
+	left: 50%;
+	bottom: 0;
+	height: 3px;
+	background: #fff;
+	right: 0;
+	left: auto;
+}
+
+.button_main:hover {
+	cursor: pointer;
+}
+
+.button_main:hover:after {
+	width: 100%;
+	left: 0;
+}

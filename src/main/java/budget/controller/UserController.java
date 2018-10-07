@@ -26,7 +26,7 @@ import budget.service.UserService;
 
 @Controller
 @RequestMapping("/user")
-@SessionAttributes({ "savedBalance", "userDto" })
+@SessionAttributes({ "savedBalance", "userDto", "savedList" })
 public class UserController {
 
 	private final UserService userService;

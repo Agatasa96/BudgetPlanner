@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import javax.swing.JOptionPane;
+
 import org.springframework.stereotype.Service;
 
 import budget.domain.Item;
@@ -20,40 +22,43 @@ public class ShoppingListService {
 
 	private final ShoppingListRepository shoppingListRepository;
 	private final UserRepository userRepository;
-	
-	
+
 	public ShoppingListService(ShoppingListRepository shoppingListRepository, UserRepository userRepository) {
 		this.shoppingListRepository = shoppingListRepository;
 		this.userRepository = userRepository;
 	}
 
-
-	public void save(ShoppingListDto list) {
-		shoppingListRepository.save(toDomain(list));
+	public ShoppingListDto addList(ShoppingListDto shoppingListDto) {
+		ShoppingList shoppingList = shoppingListRepository.save(toDomain(shoppingListDto));
+		if(Objects.nonNull(shoppingList)) {
+			JOptionPane.showMessageDialog(null, "Added list");
+			
+			return toDto(shoppingList);
+		}
+		else {
+			return null;	
+		}
+		
+	}
+	
+	public List<List<ShoppingList>> getAllLists(Long id){
+		List<List<ShoppingList>> allLists = shoppingListRepository.findAllByUserId(id);
+		return allLists;
 	}
 
 	private ShoppingList toDomain(ShoppingListDto dto) {
 		ShoppingList shoppingList = new ShoppingList();
 		shoppingList.setId(dto.getId());
-		
-		List<ItemDto> dtoItems = dto.getItems();
-		List<Item> items = new ArrayList<>();
-		for(ItemDto i:dtoItems) {
-			items.add(toDomainItem(i));
-		}
-		shoppingList.setItems(items);
+		shoppingList.setName(dto.getName());
 		User user = userRepository.findOne(dto.getUserDto().getId());
 		shoppingList.setUser(user);
 		return shoppingList;
 	}
-	
-	 
-	 public Item toDomainItem(ItemDto itemDto) {
-			Item item = new Item();
-			item.setId(itemDto.getId());
-			item.setName(itemDto.getName());
-			item.setPrice(itemDto.getPrice());
-			return item;
-		}
 
+	private ShoppingListDto toDto(ShoppingList shoppingList) {
+		ShoppingListDto shoppingListDto = new ShoppingListDto();
+		shoppingListDto.setId(shoppingList.getId());
+		shoppingListDto.setName(shoppingList.getName());
+		return shoppingListDto;
+	}
 }

@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import budget.converter.ItemConverter;
 
 @Configuration
 @EnableWebMvc
@@ -53,6 +56,15 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 
+	}
+	
+	@Override
+	public void addFormatters(FormatterRegistry registry) {
+	    registry.addConverter(getItemConverter());
+	}
+	@Bean
+	public ItemConverter getItemConverter() {
+	    return new ItemConverter();
 	}
 
 }

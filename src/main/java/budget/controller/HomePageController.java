@@ -9,7 +9,7 @@ import budget.dto.UserDto;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes({ "userDto", "savedBalance" })
+@SessionAttributes({ "userDto", "savedBalance", "savedList" })
 
 public class HomePageController {
 
