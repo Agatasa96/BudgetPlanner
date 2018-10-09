@@ -27,7 +27,7 @@ import budget.service.ItemService;
 import budget.service.ShoppingListService;
 
 @Controller
-@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory","savedList", "listId" })
+@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory","savedList", "listId", "itemList" })
 @RequestMapping("/shoppingList")
 public class ShoppingListController {
 
@@ -43,6 +43,7 @@ public class ShoppingListController {
 	public String goToShoppingList(@SessionAttribute("userDto") UserDto userDto, Model model  ) {
 		List<ShoppingListDto> allLists = shoppingListService.getAllLists(userDto.getId());
 		model.addAttribute("savedList", allLists);
+	
 		
 		return "main/shoppingListPage";
 	}
@@ -79,9 +80,11 @@ public class ShoppingListController {
 	}
 
 	@GetMapping("/addItem/{id}")
-	public String addItem(Model model, @PathVariable("id") Long id) {
+	public String addItem(Model model, @PathVariable("id") Long id, @SessionAttribute("userDto") UserDto userDto) {
 		model.addAttribute("item", new ItemDto());
 		model.addAttribute("listId",id);
+		
+	
 		return "form/addItem";
 	}
 	

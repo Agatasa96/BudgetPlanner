@@ -37,7 +37,7 @@
 					<c:forEach items="${itemsList }" var="i">
 						<c:choose>
 							<c:when test="${sl.id == i[4]}">
-								<li>${i[0] }${i[1]} zl</li>
+								<li>${i[0] } ${i[1]} zl</li>
 							</c:when>
 						</c:choose>
 					</c:forEach>

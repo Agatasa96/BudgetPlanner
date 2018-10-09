@@ -17,9 +17,9 @@
 	<h1>Add item to shopping list</h1>
 	<div class="left">
 		<h3>Shopping list ${shopingList.name }</h3>
-		<ul id="items">
+		<ul class="item">
 		<c:forEach items="${itemList }" var="i">
-			<li>${i.itemName }</li>
+			<li class="item">${i.itemName } ${i.price } zl</li>
 			
 		</c:forEach>
 		</ul>
@@ -42,7 +42,6 @@
 			<form:errors path="price" cssStyle="color:red"></form:errors>
 			</br>
 			<button class="form-btn dx" type="submit">Add to list</button>
-		<button class="form-btn sx log-in"  type= "button" id="log"> </button>
 		</form:form>
 
 	</div>

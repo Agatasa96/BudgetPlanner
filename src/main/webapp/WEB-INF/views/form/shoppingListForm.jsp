@@ -26,8 +26,8 @@
 			</br>
 			<form:errors path="name" cssStyle="color:red"></form:errors>
 			</br>
+			<button class="form-btn sx log-in" type="submit" id="log">Add list</button>
 			
-			<button class="form-btn dx" type="submit">Addlist</button>
 			</form:form>
 		
 	</div>
