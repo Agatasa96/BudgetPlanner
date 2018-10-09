@@ -27,7 +27,7 @@ import budget.service.ItemService;
 import budget.service.ShoppingListService;
 
 @Controller
-@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory","savedList", "listId", "itemList" })
+@SessionAttributes({ "userDto", "savedList", "listId" })
 @RequestMapping("/shoppingList")
 public class ShoppingListController {
 
@@ -40,20 +40,18 @@ public class ShoppingListController {
 	}
 
 	@GetMapping
-	public String goToShoppingList(@SessionAttribute("userDto") UserDto userDto, Model model  ) {
+	public String goToShoppingList(@SessionAttribute("userDto") UserDto userDto, Model model) {
 		List<ShoppingListDto> allLists = shoppingListService.getAllLists(userDto.getId());
 		model.addAttribute("savedList", allLists);
-	
-		
 		return "main/shoppingListPage";
 	}
-	
+
 	@GetMapping("/showItems/{id}")
-	public String save(Model model, @SessionAttribute("userDto") UserDto userDto, @PathVariable("id") Long shoppingListId) {
-		List<ShoppingListDto> allLists = shoppingListService.getAllLists(userDto.getId());
-		model.addAttribute("savedList", allLists);
-		
-	List<Object[]> itemsList=	shoppingListService.getItemsList(userDto.getId(), shoppingListId);
+	public String save(Model model, @SessionAttribute("userDto") UserDto userDto,
+			@PathVariable("id") Long shoppingListId) {
+
+		List<Object[]> itemsList = shoppingListService.getItemsList(userDto.getId(), shoppingListId);
+
 		model.addAttribute("itemsList", itemsList);
 		return "main/shoppingListPage";
 	}
@@ -72,8 +70,12 @@ public class ShoppingListController {
 		} else {
 			shoppingListDto.setUserDto(userDto);
 			ShoppingListDto savedList = shoppingListService.addList(shoppingListDto);
-			List<ShoppingListDto> allLists = shoppingListService.getAllLists(userDto.getId());
-			model.addAttribute("savedList", allLists);
+			if (Objects.nonNull(savedList)) {
+				List<ShoppingListDto> allLists = shoppingListService.getAllLists(userDto.getId());
+				model.addAttribute("savedList", allLists);
+				return "main/shoppingListPage";
+			}
+
 			return "main/shoppingListPage";
 		}
 
@@ -82,24 +84,36 @@ public class ShoppingListController {
 	@GetMapping("/addItem/{id}")
 	public String addItem(Model model, @PathVariable("id") Long id, @SessionAttribute("userDto") UserDto userDto) {
 		model.addAttribute("item", new ItemDto());
-		model.addAttribute("listId",id);
-		
-	
-		return "form/addItem";
-	}
-	
-	@PostMapping("/addItem")
-	public String addItem(Model model, @ModelAttribute("item") ItemDto itemDto, @SessionAttribute("listId") Long id, @SessionAttribute("userDto") UserDto userDto) {
-		ShoppingListDto shoppingListDto = shoppingListService.getOne(id);
-		
-		itemDto.setShoppingListDto(shoppingListDto);
-		itemService.saveItem(itemDto, id);
+		model.addAttribute("listId", id);
 		List<ItemDto> itemList = itemService.findItems(id);
 		model.addAttribute("itemList", itemList);
-		model.addAttribute("shopingList", shoppingListDto);
-		
+
 		return "form/addItem";
 	}
-	
-	
+
+	@PostMapping("/addItem")
+	public String addItem(Model model, @Valid @ModelAttribute("item") ItemDto itemDto,
+			@SessionAttribute("listId") Long id, @SessionAttribute("userDto") UserDto userDto,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "form/addItem";
+		} else {
+			ShoppingListDto shoppingListDto = shoppingListService.getOne(id);
+			if (Objects.nonNull(shoppingListDto)) {
+				itemDto.setShoppingListDto(shoppingListDto);
+				model.addAttribute("shopingList", shoppingListDto);
+			}
+
+			itemService.saveItem(itemDto, id);
+			List<ItemDto> itemList = itemService.findItems(id);
+
+			if (Objects.nonNull(itemList)) {
+				model.addAttribute("itemList", itemList);
+			}
+
+			return "form/addItem";
+		}
+
+	}
+
 }

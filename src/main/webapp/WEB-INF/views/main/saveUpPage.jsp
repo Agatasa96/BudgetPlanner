@@ -48,7 +48,7 @@
 				<li><a href="/BudgetPlanner/calendar"> Calendar</a></li>
 				<li><a href="/BudgetPlanner/putInOut/form"> Pay in/out cash</a></li>
 				<li><a href="/BudgetPlanner/balance"> Balance </a></li>
-				<li><a href="#about" title="about"> Shopping list</a></li>
+				<li><a href="/BudgetPlanner/shoppingList"> Shopping list</a></li>
 				<li><a href="/BudgetPlanner/">Log out</a></li>
 			</ul>
 		</span> <span class="cls"></span>

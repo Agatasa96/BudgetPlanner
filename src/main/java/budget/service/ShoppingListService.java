@@ -32,26 +32,28 @@ public class ShoppingListService {
 		ShoppingList shoppingList = shoppingListRepository.save(toDomain(shoppingListDto));
 		if (Objects.nonNull(shoppingList)) {
 			JOptionPane.showMessageDialog(null, "Added list");
-
 			return toDto(shoppingList);
 		} else {
+			JOptionPane.showMessageDialog(null, "Cannot add");
 			return null;
 		}
 
 	}
 
 	public List<Object[]> getItemsList(Long userId, Long shoppingListId) {
-
 		return shoppingListRepository.itemsList(userId, shoppingListId);
 	}
 
 	public List<ShoppingListDto> getAllLists(Long id) {
-		List<ShoppingList> allLists = shoppingListRepository.findAllByUserId(id);
 		return shoppingListRepository.findAllByUserId(id).stream().filter(Objects::nonNull).map(ShoppingList::toDto)
 				.collect(Collectors.toList());
-		// return allLists;
 	}
 
+	public ShoppingListDto getOne(Long id) {
+		ShoppingList list = shoppingListRepository.findOne(id);
+		return toDto(list);
+	}
+	
 	private ShoppingList toDomain(ShoppingListDto dto) {
 		ShoppingList shoppingList = new ShoppingList();
 		shoppingList.setId(dto.getId());
@@ -68,9 +70,4 @@ public class ShoppingListService {
 		return shoppingListDto;
 	}
 
-	public ShoppingListDto getOne(Long id) {
-		ShoppingList list = shoppingListRepository.findOne(id);
-
-		return toDto(list);
-	}
 }

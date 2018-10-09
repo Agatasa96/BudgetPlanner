@@ -12,6 +12,13 @@
 <link rel="stylesheet"
 	href="/BudgetPlanner/resources/style/shoppingListStyle.css"
 	type="text/css">
+	<link rel="stylesheet"
+	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
+<script src="/BudgetPlanner/resources/js/menu.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
 </head>
 <body>
 	<h1>Shopping lists</h1>
@@ -57,11 +64,22 @@
 					</p>
 				</div>
 			</div>
-
-
 		</c:forEach>
+	</div>
+	
+	<!-- Menu boczne -->
 
-
+	<div class="open">
+		<span class="cls"></span> <span>
+			<ul class="sub-menu ">
+				<li><a href="/BudgetPlanner/main"> Home</a></li>
+				<li><a href="/BudgetPlanner/calendar"> Calendar</a></li>
+				<li><a href="/BudgetPlanner/balance" > Balance</a></li>
+				<li><a href="/BudgetPlanner/putInOut/form"> Pay in/out cash</a></li>
+				<li><a href="/BudgetPlanner/saveUp/add"> Save-up </a></li>
+				<li><a href="/BudgetPlanner/">Log out</a></li>
+			</ul>
+		</span> <span class="cls"></span>
 	</div>
 </body>
 </html>
