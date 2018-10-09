@@ -41,9 +41,11 @@ public class ShoppingListService {
 		
 	}
 	
-	public List<ShoppingList> getAllLists(Long id){
+	public List<ShoppingListDto> getAllLists(Long id){
 		List<ShoppingList> allLists = shoppingListRepository.findAllByUserId(id);
-		return allLists;
+		return shoppingListRepository.findAllByUserId(id).stream().filter(Objects::nonNull).map(ShoppingList::toDto)
+				.collect(Collectors.toList());
+		//return allLists;
 	}
 
 	private ShoppingList toDomain(ShoppingListDto dto) {

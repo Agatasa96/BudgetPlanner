@@ -6,11 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.NumberFormat;
 
+import budget.dto.ItemDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,4 +37,14 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name="shoppingList_id")
 	private ShoppingList shoppingList;
+	
+	@Transient
+	public static ItemDto toDto(Item item) {
+		ItemDto dto =new ItemDto();
+		dto.setId(item.getId());
+		dto.setName(item.getName());
+		dto.setPrice(item.getPrice());
+		
+		return dto;
+	}
 }

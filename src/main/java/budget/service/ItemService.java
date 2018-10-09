@@ -2,6 +2,7 @@ package budget.service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -54,8 +55,9 @@ public class ItemService {
 
 
 
-	public List<Item> findItems(Long id) {
-		return itemRepository.findAllByShoppingListId(id);
+	public List<ItemDto> findItems(Long id) {
+		return itemRepository.findAllByShoppingListId(id).stream().filter(Objects::nonNull).map(Item::toDto)
+				.collect(Collectors.toList());
 		 
 	}
 }

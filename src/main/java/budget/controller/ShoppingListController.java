@@ -58,7 +58,7 @@ public class ShoppingListController {
 		} else {
 			shoppingListDto.setUserDto(userDto);
 			ShoppingListDto savedList = shoppingListService.addList(shoppingListDto);
-			List<ShoppingList> allLists = shoppingListService.getAllLists(userDto.getId());
+			List<ShoppingListDto> allLists = shoppingListService.getAllLists(userDto.getId());
 			model.addAttribute("savedList", allLists);
 			return "main/shoppingListPage";
 		}
@@ -78,7 +78,7 @@ public class ShoppingListController {
 		
 		itemDto.setShoppingListDto(shoppingListDto);
 		itemService.saveItem(itemDto, id);
-		List<Item> itemList = itemService.findItems(id);
+		List<ItemDto> itemList = itemService.findItems(id);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("shopingList", shoppingListDto);
 		System.out.println(itemDto.getShoppingListDto().getId());
