@@ -36,7 +36,7 @@ public class ItemService {
 	private Item toDomain(ItemDto itemDto) {
 		Item item = new Item();
 		item.setId(itemDto.getId());
-		item.setName(itemDto.getName());
+		item.setItemName(itemDto.getItemName());
 		item.setPrice(itemDto.getPrice());
 		ShoppingList list = shoppingListRepository.findOne(itemDto.getShoppingListDto().getId());
 		item.setShoppingList(list);
@@ -46,7 +46,7 @@ public class ItemService {
 	private ItemDto toDto(Item item) {
 		ItemDto dto =new ItemDto();
 		dto.setId(item.getId());
-		dto.setName(item.getName());
+		dto.setItemName(item.getItemName());
 		dto.setPrice(item.getPrice());
 		//ShoppingList list = shoppingListRepository.findOne(item.getShoppingList().getId());
 		

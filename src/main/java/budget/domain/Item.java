@@ -29,7 +29,7 @@ public class Item {
 	
 	@NotNull
 	@Size(min=3, max = 15)
-	private String name;
+	private String itemName;
 	@NotNull
 	@NumberFormat
 	private Double price;
@@ -42,7 +42,7 @@ public class Item {
 	public static ItemDto toDto(Item item) {
 		ItemDto dto =new ItemDto();
 		dto.setId(item.getId());
-		dto.setName(item.getName());
+		dto.setItemName(item.getItemName());
 		dto.setPrice(item.getPrice());
 		
 		return dto;

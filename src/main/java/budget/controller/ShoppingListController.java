@@ -2,6 +2,7 @@ package budget.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.validation.Valid;
 
@@ -38,9 +39,21 @@ public class ShoppingListController {
 		this.itemService = itemService;
 	}
 
-	@RequestMapping
-	public String goToShoppingList( ) {
+	@GetMapping
+	public String goToShoppingList(@SessionAttribute("userDto") UserDto userDto, Model model  ) {
+		List<ShoppingListDto> allLists = shoppingListService.getAllLists(userDto.getId());
+		model.addAttribute("savedList", allLists);
 		
+		return "main/shoppingListPage";
+	}
+	
+	@GetMapping("/showItems/{id}")
+	public String save(Model model, @SessionAttribute("userDto") UserDto userDto, @PathVariable("id") Long shoppingListId) {
+		List<ShoppingListDto> allLists = shoppingListService.getAllLists(userDto.getId());
+		model.addAttribute("savedList", allLists);
+		
+	List<Object[]> itemsList=	shoppingListService.getItemsList(userDto.getId(), shoppingListId);
+		model.addAttribute("itemsList", itemsList);
 		return "main/shoppingListPage";
 	}
 
@@ -73,7 +86,7 @@ public class ShoppingListController {
 	}
 	
 	@PostMapping("/addItem")
-	public String addItem(Model model, @ModelAttribute("item") ItemDto itemDto, @SessionAttribute("listId") Long id) {
+	public String addItem(Model model, @ModelAttribute("item") ItemDto itemDto, @SessionAttribute("listId") Long id, @SessionAttribute("userDto") UserDto userDto) {
 		ShoppingListDto shoppingListDto = shoppingListService.getOne(id);
 		
 		itemDto.setShoppingListDto(shoppingListDto);
@@ -81,7 +94,7 @@ public class ShoppingListController {
 		List<ItemDto> itemList = itemService.findItems(id);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("shopingList", shoppingListDto);
-		System.out.println(itemDto.getShoppingListDto().getId());
+		
 		return "form/addItem";
 	}
 	

@@ -21,7 +21,7 @@ private Long id;
 	
 	@NotNull
 	@Size(min=3, max = 15)
-	private String name;
+	private String itemName;
 	@NotNull
 	@NumberFormat
 	private Double price;

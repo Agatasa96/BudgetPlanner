@@ -30,22 +30,26 @@ public class ShoppingListService {
 
 	public ShoppingListDto addList(ShoppingListDto shoppingListDto) {
 		ShoppingList shoppingList = shoppingListRepository.save(toDomain(shoppingListDto));
-		if(Objects.nonNull(shoppingList)) {
+		if (Objects.nonNull(shoppingList)) {
 			JOptionPane.showMessageDialog(null, "Added list");
-			
+
 			return toDto(shoppingList);
+		} else {
+			return null;
 		}
-		else {
-			return null;	
-		}
-		
+
 	}
-	
-	public List<ShoppingListDto> getAllLists(Long id){
+
+	public List<Object[]> getItemsList(Long userId, Long shoppingListId) {
+
+		return shoppingListRepository.itemsList(userId, shoppingListId);
+	}
+
+	public List<ShoppingListDto> getAllLists(Long id) {
 		List<ShoppingList> allLists = shoppingListRepository.findAllByUserId(id);
 		return shoppingListRepository.findAllByUserId(id).stream().filter(Objects::nonNull).map(ShoppingList::toDto)
 				.collect(Collectors.toList());
-		//return allLists;
+		// return allLists;
 	}
 
 	private ShoppingList toDomain(ShoppingListDto dto) {
@@ -66,7 +70,7 @@ public class ShoppingListService {
 
 	public ShoppingListDto getOne(Long id) {
 		ShoppingList list = shoppingListRepository.findOne(id);
-		
+
 		return toDto(list);
 	}
 }

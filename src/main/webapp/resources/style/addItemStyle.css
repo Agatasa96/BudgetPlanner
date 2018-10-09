@@ -22,6 +22,11 @@ body {
 	padding: 30px 20px 0 20px;
 	box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
 	box-sizing: border-box;
+	
+}
+
+#itmes {
+	color: red;
 }
 
 /* Ustawienie formularza */
@@ -45,13 +50,19 @@ form {
 	box-sizing: border-box;
 }
 
-p {
+p{
 	font-family: 'Roboto', sans-serif;
 	font-weight: 100;
 	text-transform: uppercase;
 	font-size: 20px;
 	color: #87613d;
 	margin-bottom: 40px;
+	text-decoration: none;
+}
+
+a{
+	text-decoration: none;
+	color: #ffff;
 }
 
 h1 {
@@ -95,6 +106,7 @@ button.form-btn.sx {
 	background-color: rgba(255, 125, 0, 0.35);
 	color: #fff;
 	transition: all 0.3s linear;
+	text-decoration: none;
 }
 
 button.form-btn.sx:hover {
@@ -430,4 +442,60 @@ opacity
  
 1;
 }
+}
+
+/* button */
+p, a {
+	color: #fff;
+	margin: 0;
+	text-decoration: none;
+}
+
+.cont {
+	position: absolute;
+	display: list-item;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-wrap: wrap;
+	width: 820px;
+	top: 17%;
+	margin-left: 512px;
+}
+
+.button_main {
+	flex: 1 1 auto;
+	margin: 10px;
+	padding: 20px;
+	background: rgba(255, 125, 0, 0.35);
+	border: 2px solid rgba(255, 125, 0, 0.65);
+	text-align: center;
+	text-transform: uppercase;
+	position: relative;
+	overflow: hidden;
+	transition: .3s;
+	color: #fff;
+	text-decoration: none;
+}
+
+.button_main:after {
+	position: absolute;
+	transition: .3s;
+	content: '';
+	width: 0;
+	left: 50%;
+	bottom: 0;
+	height: 3px;
+	background: #fff;
+	right: 0;
+	left: auto;
+}
+
+.button_main:hover {
+	cursor: pointer;
+}
+
+.button_main:hover:after {
+	width: 100%;
+	left: 0;
 }

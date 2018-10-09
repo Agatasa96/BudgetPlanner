@@ -17,13 +17,14 @@
 	<h1>Add item to shopping list</h1>
 	<div class="left">
 		<h3>Shopping list ${shopingList.name }</h3>
-		<ul>
+		<ul id="items">
 		<c:forEach items="${itemList }" var="i">
-			<li>${i.name }</li>
+			<li>${i.itemName }</li>
 			
-
 		</c:forEach>
 		</ul>
+		<div class="button_main">
+		<p><a href="/BudgetPlanner/shoppingList/">Save list</a></p></div>
 	</div>
 	<!-- Formularz -->
 	<div class="container">
@@ -31,9 +32,9 @@
 			action="/BudgetPlanner/shoppingList/addItem">
 
 
-			<form:input path="name" placeholder="Insert item name" />
+			<form:input path="itemName" placeholder="Insert item name" />
 			</br>
-			<form:errors path="name" cssStyle="color:red"></form:errors>
+			<form:errors path="itemName" cssStyle="color:red"></form:errors>
 			</br>
 
 			<form:input path="price" placeholder="Insert price" />
@@ -41,7 +42,7 @@
 			<form:errors path="price" cssStyle="color:red"></form:errors>
 			</br>
 			<button class="form-btn dx" type="submit">Add to list</button>
-		<button class="form-btn sx log-in" type="button" id="log"> <a href="/BudgetPlanner/shoppingList/addList">Save list</a></button>
+		<button class="form-btn sx log-in"  type= "button" id="log"> </button>
 		</form:form>
 
 	</div>

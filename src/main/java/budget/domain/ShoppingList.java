@@ -39,6 +39,8 @@ public class ShoppingList {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	
+	
 	@Transient
 	public static ShoppingListDto toDto(ShoppingList shoppingList) {
 		ShoppingListDto shoppingListDto = new ShoppingListDto();

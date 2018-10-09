@@ -1,9 +1,9 @@
 @charset "UTF-8";
+
 body {
 	background: #F5F5F5;
 	height: 100%;
 	margin: 0;
-	
 	font-weight: 100;
 }
 
@@ -17,33 +17,51 @@ h1 {
 	text-shadow: 7px 7px rgba(255, 125, 0, 0.35);
 }
 
-.list{
+.list {
 	font-family: 'Roboto';
-	border: 10px;
-	background-color: rgba(255, 125, 0, 0.35);
-	box-shadow: 2px 2px rgba(255, 125, 0, 0.95);
+	background: rgba(255, 125, 0, 0.35);
+	margin: 20px; position : relative;
+	text-align: center;
 	float: left;
-	padding: 20px;
-	margin: 10px;
-	margin-top: 20hv;
+	width: 400px;
+	height: auto;
+	border-radius: 5px;
+	padding: 20px; box-shadow : 0 10px 50px 0 rgba( 0, 0, 0, 0.25);
+	box-sizing: border-box;
+	box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.25);
+	position: relative;
 }
 
-.name{
+.list p,a{
+	bottom:2%;
+}
+
+.items {
+	color: #fff;
+	font-size: 20px;
+	text-align: left;
+	
+}
+
+#lists {
+	margin-top: 120px;
+}
+
+.name {
+	font-size: 36px;
 	color: #ffffff;
 	text-align: center;
 	text-decoration: none;
-	border-bottom: 10px;
-	border-bottom-color: #ffffff;
+	text-transform: uppercase;
+	
 }
 
 /* button */
-
 p, a {
 	color: #fff;
 	margin: 0;
 	text-decoration: none;
 }
-
 
 .cont {
 	position: absolute;
@@ -58,7 +76,6 @@ p, a {
 }
 
 .button_main {
-	
 	flex: 1 1 auto;
 	margin: 10px;
 	padding: 20px;
