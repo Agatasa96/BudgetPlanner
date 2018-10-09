@@ -9,5 +9,5 @@ import budget.domain.ShoppingList;
 
 @Repository
 public interface ShoppingListRepository extends JpaRepository<ShoppingList, Long> {
-	List<List<ShoppingList>> findAllByUserId(Long id);
+	List<ShoppingList> findAllByUserId(Long id);
 }

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,7 @@ import budget.service.ItemService;
 import budget.service.ShoppingListService;
 
 @Controller
-@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory","savedList" })
+@SessionAttributes({ "userDto", "savedBalance", "start", "balanceHistory","savedList", "listId" })
 @RequestMapping("/shoppingList")
 public class ShoppingListController {
 
@@ -57,32 +58,32 @@ public class ShoppingListController {
 		} else {
 			shoppingListDto.setUserDto(userDto);
 			ShoppingListDto savedList = shoppingListService.addList(shoppingListDto);
-			List<List<ShoppingList>> allLists = shoppingListService.getAllLists(userDto.getId());
+			List<ShoppingList> allLists = shoppingListService.getAllLists(userDto.getId());
 			model.addAttribute("savedList", allLists);
 			return "main/shoppingListPage";
 		}
 
 	}
 
-	/*
-	 * @GetMapping("/addItem") public String addShoppingList(Model model) {
-	 * model.addAttribute("item", new Item()); model.addAttribute("list", new
-	 * ShoppingList()); return "form/addShoppingList"; }
-	 * 
-	 * @PostMapping("/addItem")
-	 * 
-	 * @ResponseBody public String addShoppingList(@ModelAttribute("item") ItemDto
-	 * itemDto, @SessionAttribute("list") ShoppingListDto shoppingListDto, Model
-	 * model) { ItemDto savedItem = itemService.saveItem(itemDto); List<ItemDto>
-	 * list = new ArrayList<>(); list.add(savedItem);
-	 * shoppingListDto.setItems(list); model.addAttribute("list", shoppingListDto);
-	 * return "form/addShoppingList"; }
-	 * 
-	 * @GetMapping("/addList")
-	 * 
-	 * @ResponseBody public String addShoppingList(Model
-	 * model, @SessionAttribute("userDto") UserDto
-	 * userDto, @SessionAttribute("list") ShoppingListDto list) {
-	 * list.setUserDto(userDto); shoppingListService.save(list); return "saved"; }
-	 */
+	@GetMapping("/addItem/{id}")
+	public String addItem(Model model, @PathVariable("id") Long id) {
+		model.addAttribute("item", new ItemDto());
+		model.addAttribute("listId",id);
+		return "form/addItem";
+	}
+	
+	@PostMapping("/addItem")
+	public String addItem(Model model, @ModelAttribute("item") ItemDto itemDto, @SessionAttribute("listId") Long id) {
+		ShoppingListDto shoppingListDto = shoppingListService.getOne(id);
+		
+		itemDto.setShoppingListDto(shoppingListDto);
+		itemService.saveItem(itemDto, id);
+		List<Item> itemList = itemService.findItems(id);
+		model.addAttribute("itemList", itemList);
+		model.addAttribute("shopingList", shoppingListDto);
+		System.out.println(itemDto.getShoppingListDto().getId());
+		return "form/addItem";
+	}
+	
+	
 }

@@ -32,5 +32,7 @@ public class Item {
 	@NumberFormat
 	private Double price;
 	
-	
+	@ManyToOne
+	@JoinColumn(name="shoppingList_id")
+	private ShoppingList shoppingList;
 }

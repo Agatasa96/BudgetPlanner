@@ -41,8 +41,8 @@ public class ShoppingListService {
 		
 	}
 	
-	public List<List<ShoppingList>> getAllLists(Long id){
-		List<List<ShoppingList>> allLists = shoppingListRepository.findAllByUserId(id);
+	public List<ShoppingList> getAllLists(Long id){
+		List<ShoppingList> allLists = shoppingListRepository.findAllByUserId(id);
 		return allLists;
 	}
 
@@ -60,5 +60,11 @@ public class ShoppingListService {
 		shoppingListDto.setId(shoppingList.getId());
 		shoppingListDto.setName(shoppingList.getName());
 		return shoppingListDto;
+	}
+
+	public ShoppingListDto getOne(Long id) {
+		ShoppingList list = shoppingListRepository.findOne(id);
+		
+		return toDto(list);
 	}
 }

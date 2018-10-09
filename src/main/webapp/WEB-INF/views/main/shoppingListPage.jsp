@@ -32,6 +32,10 @@
 	<div class="list"><div class="name">${sl.name }</div>
 	
 	</div>
+	<p>
+				<a href="/BudgetPlanner/shoppingList/addItem/${sl.id }">Add items to this list</a>
+			</p>
+	
 				</c:forEach>
 	</div>
 </body>

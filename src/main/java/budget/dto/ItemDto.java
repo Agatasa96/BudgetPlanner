@@ -1,5 +1,7 @@
 package budget.dto;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,11 +26,7 @@ private Long id;
 	@NumberFormat
 	private Double price;
 	
-	public Item toDomainItem(ItemDto itemDto) {
-		Item item = new Item();
-		item.setId(itemDto.getId());
-		item.setName(itemDto.getName());
-		item.setPrice(itemDto.getPrice());
-		return item;
-	}
+	
+	private ShoppingListDto shoppingListDto;
+	
 }
