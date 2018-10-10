@@ -39,7 +39,7 @@ public class ShoppingList {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	
+	private Double totalPrice;
 	
 	@Transient
 	public static ShoppingListDto toDto(ShoppingList shoppingList) {

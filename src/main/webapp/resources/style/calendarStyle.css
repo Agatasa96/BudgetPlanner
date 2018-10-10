@@ -128,6 +128,10 @@ header>.wrapper a {
 	
 }
 
+.prev .fa .fa-angle-left .button_main .text{
+	margin-bottom: 33%;
+}
+
 /* Przycisk -miesiac-przycisk-rok */
 .c-month {
 	

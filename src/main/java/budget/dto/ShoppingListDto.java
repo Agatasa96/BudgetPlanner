@@ -31,4 +31,6 @@ public class ShoppingListDto {
 	private List<ItemDto> items;
 
 	private UserDto userDto;
+	
+	private Double totalPrice;
 }

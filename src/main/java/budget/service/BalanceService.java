@@ -14,6 +14,7 @@ import budget.domain.Balance;
 
 import budget.domain.User;
 import budget.dto.BalanceDto;
+import budget.dto.ShoppingListDto;
 import budget.dto.UserDto;
 import budget.repository.BalanceRepository;
 
@@ -38,6 +39,19 @@ public class BalanceService {
 	public BalanceDto balanceById(Long id) {
 		Balance balance = balanceRepository.findOne(id);
 		return toDto(balance);
+	}
+
+	public BalanceDto countBalance(ShoppingListDto shoppingListDto, BalanceDto balanceDto) {
+		BalanceDto countedBalance = new BalanceDto();
+		Double totalPrice = shoppingListDto.getTotalPrice();
+		if(Objects.isNull(totalPrice)) {
+			totalPrice = 0.0;
+			JOptionPane.showMessageDialog(null, "No items");
+			
+		}
+		countedBalance.setTotalBalance(balanceDto.getTotalBalance() - totalPrice);
+		countedBalance.setSaveBalance(balanceDto.getSaveBalance() - totalPrice);
+		return countedBalance;
 	}
 
 	public BalanceDto addToBalance(BalanceDto balanceDto) {
@@ -173,7 +187,7 @@ public class BalanceService {
 			balance.setSaveBalance(saveBalance);
 			balance.setSaveUp(balanceDto.getSaveUp());
 			// balance.setTotalBalance(balanceDto.getTotalBalance());
-Balance saved = balanceRepository.save(balance);
+			Balance saved = balanceRepository.save(balance);
 			return toDto(saved);
 		}
 	}

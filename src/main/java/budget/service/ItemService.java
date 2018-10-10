@@ -27,12 +27,29 @@ public class ItemService {
 
 	public ItemDto saveItem(ItemDto itemDto, Long id) {
 		Item item = itemRepository.save(toDomain(itemDto));
+
+		countTotalPrice(id, itemDto);
 		if (Objects.nonNull(item)) {
 			JOptionPane.showMessageDialog(null, "Added");
 
 			return toDto(item);
 		}
 		return itemDto;
+	}
+
+	private void countTotalPrice(Long id, ItemDto itemDto) {
+		ShoppingList shoppingList = shoppingListRepository.findOne(id);
+		Double totalPrice = shoppingList.getTotalPrice();
+		if (Objects.nonNull(totalPrice)) {
+			totalPrice += itemDto.getPrice();
+		} else {
+
+			totalPrice = itemDto.getPrice();
+		}
+
+		shoppingList.setTotalPrice(totalPrice);
+		shoppingListRepository.save(shoppingList);
+
 	}
 
 	public List<ItemDto> findItems(Long id) {

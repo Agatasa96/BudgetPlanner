@@ -42,6 +42,7 @@ public class ShoppingListService {
 
 	public List<Object[]> getItemsList(Long userId, Long shoppingListId) {
 		return shoppingListRepository.itemsList(userId, shoppingListId);
+
 	}
 
 	public List<ShoppingListDto> getAllLists(Long id) {
@@ -53,13 +54,14 @@ public class ShoppingListService {
 		ShoppingList list = shoppingListRepository.findOne(id);
 		return toDto(list);
 	}
-	
+
 	private ShoppingList toDomain(ShoppingListDto dto) {
 		ShoppingList shoppingList = new ShoppingList();
 		shoppingList.setId(dto.getId());
 		shoppingList.setName(dto.getName());
 		User user = userRepository.findOne(dto.getUserDto().getId());
 		shoppingList.setUser(user);
+		shoppingList.setTotalPrice(dto.getTotalPrice());
 		return shoppingList;
 	}
 
@@ -67,6 +69,7 @@ public class ShoppingListService {
 		ShoppingListDto shoppingListDto = new ShoppingListDto();
 		shoppingListDto.setId(shoppingList.getId());
 		shoppingListDto.setName(shoppingList.getName());
+		shoppingListDto.setTotalPrice(shoppingList.getTotalPrice());
 		return shoppingListDto;
 	}
 

@@ -20,29 +20,36 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import budget.domain.Item;
 import budget.domain.ShoppingList;
+import budget.dto.BalanceDto;
 import budget.dto.ItemDto;
 import budget.dto.ShoppingListDto;
 import budget.dto.UserDto;
+import budget.service.BalanceService;
 import budget.service.ItemService;
 import budget.service.ShoppingListService;
 
 @Controller
-@SessionAttributes({ "userDto", "savedList", "listId" })
+@SessionAttributes({ "userDto", "savedList", "listId", "savedBalance" })
 @RequestMapping("/shoppingList")
 public class ShoppingListController {
 
 	private final ShoppingListService shoppingListService;
 	private final ItemService itemService;
+	private final BalanceService balanceService;
 
-	public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService) {
+	public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService,
+			BalanceService balanceService) {
 		this.shoppingListService = shoppingListService;
 		this.itemService = itemService;
+		this.balanceService = balanceService;
 	}
 
 	@GetMapping
-	public String goToShoppingList(@SessionAttribute("userDto") UserDto userDto, Model model) {
+	public String goToShoppingList(@SessionAttribute("userDto") UserDto userDto, Model model,
+			@SessionAttribute("savedBalance") BalanceDto balanceDto) {
 		List<ShoppingListDto> allLists = shoppingListService.getAllLists(userDto.getId());
 		model.addAttribute("savedList", allLists);
+		model.addAttribute("savedBalance", balanceDto);
 		return "main/shoppingListPage";
 	}
 
@@ -114,6 +121,22 @@ public class ShoppingListController {
 			return "form/addItem";
 		}
 
+	}
+
+	@GetMapping("/countBalance/{id}")
+	public String countBalance(@PathVariable("id") Long id, @SessionAttribute("savedBalance") BalanceDto balanceDto,
+			Model model) {
+		ShoppingListDto shoppingListDto = shoppingListService.getOne(id);
+		BalanceDto countedBalanceDto = balanceService.countBalance(shoppingListDto, balanceDto);
+		model.addAttribute("savedBalance", countedBalanceDto);
+		return "main/shoppingListPage";
+	}
+
+	@GetMapping("/resetBalance")
+	public String resetBalance(@SessionAttribute("userDto") UserDto userDto, Model model) {
+		BalanceDto balanceDto = balanceService.lastBalance(userDto);
+		model.addAttribute("savedBalance", balanceDto);
+		return "main/shoppingListPage";
 	}
 
 }
