@@ -32,7 +32,7 @@ public class ShoppingList {
 	@Size(min=3, max=10)
 	private String name;
 	
-	@OneToMany(cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="shoppingList", cascade=CascadeType.REMOVE)
 	private List<Item> items;
 	
 	@ManyToOne

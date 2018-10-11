@@ -84,7 +84,12 @@
 				</div>
 				<div class="button_main">
 					<p>
-						<a href="/BudgetPlanner/shoppingList/countBalance/${sl.id }">Count balance</a>
+						<a href="/BudgetPlanner/shoppingList/countBalance/${sl.id }">Calculate balance</a>
+					</p>
+				</div>
+				<div class="button_main">
+					<p>
+						<a href="/BudgetPlanner/shoppingList/deleteList/${sl.id }">Delete list</a>
 					</p>
 				</div>
 			</div>

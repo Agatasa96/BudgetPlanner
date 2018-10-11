@@ -139,4 +139,9 @@ public class ShoppingListController {
 		return "main/shoppingListPage";
 	}
 
+	@GetMapping("/deleteList/{id}")
+	public String deleteList(@PathVariable("id") Long id) {
+		shoppingListService.deleteList(id);
+		return "redirect:/shoppingList";
+	}
 }

@@ -54,6 +54,11 @@ public class ShoppingListService {
 		ShoppingList list = shoppingListRepository.findOne(id);
 		return toDto(list);
 	}
+	
+	public void deleteList(Long id) {
+		shoppingListRepository.delete(id);
+		
+	}
 
 	private ShoppingList toDomain(ShoppingListDto dto) {
 		ShoppingList shoppingList = new ShoppingList();
@@ -72,5 +77,7 @@ public class ShoppingListService {
 		shoppingListDto.setTotalPrice(shoppingList.getTotalPrice());
 		return shoppingListDto;
 	}
+
+
 
 }

@@ -1,5 +1,6 @@
 package budget.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,13 +31,16 @@ public class Item {
 	@NotNull
 	@Size(min=3, max = 15)
 	private String itemName;
-	@NotNull
-	@NumberFormat
-	private Double price;
 	
 	@ManyToOne
 	@JoinColumn(name="shoppingList_id")
 	private ShoppingList shoppingList;
+	
+	@NotNull
+	@NumberFormat
+	private Double price;
+	
+	
 	
 	@Transient
 	public static ItemDto toDto(Item item) {
