@@ -89,6 +89,11 @@
 				</div>
 				<div class="button_main">
 					<p>
+						<a href="/BudgetPlanner/shoppingList/buyList/${sl.id }">Buy items</a>
+					</p>
+				</div>
+				<div class="button_main">
+					<p>
 						<a href="/BudgetPlanner/shoppingList/deleteList/${sl.id }">Delete list</a>
 					</p>
 				</div>

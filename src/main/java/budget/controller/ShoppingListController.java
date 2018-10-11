@@ -1,9 +1,11 @@
 package budget.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.swing.JOptionPane;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -22,26 +24,30 @@ import budget.domain.Item;
 import budget.domain.ShoppingList;
 import budget.dto.BalanceDto;
 import budget.dto.ItemDto;
+import budget.dto.PutInOutDto;
 import budget.dto.ShoppingListDto;
 import budget.dto.UserDto;
 import budget.service.BalanceService;
 import budget.service.ItemService;
+import budget.service.PutInOutService;
 import budget.service.ShoppingListService;
 
 @Controller
-@SessionAttributes({ "userDto", "savedList", "listId", "savedBalance" })
+@SessionAttributes({ "userDto", "savedList", "listId", "savedBalance", "putInOutShopping" })
 @RequestMapping("/shoppingList")
 public class ShoppingListController {
 
 	private final ShoppingListService shoppingListService;
 	private final ItemService itemService;
 	private final BalanceService balanceService;
+	private final PutInOutService putInOutService;
 
 	public ShoppingListController(ShoppingListService shoppingListService, ItemService itemService,
-			BalanceService balanceService) {
+			BalanceService balanceService, PutInOutService putInOutService) {
 		this.shoppingListService = shoppingListService;
 		this.itemService = itemService;
 		this.balanceService = balanceService;
+		this.putInOutService = putInOutService;
 	}
 
 	@GetMapping
@@ -144,4 +150,49 @@ public class ShoppingListController {
 		shoppingListService.deleteList(id);
 		return "redirect:/shoppingList";
 	}
+
+	@GetMapping("/buyList/{id}")
+	public String buyList(@PathVariable("id") Long id, Model model, @SessionAttribute("userDto") UserDto userDto) {
+		ShoppingListDto shoppingListDto = shoppingListService.getOne(id);
+		PutInOutDto inOutDto = new PutInOutDto();
+		inOutDto.setDate(LocalDateTime.now());
+		inOutDto.setUserDto(userDto);
+		inOutDto.setPutOut(shoppingListDto.getTotalPrice());
+model.addAttribute("listId", id);
+		String putInOutDto2 = putInOutService.save(inOutDto);
+		if(Objects.nonNull(putInOutDto2)) {
+			if (putInOutDto2.equals("added")) {
+				BalanceDto savedBalance = putInOutService.countTotalBalance(userDto.getId());
+				shoppingListService.deleteList(id);
+				model.addAttribute("savedBalance", savedBalance);
+			} else if (putInOutDto2.equals("useSaved")) {
+				model.addAttribute("putInOutShopping", inOutDto);
+				return "alert/useSavedPageShopping";
+			}	
+		}
+		
+		return "redirect:/shoppingList";
+	}
+	
+	@GetMapping("/dontUseSaved")
+	public String dontUseSaved() {
+		JOptionPane.showMessageDialog(null, "Cannot buy");
+
+		return "main/balancePage";
+	}
+
+	@GetMapping("/useSaved")
+	public String useSaved(@SessionAttribute("putInOutShopping") PutInOutDto putInOutDto,
+			@SessionAttribute("userDto") UserDto userDto, Model model, @SessionAttribute("listId")  Long id) {
+
+		BalanceDto savedBalance = putInOutService.useSaved(putInOutDto, userDto.getId());
+		if (Objects.nonNull(savedBalance)) {
+			model.addAttribute("savedBalance", savedBalance);
+			shoppingListService.deleteList(id);
+		}
+
+		return "main/balancePage";
+
+	}
+
 }
