@@ -19,6 +19,7 @@ import budget.dto.BalanceDto;
 
 import budget.dto.UserDto;
 import budget.service.BalanceService;
+import budget.service.ShoppingListService;
 
 @Controller
 @RequestMapping("/balance")
@@ -26,9 +27,10 @@ import budget.service.BalanceService;
 public class BalanceController {
 
 	private final BalanceService balanceService;
+	private final ShoppingListService shoppingListService;
 
-	public BalanceController(BalanceService balanceService) {
-
+	public BalanceController(BalanceService balanceService, ShoppingListService shoppingListService) {
+		this.shoppingListService = shoppingListService;
 		this.balanceService = balanceService;
 	}
 

@@ -31,7 +31,7 @@ public class Balance {
 	private Long id;
 	private Double totalBalance;
 	private Double saveBalance;
-	private Double afterShoppingBalance;
+	
 	@NumberFormat
 	
 	private Double putInMonthly;

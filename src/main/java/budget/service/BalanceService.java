@@ -11,13 +11,13 @@ import javax.swing.JOptionPane;
 import org.springframework.stereotype.Service;
 
 import budget.domain.Balance;
-
+import budget.domain.ShoppingList;
 import budget.domain.User;
 import budget.dto.BalanceDto;
 import budget.dto.ShoppingListDto;
 import budget.dto.UserDto;
 import budget.repository.BalanceRepository;
-
+import budget.repository.ShoppingListRepository;
 import budget.repository.UserRepository;
 
 @Service
@@ -25,10 +25,13 @@ public class BalanceService {
 
 	private final BalanceRepository balanceRepository;
 	private final UserRepository userRepository;
+	private final ShoppingListRepository shoppingListRepository;
 
-	public BalanceService(BalanceRepository balanceRepository, UserRepository userRepository) {
+	public BalanceService(BalanceRepository balanceRepository, UserRepository userRepository,
+			ShoppingListRepository shoppingListRepository) {
 		this.balanceRepository = balanceRepository;
 		this.userRepository = userRepository;
+		this.shoppingListRepository = shoppingListRepository;
 	}
 
 	public BalanceDto lastBalance(UserDto userDto) {
@@ -44,10 +47,10 @@ public class BalanceService {
 	public BalanceDto countBalance(ShoppingListDto shoppingListDto, BalanceDto balanceDto) {
 		BalanceDto countedBalance = new BalanceDto();
 		Double totalPrice = shoppingListDto.getTotalPrice();
-		if(Objects.isNull(totalPrice)) {
+		if (Objects.isNull(totalPrice)) {
 			totalPrice = 0.0;
 			JOptionPane.showMessageDialog(null, "No items");
-			
+
 		}
 		countedBalance.setTotalBalance(balanceDto.getTotalBalance() - totalPrice);
 		countedBalance.setSaveBalance(balanceDto.getSaveBalance() - totalPrice);
@@ -85,6 +88,8 @@ public class BalanceService {
 		}
 
 	}
+
+	
 
 	private Double countSaved(BalanceDto balanceDto) {
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());
@@ -173,12 +178,7 @@ public class BalanceService {
 			System.out.println("NULLLLLLLLLL");
 			return null;
 		} else {
-
-			// balance.setAfterShoppingBalance(balanceDto.getAfterShoppingBalance());
 			balance.setDate(LocalDateTime.now());
-			// balance.setId(balanceDto.getId());
-			// balance.setPutInMonthly(balance.getPutInMonthly());
-			// System.out.println(balance.getId()+ " "+ balanceDto.getSaveUp());
 			Double substract = balance.getSaveUp() - balanceDto.getSaveUp();
 			Double totalSaved = balance.getTotalSaved() - substract;
 			balance.setTotalSaved(totalSaved);
@@ -196,14 +196,11 @@ public class BalanceService {
 		Balance balance = new Balance();
 		balance.setId(balanceDto.getId());
 		balance.setDate(LocalDateTime.now());
-		balance.setAfterShoppingBalance(balanceDto.getAfterShoppingBalance());
 		balance.setSaveBalance(balanceDto.getSaveBalance());
 		balance.setPutInMonthly(balanceDto.getPutInMonthly());
 		balance.setSaveUp(balanceDto.getSaveUp());
 		balance.setTotalBalance(balanceDto.getTotalBalance());
 		User user = userRepository.findOne(balanceDto.getUserDto().getId());
-		balance.setPutInOut(null);
-		balance.setToSaveUp(null);
 		balance.setUser(user);
 		balance.setTotalSaved(balanceDto.getTotalSaved());
 		return balance;
@@ -214,13 +211,10 @@ public class BalanceService {
 
 		balanceDto.setId(balance.getId());
 		balanceDto.setDate(LocalDateTime.now());
-		balanceDto.setAfterShoppingBalance(balance.getAfterShoppingBalance());
 		balanceDto.setSaveBalance(balance.getSaveBalance());
 		balanceDto.setPutInMonthly(balance.getPutInMonthly());
 		balanceDto.setSaveUp(balance.getSaveUp());
 		balanceDto.setTotalBalance(balance.getTotalBalance());
-		balanceDto.setPutInOutDto(null);
-		balanceDto.setSaveUpDto(null);
 		balanceDto.setTotalSaved(balance.getTotalSaved());
 		return balanceDto;
 	}

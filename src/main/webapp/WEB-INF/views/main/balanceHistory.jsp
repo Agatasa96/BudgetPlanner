@@ -46,7 +46,6 @@
 				<tr>
 					<th>Total balance</th>
 					<th>Balance after save</th>
-					<th>After shopping balance</th>
 					<th>Pay in</th>
 					<th>Pay out</th>
 					<th>To save up</th>
@@ -59,19 +58,19 @@
 					<tr>
 						<td>${b[1]}</td>
 						<td>${b[2]}</td>
-						<td>${b[3]}</td>
+						
 						<td><c:choose>
-								<c:when test="${b[4]==null }">
-					${ b[6]}
+								<c:when test="${b[3]==null }">
+					${ b[5]}
 					</c:when>
 								<c:otherwise>
-					${ b[4]}
+					${ b[3]}
 					</c:otherwise>
 							</c:choose></td>
 
-						<td>${b[5]}</td>
+						<td>${b[4]}</td>
+						<td>${b[6]}</td>
 						<td>${b[7]}</td>
-						<td>${b[8]}</td>
 
 					</tr>
 				</c:forEach>

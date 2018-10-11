@@ -2,6 +2,7 @@ package budget.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -10,11 +11,13 @@ import org.springframework.stereotype.Service;
 
 import budget.domain.Balance;
 import budget.domain.PutInOut;
+import budget.domain.ShoppingList;
 import budget.domain.User;
 import budget.dto.BalanceDto;
 import budget.dto.PutInOutDto;
 import budget.repository.BalanceRepository;
 import budget.repository.PutInOutRepository;
+import budget.repository.ShoppingListRepository;
 import budget.repository.UserRepository;
 
 @Service
@@ -23,12 +26,14 @@ public class PutInOutService {
 	private final PutInOutRepository putInOutRepository;
 	private final UserRepository userRepository;
 	private final BalanceRepository balanceRepository;
+	private final ShoppingListRepository shoppingListRepository;
 
 	public PutInOutService(PutInOutRepository putInOutRepository, UserRepository userRepository,
-			BalanceRepository balanceRepository) {
+			BalanceRepository balanceRepository, ShoppingListRepository shoppingListRepository) {
 		this.putInOutRepository = putInOutRepository;
 		this.userRepository = userRepository;
 		this.balanceRepository = balanceRepository;
+		this.shoppingListRepository = shoppingListRepository;
 	}
 
 	public String save(PutInOutDto putInOutDto) {
@@ -83,7 +88,6 @@ public class PutInOutService {
 		if (Objects.nonNull(putInOut)) {
 			balance2.setPutInOut(putInOut);
 		}
-
 		Balance savedBalance = balanceRepository.save(balance2);
 		if (Objects.nonNull(savedBalance)) {
 			JOptionPane.showMessageDialog(null, "Paid out");
@@ -122,11 +126,11 @@ public class PutInOutService {
 		balance2.setUser(user);
 		balance2.setPutInOut(putInOut);
 		Balance savedBalance = balanceRepository.save(balance2);
-		
+
 		return toDto(savedBalance);
 	}
 
-	private PutInOut toDomain(PutInOutDto putInOutDto) {
+		private PutInOut toDomain(PutInOutDto putInOutDto) {
 		PutInOut putInOut = new PutInOut();
 		putInOut.setId(putInOutDto.getId());
 		putInOut.setPutIn(putInOutDto.getPutIn());
@@ -153,7 +157,6 @@ public class PutInOutService {
 
 		balanceDto.setId(balance.getId());
 		balanceDto.setDate(LocalDateTime.now());
-		balanceDto.setAfterShoppingBalance(balance.getAfterShoppingBalance());
 		balanceDto.setSaveBalance(balance.getSaveBalance());
 		balanceDto.setPutInMonthly(balance.getPutInMonthly());
 		balanceDto.setSaveUp(balance.getSaveUp());

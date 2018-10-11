@@ -71,7 +71,6 @@ public class SaveUpService {
 			User user = userRepository.findOne(saveUp.getUser().getId());
 			balance2.setUser(user);
 			balance2.setTotalBalance(balance.getTotalBalance());
-			balance2.setAfterShoppingBalance(null);
 			Balance saved= balanceRepository.save(balance2);
 			return toBalanceDto(saved);
 
@@ -118,7 +117,6 @@ public class SaveUpService {
 
 		balanceDto.setId(balance.getId());
 		balanceDto.setDate(balance.getDate());
-		balanceDto.setAfterShoppingBalance(balance.getAfterShoppingBalance());
 		balanceDto.setSaveBalance(balance.getSaveBalance());
 		balanceDto.setPutInMonthly(balance.getPutInMonthly());
 		balanceDto.setSaveUp(balance.getSaveUp());

@@ -34,7 +34,6 @@
 				<tr>
 					<th>Total balance</th>
 					<th>Balance after save</th>
-					<th>After shopping balance</th>
 					<th>To save up</th>
 				</tr>
 			</thead>
@@ -42,7 +41,6 @@
 				<tr>
 					<td>${savedBalance.totalBalance }</td>
 					<td>${savedBalance.saveBalance }</td>
-					<td>${savedBalance.afterShoppingBalance }</td>
 					<td>${savedBalance.totalSaved }</td>
 
 				</tr>
