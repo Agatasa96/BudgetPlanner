@@ -1,23 +1,17 @@
 package budget.service;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-
 import javax.swing.JOptionPane;
-
 import org.springframework.stereotype.Service;
-
 import budget.domain.Balance;
-import budget.domain.ShoppingList;
 import budget.domain.User;
 import budget.dto.BalanceDto;
 import budget.dto.ShoppingListDto;
 import budget.dto.UserDto;
 import budget.repository.BalanceRepository;
-import budget.repository.ShoppingListRepository;
 import budget.repository.UserRepository;
 
 @Service
@@ -25,24 +19,18 @@ public class BalanceService {
 
 	private final BalanceRepository balanceRepository;
 	private final UserRepository userRepository;
-	private final ShoppingListRepository shoppingListRepository;
 
-	public BalanceService(BalanceRepository balanceRepository, UserRepository userRepository,
-			ShoppingListRepository shoppingListRepository) {
+
+	public BalanceService(BalanceRepository balanceRepository, UserRepository userRepository) {
 		this.balanceRepository = balanceRepository;
 		this.userRepository = userRepository;
-		this.shoppingListRepository = shoppingListRepository;
-	}
+			}
 
 	public BalanceDto lastBalance(UserDto userDto) {
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(userDto.getId());
 		return toDto(balance);
 	}
 
-	public BalanceDto balanceById(Long id) {
-		Balance balance = balanceRepository.findOne(id);
-		return toDto(balance);
-	}
 
 	public BalanceDto countBalance(ShoppingListDto shoppingListDto, BalanceDto balanceDto) {
 		BalanceDto countedBalance = new BalanceDto();
@@ -170,26 +158,6 @@ public class BalanceService {
 			return null;
 		}
 
-	}
-
-	public BalanceDto editBalance(BalanceDto balanceDto, Long id) {
-		Balance balance = balanceRepository.findOne(id);
-		if (Objects.isNull(balanceDto)) {
-			System.out.println("NULLLLLLLLLL");
-			return null;
-		} else {
-			balance.setDate(LocalDateTime.now());
-			Double substract = balance.getSaveUp() - balanceDto.getSaveUp();
-			Double totalSaved = balance.getTotalSaved() - substract;
-			balance.setTotalSaved(totalSaved);
-
-			Double saveBalance = balance.getTotalBalance() - totalSaved;
-			balance.setSaveBalance(saveBalance);
-			balance.setSaveUp(balanceDto.getSaveUp());
-			// balance.setTotalBalance(balanceDto.getTotalBalance());
-			Balance saved = balanceRepository.save(balance);
-			return toDto(saved);
-		}
 	}
 
 	private Balance toDomain(BalanceDto balanceDto) {

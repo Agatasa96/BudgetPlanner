@@ -25,7 +25,7 @@
 		<h3>Update your budget</h3>
 		
 		<div class="left">
-		<img src="https://image.flaticon.com/icons/png/512/781/781754.png"
+		<img src="http://icons-for-free.com/free-icons/png/512/1889190.png"
 			alt="error" />
 	</div>
 		

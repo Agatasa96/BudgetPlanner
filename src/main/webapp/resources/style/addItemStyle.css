@@ -5,11 +5,26 @@
 	padding: 0;
 }
 
-body {
-	background: #ffc185;
+
+@font-face{
+	font-family: mainFont;
+	src:url("fonts/Madelina_Bold.ttf");
 }
 
-/* Ustawienie obrazka */
+@font-face{
+	font-family: secondFont;
+	src:url("fonts/CormorantUnicase-SemiBold.ttf");
+}
+
+body {
+	background-image:
+		url("https://www.muralswallpaper.com/app/uploads/cracked-natural-marble-textures-plain.jpg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 2000px 1750px;
+}
+
+/* Ustawienie okna z lista */
 .left {
 	top: calc(50% - 240px);
 	right: calc(65% - 160px);
@@ -26,7 +41,7 @@ body {
 }
 
 .item {
-	color: #87613d;
+	color: rgba(235,187, 165);
 	font-size: 20px;
 }
 
@@ -52,11 +67,11 @@ form {
 }
 
 p{
-	font-family: 'Roboto', sans-serif;
+	font-family: 'secondFont', sans-serif;
 	font-weight: 100;
 	text-transform: uppercase;
 	font-size: 20px;
-	color: #87613d;
+	color: rgba(235,187, 165);
 	margin-bottom: 40px;
 	text-decoration: none;
 }
@@ -64,23 +79,24 @@ p{
 a{
 	text-decoration: none;
 	color: #ffff;
+	font-family: 'secondFont';
 }
 
 h1 {
 	text-align: center;
-	font-family: 'Dosis';
-	font-size: 60px;
-	color: #87613d;
+	font-family: 'mainFont';
+	font-size: 120px;
+	color: rgba(235,187, 165);
 	margin-bottom: 30px;
 	margin-top: 60px;
-	text-shadow: 7px 7px rgba(255, 125, 0, 0.35);
+	text-shadow: 2px 2px grey;
 }
 
 h3 {
-	font-family: 'Dosis';
+	font-family: 'secondFont';
 	font-size: 40px;
 	text-transform: uppercase;
-	color: #87613d;
+	color: grey;
 	margin-bottom: 30px;
 	text-align: center;
 }
@@ -95,7 +111,7 @@ button.form-btn {
 	height: 60px;
 	bottom: 0;
 	border: 0;
-	font-family: 'Dosis';
+	font-family: 'secondFont';
 	font-size: 24px;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -104,7 +120,7 @@ button.form-btn {
 button.form-btn.dx {
 	right: 0;
 	border-radius: 0 0 5px 0;
-	background-color: #ff7d00;
+	background-color: rgba(235,187, 165);;
 	color: #fff;
 }
 
@@ -112,51 +128,38 @@ input {
 	border: none;
 	border-bottom: 1px solid #ffc185;
 	width: 65%;
-	font-family: 'Roboto';
-	color: #ff7d00;
+	font-family: 'secondFont';
+	color: grey;
 	text-align: center;
-	font-size: 25px;
+	font-size: 35px;
 	font-weight: 100;
 	margin-bottom: 30px;
 }
 
 /* Wyglad placehoderow */
 ::-webkit-input-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: grey;
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
 :-moz-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: grey;
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
 ::-moz-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: grey;
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
 :-ms-input-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: grey;
+	font-family: 'secondFont';
 	font-weight: 100;
 }
-
-.signIn {
-	z-index: 1; /* niewidocznosc kwadratow z formularzem "za soba" */
-	transform: perspective(100px) translate3d(100px, 0px, -30px);
-	opacity: 0.5;
-}
-
-.signUp {
-	z-index: 2; /* niewidocznosc kwadratow z formularzem "za soba" */
-}
-
-
-
 
 
 @
@@ -424,8 +427,8 @@ p, a {
 	flex: 1 1 auto;
 	margin: 10px;
 	padding: 20px;
-	background: rgba(255, 125, 0, 0.35);
-	border: 2px solid rgba(255, 125, 0, 0.65);
+	background: rgba(235,187, 165);;
+	
 	text-align: center;
 	text-transform: uppercase;
 	position: relative;
@@ -443,7 +446,7 @@ p, a {
 	left: 50%;
 	bottom: 0;
 	height: 3px;
-	background: #fff;
+	background: rgba(235,187, 165);
 	right: 0;
 	left: auto;
 }

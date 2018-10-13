@@ -25,7 +25,7 @@
 
 	</div>
 	<div class="left">
-		<img src="https://image.flaticon.com/icons/svg/476/476863.svg"
+		<img src="http://icons-for-free.com/free-icons/png/512/1889196.png"
 			alt="error" />
 	</div>
 

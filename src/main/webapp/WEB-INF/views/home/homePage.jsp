@@ -16,12 +16,11 @@
 </head>
 <body>
 	<div>
-		<h1>Welcome in your BUDGET PLANNER application!</h1>
+		<h1>Welcome in your budget planner application!</h1>
 
 	</div>
 	<div class="left">
-		<img src="https://image.flaticon.com/icons/svg/781/781760.svg"
-			alt="error" />
+		<img src="http://icons-for-free.com/free-icons/png/512/1889200.png">
 	</div>
 
 	<div class="container">

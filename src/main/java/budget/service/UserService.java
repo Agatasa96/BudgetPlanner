@@ -1,16 +1,9 @@
 package budget.service;
 
-import java.util.List;
 import java.util.Objects;
-
 import javax.swing.JOptionPane;
-
-import org.jboss.logging.Message;
 import org.springframework.stereotype.Service;
-
-import budget.domain.Balance;
 import budget.domain.User;
-import budget.dto.BalanceDto;
 import budget.dto.UserDto;
 import budget.repository.UserRepository;
 
@@ -103,14 +96,14 @@ public class UserService {
 	public String delete(UserDto userDto) {
 		User foundUser = userRepository.findOne(userDto.getId());
 		if (Objects.nonNull(foundUser)) {
-		
+
 			userRepository.delete(foundUser);
 			JOptionPane.showMessageDialog(null, "User deleted");
 			return "y";
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Cannot delete user");
-return "n";
+			return "n";
 		}
 	}
 

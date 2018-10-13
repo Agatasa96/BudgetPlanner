@@ -28,7 +28,7 @@
 	<div class="main">
 		<div class="hovereffect-4">
 			<img alt="" class="img-responsive"
-				src="https://image.flaticon.com/icons/png/512/781/781740.png">
+				src="http://icons-for-free.com/free-icons/png/512/1622828.png">
 			<div class="lay">
 				<h3>Calendar</h3>
 				<p>
@@ -38,7 +38,7 @@
 		</div>
 		<div class="hovereffect-4">
 			<img alt="" class="img-responsive"
-				src="https://image.flaticon.com/icons/png/512/781/781714.png">
+				src="http://icons-for-free.com/free-icons/png/512/1889193.png">
 			<div class="lay">
 				<h3>Balance</h3>
 				<p>
@@ -48,7 +48,7 @@
 		</div>
 		<div class="hovereffect-4">
 			<img alt="" class="img-responsive"
-				src="https://image.flaticon.com/icons/png/512/781/781754.png">
+				src="http://icons-for-free.com/free-icons/png/512/1889190.png">
 			<div class="lay">
 				<h3>Pay in/out cash</h3>
 				<p>
@@ -58,7 +58,7 @@
 		</div>
 		<div class="hovereffect-4">
 			<img alt="" class="img-responsive"
-				src="https://image.flaticon.com/icons/png/512/781/781764.png">
+				src="http://icons-for-free.com/free-icons/png/512/1889198.png">
 			<div class="lay">
 				<h3>Save up</h3>
 				<p>
@@ -68,7 +68,7 @@
 		</div>
 		<div class="hovereffect-4">
 			<img alt="" class="img-responsive"
-				src="https://image.flaticon.com/icons/png/512/781/781720.png">
+				src="http://icons-for-free.com/free-icons/png/512/1622833.png">
 			<div class="lay">
 				<h3>Shopping list</h3>
 				<p>
@@ -78,7 +78,7 @@
 		</div>
 		<div class="hovereffect-4">
 			<img alt="" class="img-responsive"
-				src="https://image.flaticon.com/icons/png/512/781/781737.png">
+				src="http://icons-for-free.com/free-icons/png/512/1622827.png">
 			<div class="lay">
 				<h3>Log out</h3>
 				<p>

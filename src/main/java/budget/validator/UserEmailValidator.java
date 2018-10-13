@@ -27,5 +27,4 @@ public class UserEmailValidator implements ConstraintValidator<EmailValidator, S
 		User user = userRepository.findByEmail(value);
 		return Objects.isNull(user);
 	}
-
 }

@@ -63,7 +63,9 @@
 		</div>
 		
 		<div class="button_main">
-			<p>Show shopping list</p>
+			<p>
+				<a href="/BudgetPlanner/shoppingList">Show shopping list</a>
+			</p>
 		</div>
 
 	</div>

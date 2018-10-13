@@ -1,7 +1,21 @@
 @charset "UTF-8";
 
+@font-face{
+	font-family: mainFont;
+	src:url("fonts/Madelina_Bold.ttf");
+}
+
+@font-face{
+	font-family: secondFont;
+	src:url("fonts/CormorantUnicase-SemiBold.ttf");
+}
+
 body {
-	background: rgba(255, 125, 0, 0.25);
+	background-image:
+		url("https://www.muralswallpaper.com/app/uploads/cracked-natural-marble-textures-plain.jpg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 2000px 1750px;
 }
 
 .container {
@@ -25,29 +39,29 @@ form {
 }
 
 p {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'secondFont', sans-serif;
 	font-weight: 100;
 	text-transform: uppercase;
 	font-size: 20px;
-	color: #87613d;
+	color: grey;
 	margin-bottom: 40px;
 }
 
 h1 {
 	text-align: center;
-	font-family: 'Dosis';
-	font-size: 60px;
-	color: #87613d;
+	font-family: 'mainFont';
+	font-size: 100px;
+	color: rgba(235,187, 165);
 	margin-bottom: 30px;
 	margin-top: 60px;
-	text-shadow: 7px 7px rgba(255, 125, 0, 0.35);
+	text-shadow: 2px 2px grey;
 }
 
 h3 {
-	font-family: 'Dosis';
-	font-size: 40px;
+	font-family: 'secondFont';
+	font-size: 30px;
 	text-transform: uppercase;
-	color: #87613d;
+	color: grey;
 	margin-bottom: 30px;
 	text-align: center;
 }
@@ -62,8 +76,8 @@ button.form-btn {
 	height: 60px;
 	bottom: 0;
 	border: 0;
-	font-family: 'Dosis';
-	font-size: 24px;
+	font-family: 'secondFont';
+	font-size: 35px;
 	text-transform: uppercase;
 	cursor: pointer;
 }
@@ -71,49 +85,49 @@ button.form-btn {
 button.form-btn.sx {
 	left: 0;
 	border-radius: 0 0 0 5px;
-	background-color: rgba(255, 125, 0, 0.65);
+	background-color: rgba(235,187, 165);
 	color: #fff;
 	transition: all 0.3s linear;
 }
 
 button.form-btn.sx:hover {
-	background-color: rgba(255, 125, 0, 0.95);
+	background-color: rgba(235,187, 165, 0.5);
 	color: #fff;
 }
 
 input {
 	border: none;
-	border-bottom: 1px solid #ffc185;
+	border-bottom: 1px solid rgba(235,187, 165);
 	width: 65%;
-	font-family: 'Roboto';
-	color: #ff7d00;
+	font-family: 'secondFont';
+	color: rgba(235,187, 165);
 	text-align: center;
-	font-size: 25px;
+	font-size: 35px;
 	font-weight: 100;
 	margin-bottom: 30px;
 }
 
 /* Wyglad placehoderow */
 ::-webkit-input-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: rgba(235,187, 165);
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
 :-moz-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: rgba(235,187, 165);
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
 ::-moz-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: rgba(235,187, 165);
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
 :-ms-input-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: rgba(235,187, 165);
+	font-family: 'secondFont';
 	font-weight: 100;
 }

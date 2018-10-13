@@ -1,11 +1,20 @@
 @charset "UTF-8";
+@font-face{
+	font-family: mainFont;
+	src:url("fonts/Madelina_Bold.ttf");
+}
+
+@font-face{
+	font-family: secondFont;
+	src:url("fonts/CormorantUnicase-SemiBold.ttf");
+}
+
 
 p, a {
 	color: #fff;
 	margin: 0;
 	text-decoration: none;
 }
-
 
 .cont {
 	position: absolute;
@@ -20,12 +29,10 @@ p, a {
 }
 
 .button_main {
-	
 	flex: 1 1 auto;
 	margin: 10px;
 	padding: 20px;
-	background: rgba(255, 125, 0, 0.35);
-	border: 2px solid rgba(255, 125, 0, 0.65);
+	background: rgba(235, 187, 165);
 	text-align: center;
 	text-transform: uppercase;
 	position: relative;

@@ -1,34 +1,45 @@
 @charset "UTF-8";
+@font-face{
+	font-family: mainFont;
+	src:url("fonts/Madelina_Bold.ttf");
+}
+
+@font-face{
+	font-family: secondFont;
+	src:url("fonts/CormorantUnicase-SemiBold.ttf");
+}
 
 body {
-	background: #F5F5F5;
-	height: 100%;
-	margin: 0;
-	font-weight: 100;
+	background-image:
+		url("https://www.muralswallpaper.com/app/uploads/cracked-natural-marble-textures-plain.jpg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 2000px 1750px;
 }
 
 h1 {
 	text-align: center;
-	font-family: 'Dosis';
-	font-size: 80px;
-	color: #87613d;
+	font-family: 'mainFont';
+	font-size: 100px;
+	color: rgba(235,187, 165);
 	margin-bottom: 30px;
 	margin-top: 30px;
-	text-shadow: 7px 7px rgba(255, 125, 0, 0.35);
+	text-shadow: 2px 2px grey;
 }
 
 h3{
 	text-align: center;
-	font-family: 'Roboto';
+	font-family: 'secondFont';
 	font-size: 40px;
-	color: #87613d;
+	color: rgba(235,187, 165);
+	text-shadow: 2px 2px grey;
 	margin-bottom: 3px;
 	margin-top: 10px;
 	
 }
 .list {
-	font-family: 'Roboto';
-	background: rgba(255, 125, 0, 0.35);
+	font-family: 'secondFont';
+	background: rgba(235,187, 165, 0.35);
 	margin: 20px; position : relative;
 	text-align: center;
 	float: left;
@@ -88,8 +99,7 @@ p, a {
 	flex: 1 1 auto;
 	margin: 10px;
 	padding: 20px;
-	background: rgba(255, 125, 0, 0.35);
-	border: 2px solid rgba(255, 125, 0, 0.65);
+	background: rgba(235,187, 165);
 	text-align: center;
 	text-transform: uppercase;
 	position: relative;

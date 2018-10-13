@@ -1,23 +1,35 @@
 @charset "UTF-8";
 
+@font-face{
+	font-family: mainFont;
+	src:url("fonts/Madelina_Bold.ttf");
+}
+
+@font-face{
+	font-family: secondFont;
+	src:url("fonts/CormorantUnicase-SemiBold.ttf");
+}
+
+
 .singleInput {
-	font-family: 'Roboto';
+	font-family: 'secondFont';
 	margin-bottom: 100px;
 	height: 40px;
 	margin-right: 20px;
-	color: #ff7d00;
-	width: 86%;
+	color: grey;
+	width: 78%;
 	text-align: left;
-	margin-left: 25%;
-	height: 40px;
+	margin-left: 27%;
+	font-size: 20px;
+	
 }
 
 input {
 	border: none;
-	border-bottom: 1px solid #ffc185;
+	border-bottom: 1px solid rgba(235,187, 165);
 	width: 45%;
-	font-family: 'Roboto';
-	color: #ff7d00;
+	font-family: 'secondFont';
+	color: grey;
 	text-align: center;
 	font-size: 25px;
 	font-weight: 100;
@@ -28,26 +40,26 @@ input {
 
 /* Wyglad placehoderow */
 ::-webkit-input-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: grey;
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
 :-moz-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: grey;
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
 ::-moz-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: grey;
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
 :-ms-input-placeholder {
-	color: #ffc185;
-	font-family: 'Roboto';
+	color: grey;
+	font-family: 'secondFont';
 	font-weight: 100;
 }
 
@@ -56,12 +68,12 @@ button.form-btn {
 	width: 10%;
 	height: 40px;
 	border: 0;
-	font-family: 'Dosis';
+	font-family: 'secondFont';
 	font-size: 24px;
 	text-transform: uppercase;
 	cursor: pointer;
-	background: rgba(255, 125, 0, 0.35);
-	border: 2px solid rgba(255, 125, 0, 0.65);
+	background: rgba(235,187, 165);
+	border: 1px solid rgba(235,187, 165);
 	color: #fff;
 }
 

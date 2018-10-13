@@ -33,10 +33,6 @@ public class SaveUpService {
 		this.userRepository = userRepository;
 	}
 
-	public SaveUpDto saveUpById(Long id) {
-		SaveUp saveUp = saveUpRepository.findOne(id);
-		return toDto(saveUp);
-	}
 	public String saveUp(SaveUpDto saveUpDto) {
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(saveUpDto.getUserDto().getId());
 
@@ -52,7 +48,7 @@ public class SaveUpService {
 			return "s";
 		}
 	}
-	
+
 	public BalanceDto countBalance(Long id) {
 
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(id);
@@ -71,18 +67,18 @@ public class SaveUpService {
 			User user = userRepository.findOne(saveUp.getUser().getId());
 			balance2.setUser(user);
 			balance2.setTotalBalance(balance.getTotalBalance());
-			Balance saved= balanceRepository.save(balance2);
+			Balance saved = balanceRepository.save(balance2);
 			return toBalanceDto(saved);
 
 		}
 		return null;
 	}
-	
+
 	public List<Object[]> getHistory(Long id) {
 		return saveUpRepository.getSaveUpHistory(id);
 
 	}
-	
+
 	public List<Object[]> getHistoryByDate(Long id, String date) {
 		try {
 			LocalDate sdf = LocalDate.parse(date);
@@ -92,14 +88,6 @@ public class SaveUpService {
 			return null;
 		}
 
-	}
-
-	private SaveUpDto toDto(SaveUp saveUp) {
-		SaveUpDto saveUpDto = new SaveUpDto();
-		saveUpDto.setId(saveUp.getId());
-		saveUpDto.setDate(LocalDateTime.now());
-		saveUpDto.setToSaveUp(saveUp.getToSaveUp());
-		return saveUpDto;
 	}
 
 	private SaveUp toDomain(SaveUpDto saveUpDto) {
@@ -121,11 +109,8 @@ public class SaveUpService {
 		balanceDto.setPutInMonthly(balance.getPutInMonthly());
 		balanceDto.setSaveUp(balance.getSaveUp());
 		balanceDto.setTotalBalance(balance.getTotalBalance());
-		balanceDto.setPutInOutDto(null);
 		balanceDto.setTotalSaved(balance.getTotalSaved());
 		return balanceDto;
 	}
-	
 
-	
 }

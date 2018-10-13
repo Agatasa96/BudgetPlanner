@@ -1,18 +1,12 @@
 package budget.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 import javax.swing.JOptionPane;
-
 import org.springframework.stereotype.Service;
-
-import budget.domain.Item;
 import budget.domain.ShoppingList;
 import budget.domain.User;
-import budget.dto.ItemDto;
 import budget.dto.ShoppingListDto;
 import budget.repository.ShoppingListRepository;
 import budget.repository.UserRepository;
@@ -54,10 +48,10 @@ public class ShoppingListService {
 		ShoppingList list = shoppingListRepository.findOne(id);
 		return toDto(list);
 	}
-	
+
 	public void deleteList(Long id) {
 		shoppingListRepository.delete(id);
-		
+
 	}
 
 	private ShoppingList toDomain(ShoppingListDto dto) {
@@ -77,7 +71,5 @@ public class ShoppingListService {
 		shoppingListDto.setTotalPrice(shoppingList.getTotalPrice());
 		return shoppingListDto;
 	}
-
-
 
 }
