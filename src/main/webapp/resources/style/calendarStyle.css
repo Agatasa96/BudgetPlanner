@@ -73,11 +73,13 @@ a {
 /* STYLE*/
 header {
 	position: absolute;
-	height: 80px;
-	width: 80%;
+	height: 100px;
+	width: 89%;
 	z-index: 50;
 	background: rgba(255, 125, 0, 0.65);
-	margin-left: 10%;
+	margin-left: 90px;
+	margin-top: 30px;
+	
 }
 
 header>.wrapper {
@@ -85,13 +87,14 @@ header>.wrapper {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 20px;
+	
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	color: #ffffff;
 	letter-spacing: 2px;
 	font-size: 13px;
+	
 }
 
 header>.wrapper a {
@@ -106,8 +109,13 @@ header>.wrapper a {
 	
 }
 
-.prev .fa .fa-angle-left .button_main .text{
-	margin-bottom: 33%;
+
+.button_main{
+	
+	display: table;
+	margin: auto;
+	
+	
 }
 
 /* Przycisk -miesiac-przycisk-rok */
@@ -117,6 +125,7 @@ header>.wrapper a {
 	height: 80px;
 	line-height: 80px;
 	margin-left: 600px;
+
 }
 
 /* miesiac */
@@ -131,6 +140,8 @@ header>.wrapper a {
 	overflow: hidden;
 	margin-right: 100px;
 	margin-left: 100px;
+	margin-top: 2%;
+	font-size: 20px;
 }
 
 /* wyswietlanie pojedynczego mies */
@@ -191,17 +202,16 @@ header>.wrapper a {
 }
 
 .c-month .prev, .c-month .next {
-	margin: 10px;
-	padding: 20px; */
-	background: rgba(255, 125, 0, 0.35);
+		background: rgba(255, 125, 0, 0.35);
 	border: 2px solid rgba(255, 125, 0, 0.65);
 	text-align: center;
 	text-transform: uppercase;
 	position: absolute;
 	width: 70px;
-	height: 30px;
-	padding: 9px 12px;
-	
+	height: 0px;
+	padding: 0px 12px;
+	text-indent: 5%;
+	margin-top: 2%;
 	}
 
 .c-month .next {
@@ -234,7 +244,9 @@ header>.wrapper a {
 	line-height: 80px;
 	padding: 0 20px;
 	margin-right: 100px;
-	margin-left: 100px;
+	margin-left: 50px;
+	margin-top: 8px;
+	font-size: 20px;
 }
 
 .c-calendar {
@@ -246,8 +258,10 @@ header>.wrapper a {
 
 .c-calendar__style {
 	background: rgba(255, 125, 0, 0.65);
-	margin: 20px;
-	padding: 10px;
+	margin-top: 140px;
+	margin-left: 90px;
+	margin-right: 90px;
+	margin-bottom: 140px;
 	box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.18);
 	-webkit-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.18);
 	border-radius: 6px;
@@ -256,9 +270,9 @@ header>.wrapper a {
 
 .c-cal__container {
 	position: relative;
-	width: calc(100% - 300px);
-	height: 0;
-	padding-bottom: 65%;
+	width: calc(100% - 20px);
+	padding-bottom: 50%;
+	
 	overflow: hidden;
 }
 

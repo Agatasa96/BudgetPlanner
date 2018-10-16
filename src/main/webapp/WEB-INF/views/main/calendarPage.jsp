@@ -9,11 +9,11 @@
 <script src="/BudgetPlanner/resources/js/calendar.js"></script>
 <link rel="stylesheet"
 	href="/BudgetPlanner/resources/style/buttonStyle.css" type="text/css">
-<!-- 
+
 <link rel="stylesheet"
 	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
 <script src="/BudgetPlanner/resources/js/menu.js"></script>
- -->
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -180,8 +180,8 @@
 				fill_table("December", 31, "12");
 			</script>
 		</div>
-<!-- 	</div>
-Menu boczne
+	</div>
+<!-- Menu boczne --> 
 
 	<div class="open">
 		<span class="cls"></span> <span>
@@ -194,7 +194,7 @@ Menu boczne
 			</ul>
 		</span> <span class="cls"></span>
 	</div>
- -->
+ 
 
 </body>
 </html>
