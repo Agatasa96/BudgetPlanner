@@ -28,7 +28,7 @@
 	<div class="container">
 		<form:form modelAttribute="saveUpDto" method="post"
 			action="/BudgetPlanner/saveUp/add">
-			<p>Insert sum to you want to save up</p>
+			<p>Insert sum to save up</p>
 			<form:input path="toSaveUp" placeholder="Insert sum " />
 			</br>
 			<form:errors path="toSaveUp" cssStyle="color:red"></form:errors>

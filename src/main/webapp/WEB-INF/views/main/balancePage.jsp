@@ -33,7 +33,7 @@
 			<thead>
 				<tr>
 					<th>Total balance</th>
-					<th>Balance after save</th>
+					<th>To spend</th>
 					<th>To save up</th>
 				</tr>
 			</thead>

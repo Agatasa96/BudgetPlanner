@@ -25,7 +25,7 @@
 		<h3>Update your budget</h3>
 		
 		<div class="left">
-		<img src="http://icons-for-free.com/free-icons/png/512/1889190.png"
+		<img src="http://icons-for-free.com/free-icons/png/512/1871412.png"
 			alt="error" />
 	</div>
 		
@@ -35,7 +35,7 @@
 
 				<h3>Pay in:</h3>
 
-				<form:input path="putIn" placeholder="Insert sum to put in" />
+				<form:input path="putIn" placeholder="Insert sum to pay in" />
 				</br>
 				<form:errors path="putIn" cssStyle="color:red"></form:errors>
 				</br>
@@ -48,7 +48,7 @@
 				action="/BudgetPlanner/putInOut/form">
 				<h3>Pay out:</h3>
 
-				<form:input path="putOut" placeholder="Insert sum to put out" />
+				<form:input path="putOut" placeholder="Insert sum to pay out" />
 				</br>
 				<form:errors path="putOut" cssStyle="color:red"></form:errors>
 				</br>

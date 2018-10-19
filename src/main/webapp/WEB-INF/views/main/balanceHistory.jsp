@@ -45,7 +45,7 @@
 			<thead>
 				<tr>
 					<th>Total balance</th>
-					<th>Balance after save</th>
+					<th>To spend</th>
 					<th>Pay in</th>
 					<th>Pay out</th>
 					<th>To save up</th>

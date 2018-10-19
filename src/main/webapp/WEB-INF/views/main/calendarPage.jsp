@@ -5,14 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet"
+	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
+
+<script src="/BudgetPlanner/resources/js/menu.js"></script>
+<link rel="stylesheet"
 	href="/BudgetPlanner/resources/style/calendarStyle.css" type="text/css">
 <script src="/BudgetPlanner/resources/js/calendar.js"></script>
 <link rel="stylesheet"
 	href="/BudgetPlanner/resources/style/buttonStyle.css" type="text/css">
 
-<link rel="stylesheet"
-	href="/BudgetPlanner/resources/style/menuStyle.css" type="text/css">
-<script src="/BudgetPlanner/resources/js/menu.js"></script>
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -84,7 +85,7 @@
               "-0" +
               day +
               "'class='c-cal__cel'><p><a href=\"\/BudgetPlanner/calendar/"
-										+ indexMonth + "/" + day + "\"<\/>"
+										+ indexMonth + "/0" + day + "\"<\/>"
 
 										+ day + "</p></div>");
 						day++;
@@ -109,6 +110,7 @@
 			document.write("</div>");
 		}
 	</script>
+
 	<header>
 		<div class="wrapper">
 			<div class="c-monthyear">
@@ -139,7 +141,10 @@
 
 	</header>
 
+
+
 	<div class="c-calendar">
+
 		<div class="c-calendar__style c-aside">
 
 			<div class="c-aside__day">
@@ -159,6 +164,21 @@
 
 
 		<div class="c-cal__container c-calendar__style">
+			<!-- Menu boczne -->
+
+			<div class="open">
+				<span class="cls"></span> <span>
+					<ul class="sub-menu ">
+						<li class="menuu"><a href="/BudgetPlanner/main"> Home</a></li>
+						<li><a href="/BudgetPlanner/balance"> Balance</a></li>
+						<li><a href="/BudgetPlanner/putInOut/form"> Pay in/out
+								cash</a></li>
+						<li><a href="/BudgetPlanner/saveUp/add"> Save-up </a></li>
+						<li><a href="/BudgetPlanner/">Log out</a></li>
+					</ul>
+				</span> <span class="cls"></span>
+			</div>
+
 			<script>
 				// obecny rok
 				year = 2018;
@@ -179,22 +199,13 @@
 				fill_table("November", 30, "11");
 				fill_table("December", 31, "12");
 			</script>
-		</div>
-	</div>
-<!-- Menu boczne --> 
 
-	<div class="open">
-		<span class="cls"></span> <span>
-			<ul class="sub-menu ">
-				<li><a href="/BudgetPlanner/main"> Home</a></li>
-				<li><a href="/BudgetPlanner/balance"> Balance</a></li>
-				<li><a href="/BudgetPlanner/putInOut/form"> Pay in/out cash</a></li>
-				<li><a href="/BudgetPlanner/saveUp/add"> Save-up </a></li>
-				<li><a href="/BudgetPlanner/">Log out</a></li>
-			</ul>
-		</span> <span class="cls"></span>
+		</div>
+
 	</div>
- 
+
+
+
 
 </body>
 </html>

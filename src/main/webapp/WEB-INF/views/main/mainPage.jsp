@@ -48,7 +48,7 @@
 		</div>
 		<div class="hovereffect-4">
 			<img alt="" class="img-responsive"
-				src="http://icons-for-free.com/free-icons/png/512/1889190.png">
+				src="http://icons-for-free.com/free-icons/png/512/1871412.png">
 			<div class="lay">
 				<h3>Pay in/out cash</h3>
 				<p>

@@ -45,7 +45,7 @@
 			<thead>
 				<tr>
 					<th>Total saved</th>
-					<th>Save up</th>
+					<th>To save up</th>
 					<th>Date</th>
 					
 				</tr>
