@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import budget.dto.BalanceDto;
 import budget.dto.SaveUpDto;
 import budget.dto.UserDto;
-import budget.service.BalanceService;
 import budget.service.SaveUpService;
 
 @Controller
@@ -27,14 +26,12 @@ import budget.service.SaveUpService;
 public class SaveUpController {
 
 	private final SaveUpService saveUpService;
-	private final BalanceService balanceService;
 
-	public SaveUpController(SaveUpService saveUpService, BalanceService balanceService) {
+	public SaveUpController(SaveUpService saveUpService) {
 
 		this.saveUpService = saveUpService;
-		this.balanceService = balanceService;
-	}
 
+	}
 
 	@GetMapping("/add")
 	public String addSaveUp(@SessionAttribute("savedBalance") BalanceDto balance, Model model) {
@@ -75,7 +72,7 @@ public class SaveUpController {
 		model.addAttribute("saveUpHistory", saveUpList);
 		Integer start = 0;
 		model.addAttribute("start", start);
-		model.addAttribute("lastBalance", saveUpList.get(saveUpList.size()-1));
+		model.addAttribute("lastBalance", saveUpList.get(saveUpList.size() - 1));
 		return "main/saveUpHistory";
 	}
 
@@ -84,7 +81,10 @@ public class SaveUpController {
 			@ModelAttribute("date") String date) {
 
 		List<Object[]> saveUpList = saveUpService.getHistoryByDate(userDto.getId(), date);
-		model.addAttribute("saveUpHistory", saveUpList);
+		if (Objects.nonNull(saveUpList)) {
+			model.addAttribute("saveUpHistory", saveUpList);
+		}
+
 		Integer start = 0;
 		model.addAttribute("start", start);
 
@@ -121,8 +121,6 @@ public class SaveUpController {
 		}
 		return "main/saveUpHistory";
 	}
-	
-	
 
 	@ModelAttribute("saveUpDto")
 	public SaveUpDto saveUpDto() {

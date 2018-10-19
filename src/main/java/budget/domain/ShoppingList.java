@@ -25,22 +25,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ShoppingList {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
-	@Size(min=3, max=10)
+	@Size(min = 3, max = 10)
 	private String name;
-	
-	@OneToMany(mappedBy="shoppingList", cascade=CascadeType.REMOVE)
+
+	@OneToMany(mappedBy = "shoppingList", cascade = CascadeType.REMOVE)
 	private List<Item> items;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	private Double totalPrice;
-	
+
 	@Transient
 	public static ShoppingListDto toDto(ShoppingList shoppingList) {
 		ShoppingListDto shoppingListDto = new ShoppingListDto();

@@ -2,9 +2,7 @@ package budget.controller;
 
 import java.util.List;
 import java.util.Objects;
-
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,12 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import budget.dto.BalanceDto;
-
 import budget.dto.UserDto;
 import budget.service.BalanceService;
-import budget.service.ShoppingListService;
 
 @Controller
 @RequestMapping("/balance")
@@ -27,10 +22,9 @@ import budget.service.ShoppingListService;
 public class BalanceController {
 
 	private final BalanceService balanceService;
-	private final ShoppingListService shoppingListService;
 
-	public BalanceController(BalanceService balanceService, ShoppingListService shoppingListService) {
-		this.shoppingListService = shoppingListService;
+	public BalanceController(BalanceService balanceService) {
+
 		this.balanceService = balanceService;
 	}
 
@@ -74,7 +68,10 @@ public class BalanceController {
 			@ModelAttribute("date") String date) {
 
 		List<Object[]> balances = balanceService.getHistoryByDate(userDto.getId(), date);
-		model.addAttribute("balanceHistory", balances);
+		if (Objects.nonNull(balances)) {
+			model.addAttribute("balanceHistory", balances);
+		}
+
 		Integer start = 0;
 		model.addAttribute("start", start);
 

@@ -13,8 +13,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-
-import budget.validator.EmailValidator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,28 +24,28 @@ import lombok.NoArgsConstructor;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Email	
+
+	@Email
 	private String email;
 	@Size(min = 5)
 	@NotNull
 	@NotBlank
 	private String password;
-	@Size(min=5, max=15)
+	@Size(min = 5, max = 15)
 	@NotNull
 	private String nickname;
 
-	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Balance> balance;
-	
-	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
-	private List <PutInOut> putsInOut;
-	
-	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
-	private List <SaveUp> saveList;
-	
-	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
-	private List <ShoppingList> ShoppingLists;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<PutInOut> putsInOut;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<SaveUp> saveList;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<ShoppingList> ShoppingLists;
 }

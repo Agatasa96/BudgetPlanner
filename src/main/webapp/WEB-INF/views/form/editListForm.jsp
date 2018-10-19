@@ -31,7 +31,8 @@
 			</br>
 			<form:errors path="name" cssStyle="color:red"></form:errors>
 			</br>
-			<button class="form-btn sx log-in" type="submit" id="log">Edit name</button>
+			<button class="form-btn sx log-in" type="submit" id="log">Edit
+				name</button>
 
 		</form:form>
 

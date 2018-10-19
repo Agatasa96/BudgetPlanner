@@ -35,7 +35,7 @@
 			</p>
 
 
-			<form:input path="email" placeholder="Insert email"  />
+			<form:input path="email" placeholder="Insert email" />
 			</br>
 			<form:errors path="email" cssStyle="color:red"></form:errors>
 			</br>
@@ -59,10 +59,14 @@
 			<p>
 				Enter your email address</br> and your password.
 			</p>
-			<form:input path="email" placeholder="Insert email" /></br>
-			<form:errors path="email" cssStyle="color:red"></form:errors></br>
-			<form:password path="password" placeholder="Insert password" /></br>
-			<form:errors path="password" cssStyle="color:red"></form:errors></br>
+			<form:input path="email" placeholder="Insert email" />
+			</br>
+			<form:errors path="email" cssStyle="color:red"></form:errors>
+			</br>
+			<form:password path="password" placeholder="Insert password" />
+			</br>
+			<form:errors path="password" cssStyle="color:red"></form:errors>
+			</br>
 			<button class="form-btn sx back" type="button">Back</button>
 			<button class="form-btn dx" type="submit">Log In</button>
 		</form:form>

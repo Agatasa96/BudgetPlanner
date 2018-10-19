@@ -3,9 +3,7 @@ package budget.controller;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import javax.swing.JOptionPane;
 import javax.validation.Valid;
-import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import budget.domain.User;
 import budget.dto.UserDto;
 import budget.dto.BalanceDto;
 import budget.service.BalanceService;
@@ -66,7 +61,7 @@ public class UserController {
 		UserDto userDto2 = userService.logIn(userDto);
 		if (Objects.nonNull(userDto2)) {
 			BalanceDto balanceDto = balanceService.lastBalance(userDto2);
-			if (LocalDate.now().getDayOfMonth() == 1 && balanceDto.getDate().getDayOfMonth() !=1) {
+			if (LocalDate.now().getDayOfMonth() == 1 && balanceDto.getDate().getDayOfMonth() != 1) {
 				userDto = userDto2;
 				model.addAttribute("userDto", userDto);
 				return "form/newMonthForm";
@@ -106,7 +101,7 @@ public class UserController {
 		if (Objects.isNull(userDto2)) {
 			return "/form/editUserForm";
 		} else {
-			
+
 			userDto = userDto2;
 			model.addAttribute("userDto", userDto);
 			return "/main/userDataPage";

@@ -24,5 +24,4 @@ public class HomePageController {
 		return "main/mainPage";
 	}
 
-
 }

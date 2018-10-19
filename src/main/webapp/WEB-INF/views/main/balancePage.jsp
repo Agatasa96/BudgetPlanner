@@ -61,7 +61,7 @@
 				<a href="/BudgetPlanner/saveUp/history">Save-up history</a>
 			</p>
 		</div>
-		
+
 		<div class="button_main">
 			<p>
 				<a href="/BudgetPlanner/shoppingList">Show shopping list</a>

@@ -58,7 +58,7 @@
 					<tr>
 						<td>${b[1]}</td>
 						<td>${b[2]}</td>
-						
+
 						<td><c:choose>
 								<c:when test="${b[3]==null }">
 					${ b[5]}

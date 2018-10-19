@@ -1,7 +1,7 @@
 package budget.controller;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import budget.domain.Item;
 import budget.domain.ShoppingList;
 import budget.dto.BalanceDto;
 import budget.dto.ItemDto;

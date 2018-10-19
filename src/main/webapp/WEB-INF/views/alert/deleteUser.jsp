@@ -16,7 +16,7 @@
 	<div>
 		<h1>Do you want to delete user: ${userDto.nickname }?</h1>
 	</div>
-	
+
 	<!-- Buttons -->
 
 	<div class="cont">
@@ -25,8 +25,8 @@
 			<p>
 				<a href="/BudgetPlanner/user/deleteYes">Yes</a>
 			</p>
-			</div>
-			<div class="button_main">
+		</div>
+		<div class="button_main">
 			<p>
 				<a href="/BudgetPlanner/user/getUser">No</a>
 			</p>

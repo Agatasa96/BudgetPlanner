@@ -20,17 +20,15 @@ public class BalanceService {
 	private final BalanceRepository balanceRepository;
 	private final UserRepository userRepository;
 
-
 	public BalanceService(BalanceRepository balanceRepository, UserRepository userRepository) {
 		this.balanceRepository = balanceRepository;
 		this.userRepository = userRepository;
-			}
+	}
 
 	public BalanceDto lastBalance(UserDto userDto) {
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(userDto.getId());
 		return toDto(balance);
 	}
-
 
 	public BalanceDto countBalance(ShoppingListDto shoppingListDto, BalanceDto balanceDto) {
 		BalanceDto countedBalance = new BalanceDto();
@@ -76,8 +74,6 @@ public class BalanceService {
 		}
 
 	}
-
-	
 
 	private Double countSaved(BalanceDto balanceDto) {
 		Balance balance = balanceRepository.findFirstByUserIdOrderByIdDesc(balanceDto.getUserDto().getId());

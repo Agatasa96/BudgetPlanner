@@ -3,6 +3,7 @@ package budget.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import budget.validator.EmailValidator;
@@ -18,6 +19,7 @@ public class UserDto {
 	private Long id;
 	@EmailValidator
 	@NotNull
+	@Email
 	private String email;
 	@Size(min = 5)
 	@NotNull

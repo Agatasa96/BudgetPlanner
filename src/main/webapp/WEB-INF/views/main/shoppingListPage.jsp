@@ -23,8 +23,8 @@
 <body>
 	<h1>Shopping lists</h1>
 
-<h3> Total balance: ${savedBalance.totalBalance }  </h3>
-<h3>Balance after save: ${savedBalance.saveBalance }</h3>
+	<h3>Total balance: ${savedBalance.totalBalance }</h3>
+	<h3>Balance after save: ${savedBalance.saveBalance }</h3>
 	<!-- Button -->
 
 	<div class="cont">
@@ -51,7 +51,7 @@
 					<c:forEach items="${itemsList }" var="i">
 						<c:choose>
 							<c:when test="${sl.id == i[4]}">
-								<li>${i[0] } ${i[1]} zl</li>
+								<li>${i[0] } ${i[1]}</li>
 							</c:when>
 						</c:choose>
 					</c:forEach>
@@ -61,10 +61,11 @@
 
 					</c:when>
 					<c:otherwise>
-					<c:choose>
-						<c:when test="${sl.id ==itemsList.get(itemsList.size()-1)[4]}">
-							<p class="items">Total price: ${itemsList.get(itemsList.size()-1)[5] }</p>
-						</c:when>
+						<c:choose>
+							<c:when test="${sl.id ==itemsList.get(itemsList.size()-1)[4]}">
+								<p class="items">Total price:
+									${itemsList.get(itemsList.size()-1)[5] }</p>
+							</c:when>
 						</c:choose>
 					</c:otherwise>
 				</c:choose>
@@ -84,22 +85,26 @@
 				</div>
 				<div class="button_main">
 					<p>
-						<a href="/BudgetPlanner/shoppingList/countBalance/${sl.id }">Calculate balance</a>
+						<a href="/BudgetPlanner/shoppingList/countBalance/${sl.id }">Calculate
+							balance</a>
 					</p>
 				</div>
 				<div class="button_main">
 					<p>
-						<a href="/BudgetPlanner/shoppingList/buyList/${sl.id }">Buy items</a>
+						<a href="/BudgetPlanner/shoppingList/buyList/${sl.id }">Buy
+							items</a>
 					</p>
 				</div>
 				<div class="button_main">
 					<p>
-						<a href="/BudgetPlanner/shoppingList/editList/${sl.id }">Edit list name</a>
+						<a href="/BudgetPlanner/shoppingList/editList/${sl.id }">Edit
+							list name</a>
 					</p>
 				</div>
 				<div class="button_main">
 					<p>
-						<a href="/BudgetPlanner/shoppingList/deleteList/${sl.id }">Delete list</a>
+						<a href="/BudgetPlanner/shoppingList/deleteList/${sl.id }">Delete
+							list</a>
 					</p>
 				</div>
 			</div>

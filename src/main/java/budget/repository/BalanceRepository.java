@@ -1,6 +1,5 @@
 package budget.repository;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +13,6 @@ import budget.domain.Balance;
 @Repository
 public interface BalanceRepository extends JpaRepository<Balance, Long> {
 	Balance findFirstByUserIdOrderByIdDesc(Long id);
-	
 
 	@Query(value = "SELECT Balance.user_id,Balance.totalBalance, Balance.saveBalance, Balance.putInMonthly, PutInOut.putOut, PutInOut.putIn, Balance.totalSaved, Balance.date\n"
 			+ "FROM Balance \n" + "left join PutInOut on Balance.putInOut_id =  PutInOut.id \n"

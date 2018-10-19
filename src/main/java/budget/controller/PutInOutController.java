@@ -48,7 +48,7 @@ public class PutInOutController {
 			String putInOutDto2 = putInOutService.save(putInOutDto);
 			if (putInOutDto2.equals("added")) {
 				BalanceDto savedBalance = putInOutService.countTotalBalance(userDto.getId());
-				
+
 				model.addAttribute("savedBalance", savedBalance);
 			} else if (putInOutDto2.equals("useSaved")) {
 				model.addAttribute("putInOutSaved", putInOutDto);
@@ -78,11 +78,6 @@ public class PutInOutController {
 
 		return "main/balancePage";
 
-	}
-
-	@ModelAttribute("putInOut")
-	public PutInOutDto getNewPutnOutDto(PutInOutDto putInOutDto) {
-		return new PutInOutDto();
 	}
 
 }

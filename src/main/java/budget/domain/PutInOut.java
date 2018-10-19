@@ -1,9 +1,6 @@
 package budget.domain;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class PutInOut {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NumberFormat
