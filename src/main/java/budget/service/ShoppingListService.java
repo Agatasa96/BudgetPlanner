@@ -54,6 +54,15 @@ public class ShoppingListService {
 
 	}
 
+	public ShoppingListDto editList(Long id, ShoppingListDto editedList) {
+		ShoppingList list = shoppingListRepository.findOne(id);
+		if(Objects.nonNull(list)) {
+			list.setName(editedList.getName());
+			ShoppingList saved = shoppingListRepository.save(list);
+			return toDto(saved);
+		}
+		return null;
+	}
 	private ShoppingList toDomain(ShoppingListDto dto) {
 		ShoppingList shoppingList = new ShoppingList();
 		shoppingList.setId(dto.getId());
@@ -71,5 +80,6 @@ public class ShoppingListService {
 		shoppingListDto.setTotalPrice(shoppingList.getTotalPrice());
 		return shoppingListDto;
 	}
+
 
 }

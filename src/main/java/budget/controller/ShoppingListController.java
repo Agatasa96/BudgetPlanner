@@ -145,6 +145,29 @@ public class ShoppingListController {
 		return "main/shoppingListPage";
 	}
 
+	@GetMapping("/editList/{id}")
+	public String editList(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("listId", id);
+		model.addAttribute("editList", new ShoppingList());
+		return "form/editListForm";
+	}
+
+	@PostMapping("/editList")
+	public String editList(@SessionAttribute("listId") Long id,
+			@Valid @ModelAttribute("editList") ShoppingListDto editedList, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "form/editListForm";
+		} else {
+			ShoppingListDto dto = shoppingListService.editList(id, editedList);
+			if (Objects.nonNull(dto)) {
+				return "redirect:/shoppingList";
+			} else {
+				return "form/editListForm";
+			}
+		}
+
+	}
+
 	@GetMapping("/deleteList/{id}")
 	public String deleteList(@PathVariable("id") Long id) {
 		shoppingListService.deleteList(id);
@@ -158,9 +181,9 @@ public class ShoppingListController {
 		inOutDto.setDate(LocalDateTime.now());
 		inOutDto.setUserDto(userDto);
 		inOutDto.setPutOut(shoppingListDto.getTotalPrice());
-model.addAttribute("listId", id);
+		model.addAttribute("listId", id);
 		String putInOutDto2 = putInOutService.save(inOutDto);
-		if(Objects.nonNull(putInOutDto2)) {
+		if (Objects.nonNull(putInOutDto2)) {
 			if (putInOutDto2.equals("added")) {
 				BalanceDto savedBalance = putInOutService.countTotalBalance(userDto.getId());
 				shoppingListService.deleteList(id);
@@ -168,12 +191,12 @@ model.addAttribute("listId", id);
 			} else if (putInOutDto2.equals("useSaved")) {
 				model.addAttribute("putInOutShopping", inOutDto);
 				return "alert/useSavedPageShopping";
-			}	
+			}
 		}
-		
+
 		return "redirect:/shoppingList";
 	}
-	
+
 	@GetMapping("/dontUseSaved")
 	public String dontUseSaved() {
 		JOptionPane.showMessageDialog(null, "Cannot buy");
@@ -183,7 +206,7 @@ model.addAttribute("listId", id);
 
 	@GetMapping("/useSaved")
 	public String useSaved(@SessionAttribute("putInOutShopping") PutInOutDto putInOutDto,
-			@SessionAttribute("userDto") UserDto userDto, Model model, @SessionAttribute("listId")  Long id) {
+			@SessionAttribute("userDto") UserDto userDto, Model model, @SessionAttribute("listId") Long id) {
 
 		BalanceDto savedBalance = putInOutService.useSaved(putInOutDto, userDto.getId());
 		if (Objects.nonNull(savedBalance)) {

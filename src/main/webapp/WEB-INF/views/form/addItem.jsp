@@ -24,13 +24,16 @@
 	<div class="left">
 		<h3>Shopping list ${shopingList.name }</h3>
 		<ul class="item">
-		<c:forEach items="${itemList }" var="i">
-			<li class="item">${i.itemName } ${i.price } zl</li>
-			
-		</c:forEach>
+			<c:forEach items="${itemList }" var="i">
+				<li class="item">${i.itemName } ${i.price }</li>
+
+			</c:forEach>
 		</ul>
 		<div class="button_main">
-		<p><a href="/BudgetPlanner/shoppingList/">Save list</a></p></div>
+			<p>
+				<a href="/BudgetPlanner/shoppingList/">Save list</a>
+			</p>
+		</div>
 	</div>
 	<!-- Formularz -->
 	<div class="container">
@@ -51,7 +54,7 @@
 		</form:form>
 
 	</div>
-<!-- Menu boczne -->
+	<!-- Menu boczne -->
 
 	<div class="open">
 		<span class="cls"></span> <span>

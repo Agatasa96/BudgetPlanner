@@ -94,6 +94,11 @@
 				</div>
 				<div class="button_main">
 					<p>
+						<a href="/BudgetPlanner/shoppingList/editList/${sl.id }">Edit list name</a>
+					</p>
+				</div>
+				<div class="button_main">
+					<p>
 						<a href="/BudgetPlanner/shoppingList/deleteList/${sl.id }">Delete list</a>
 					</p>
 				</div>
