@@ -1,7 +1,10 @@
 package budget.service;
 
+import java.util.Base64;
 import java.util.Objects;
 import javax.swing.JOptionPane;
+
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import budget.domain.User;
 import budget.dto.UserDto;
@@ -17,6 +20,7 @@ public class UserService {
 	}
 
 	public UserDto signUp(UserDto dto) {
+		
 		User user = userRepository.save(toDomain(dto));
 		if (Objects.nonNull(user.getId())) {
 			JOptionPane.showMessageDialog(null, "Done!");
@@ -34,7 +38,8 @@ public class UserService {
 			JOptionPane.showMessageDialog(null, "Wrong email or password");
 			return null;
 		} else {
-			if ((userDto.getPassword()).equals(user.getPassword())) {
+			String pass = Base64.getEncoder().encodeToString(userDto.getPassword().getBytes());
+			if (user.getPassword().equals(pass)) {
 				return toDto(user);
 			} else {
 				JOptionPane.showMessageDialog(null, "Wrong email or password");
@@ -78,7 +83,9 @@ public class UserService {
 		User foundUser = userRepository.findOne(userDto.getId());
 		if (Objects.nonNull(foundUser)) {
 			if (editUserDto.getPassword().trim().length() >= 5) {
-				foundUser.setPassword(editUserDto.getPassword());
+				String pass = Base64.getEncoder().encodeToString(editUserDto.getPassword().getBytes());
+				
+				foundUser.setPassword(pass);
 				userRepository.save(foundUser);
 				return toDto(foundUser);
 			} else {
@@ -119,7 +126,7 @@ public class UserService {
 	private User toDomain(UserDto userDto) {
 		User user = new User();
 		user.setId(userDto.getId());
-		user.setPassword(userDto.getPassword());
+		user.setPassword(Base64.getEncoder().encodeToString(userDto.getPassword().getBytes()));
 		user.setEmail(userDto.getEmail());
 		user.setNickname(userDto.getNickname());
 		return user;

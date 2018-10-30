@@ -32,10 +32,10 @@ img {
 /* Ustawienie obrazka */
 .left {
 	position: absolute;
-	width: auto;
-	height: auto;
-	top: calc(50% - 190px);
-	right: calc(65% - 160px);
+	width: 900px;
+	height: 900px;
+	top: calc(50% - 210px);
+	right: calc(65% - 460px);
 	
 }
 

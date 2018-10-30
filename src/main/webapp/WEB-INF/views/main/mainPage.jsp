@@ -94,7 +94,6 @@
 		<span class="cls"></span> <span>
 			<ul class="sub-menu ">
 				<li><a href="/BudgetPlanner/user/getUser">My account</a></li>
-				<li><a href="#about" title="about"> Help</a></li>
 				<li><a href="/BudgetPlanner/">Log out</a></li>
 			</ul>
 		</span> <span class="cls"></span>
